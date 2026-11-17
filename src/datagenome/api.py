@@ -47,10 +47,13 @@ class AnalysisQuery(BaseModel):
     ] = "accuracy"
     utility_class: str | None = None
     max_evaluations: int = Field(default=256, ge=1, le=1024)
-    permutations: int = Field(default=16, ge=2, le=128)
+    permutations: int = Field(default=16, ge=2, le=256)
     k: int = Field(default=3, ge=1, le=1000)
     valuation_seconds: float = Field(default=30, gt=0, le=120)
     removal_fraction: float = Field(default=0.1, gt=0, le=0.2)
+    record_id: int | None = Field(default=None, ge=1)
+    minimum_support: int = Field(default=10, ge=5, le=500)
+    privacy_mode: Literal["detailed", "redacted", "summary"] = "detailed"
     association_threshold: float = Field(default=0.9, gt=0, le=1)
     candidate_limit: int = Field(default=10000, ge=1, le=100000)
     max_anomaly_rows: int = Field(default=2000, ge=5, le=5000)
@@ -208,6 +211,9 @@ def create_app(
                     k=query.k,
                     valuation_seconds=query.valuation_seconds,
                     removal_fraction=query.removal_fraction,
+                    record_id=query.record_id,
+                    minimum_support=query.minimum_support,
+                    privacy_mode=query.privacy_mode,
                     candidate_limit=query.candidate_limit,
                     association_threshold=query.association_threshold,
                     univariate=query.univariate,
@@ -235,6 +241,9 @@ def create_app(
         ("datasets/anomalies", "detect-anomalies"),
         ("datasets/leakage", "detect-leakage"),
         ("datasets/label-audit", "audit-labels"),
+        ("models/investigate", "investigate"),
+        ("models/error-slices", "analyze-errors"),
+        ("experiments/interventions", "investigate-intervention"),
         ("datasets/valuation", "value-data"),
         ("experiments/data-removal", "compare-removal"),
         ("datasets/split", "split"),

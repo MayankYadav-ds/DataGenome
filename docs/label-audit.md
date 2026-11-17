@@ -56,6 +56,7 @@ and REST interfaces, JSON output, and synthetic and bundled public-data benchmar
 This milestone adds a training-label review queue and a synthetic impact comparison.
 
 An overall quality score, persisted dataset-version storage, drift and concept drift,
-fairness and hidden subgroup evaluation, data valuation and attribution, prediction
-explanations, a full recommendation system, interactive visualizations and a web
+fairness and hidden subgroup evaluation, general-purpose causal attribution, a full recommendation system, interactive visualizations and a web
 application remain planned.
+
+Later checkpoints added [record valuation](valuation.md) and a [bounded prediction investigator](investigator.md).

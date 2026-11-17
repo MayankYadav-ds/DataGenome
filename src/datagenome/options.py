@@ -55,6 +55,9 @@ class Options:
     k: int = 3
     valuation_seconds: float = 30
     removal_fraction: float = 0.1
+    record_id: int | None = None
+    minimum_support: int = 10
+    privacy_mode: str = "detailed"
 
     def run(
         self,
@@ -79,6 +82,9 @@ class Options:
                     self.valuation_seconds,
                 ),
                 removal_fraction=self.removal_fraction,
+                record_id=self.record_id,
+                minimum_support=self.minimum_support,
+                privacy_mode=self.privacy_mode,
                 target=self.target,
                 limit=limit,
                 rows=rows,

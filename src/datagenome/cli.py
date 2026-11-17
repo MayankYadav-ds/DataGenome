@@ -21,6 +21,8 @@ def main() -> int:
         "diagnose": "Produce expanded diagnostics and anomaly scores.",
         "value-data": "Value training records on the validation partition.",
         "compare-removal": "Compare class-capped training removal strategies.",
+        "investigate": "Inspect a validation prediction.",
+        "analyze-errors": "Find exploratory validation error slices.",
         "audit-labels": "Rank potentially unreliable training labels for review.",
         "detect-leakage": "Audit a reproducible split for leakage.",
         "detect-anomalies": "Calculate independent anomaly scores.",
@@ -49,6 +51,16 @@ def main() -> int:
         command.add_argument(
             "--manifest", type=Path, help="Reuse a saved split report."
         )
+        if name in {"investigate", "analyze-errors"}:
+            command.add_argument(
+                "--record-id", type=int, help="One-based validation record ID."
+            )
+            command.add_argument("--minimum-support", type=int, default=10)
+            command.add_argument(
+                "--privacy-mode",
+                choices=("detailed", "redacted", "summary"),
+                default="detailed",
+            )
         command.add_argument("--max-depth", type=int, default=8)
         command.add_argument("--trees", type=int, default=32)
         command.add_argument("--association-threshold", type=float, default=0.9)
@@ -174,6 +186,9 @@ def main() -> int:
                     k=getattr(args, "k", 3),
                     valuation_seconds=getattr(args, "valuation_seconds", 30),
                     removal_fraction=getattr(args, "removal_fraction", 0.1),
+                    record_id=getattr(args, "record_id", None),
+                    minimum_support=getattr(args, "minimum_support", 10),
+                    privacy_mode=getattr(args, "privacy_mode", "detailed"),
                     candidate_limit=args.candidate_limit,
                     association_threshold=args.association_threshold,
                     univariate=args.univariate,

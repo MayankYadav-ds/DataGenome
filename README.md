@@ -88,3 +88,7 @@ Use `python -m datagenome audit-labels data.csv --target label` to rank training
 
 Phase 4 adds a validation-only valuation SDK, CLI and local API, plus matched data
 removal comparisons with class-specific reporting. [Algorithms, usage and benchmark](docs/valuation.md).
+
+## Model failure investigation
+
+Analyze a validation prediction, screen error slices, or run a prespecified removal policy on an independent holdout. [Investigator and privacy options](docs/investigator.md) and [independent evaluation](docs/independent.md).

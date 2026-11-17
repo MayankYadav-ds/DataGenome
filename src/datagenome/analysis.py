@@ -3,10 +3,12 @@ from time import perf_counter
 from typing import Any
 
 from .anomalies import AnomalyConfig, detect_anomalies
+from .error_slices import analyze_errors
 from .experiments import Intervention, active, compare, prepare
 from .identity import metadata
 from .ingestion import DatasetError, parse_csv
 from .intelligence import IntelligenceConfig, analyze
+from .investigator import inspect_prediction
 from .label_audit import audit_labels
 from .leakage import LeakageConfig, inspect_leakage
 from .modeling import ModelConfig, fit_baseline
@@ -33,6 +35,9 @@ def execute(
     anomaly: AnomalyConfig = AnomalyConfig(),
     valuation: ValuationConfig = ValuationConfig(),
     removal_fraction: float = 0.1,
+    record_id: int | None = None,
+    minimum_support: int = 10,
+    privacy_mode: str = "detailed",
 ) -> dict[str, Any]:
     start = perf_counter()
     dataset = parse_csv(payload, limit, max_rows=rows, max_columns=columns)
@@ -48,6 +53,9 @@ def execute(
             "audit-labels",
             "value-data",
             "compare-removal",
+            "investigate",
+            "analyze-errors",
+            "investigate-intervention",
         }
         and target is None
     ):
@@ -79,6 +87,49 @@ def execute(
             ]
     elif operation == "detect-anomalies":
         report["anomalies"] = detect_anomalies(dataset, target, anomaly)
+    elif (
+        operation in {"investigate", "investigate-intervention"}
+        and manifest
+        and target is not None
+    ):
+        if model.model != "logistic-regression":
+            raise DatasetError(
+                "unsupported_investigator_model",
+                "Investigation requires the binary logistic model.",
+            )
+        if record_id is None:
+            raise DatasetError("missing_record_id", "Supply a validation record ID.")
+        if operation == "investigate-intervention" and not active(intervention):
+            raise DatasetError(
+                "missing_intervention", "Select an explicit intervention."
+            )
+        result = inspect_prediction(
+            dataset,
+            target,
+            manifest,
+            record_id,
+            intervention,
+            summary_only=privacy_mode != "detailed",
+        )
+        report = {
+            "schema_version": "1.0",
+            "operation": operation,
+            "investigation": result,
+        }
+    elif operation == "analyze-errors" and manifest and target is not None:
+        result = analyze_errors(
+            dataset,
+            target,
+            manifest,
+            model,
+            min_support=minimum_support,
+            summary_only=privacy_mode != "detailed",
+        )
+        report = {
+            "schema_version": "1.0",
+            "operation": operation,
+            "error_slices": result,
+        }
     elif operation == "value-data" and manifest and target is not None:
         report["valuation"] = value_data(
             dataset, target, manifest, valuation, model=model

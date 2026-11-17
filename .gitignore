@@ -10,3 +10,9 @@ dist/
 .env
 report.json
 demo.csv
+
+.datagenome-ledger/
+*.local.csv
+*.private.csv
+*.protocol.json
+*.report.json

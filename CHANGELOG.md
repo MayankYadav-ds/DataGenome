@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added frozen holdout evaluation, an experimental logistic influence engine, and a validation prediction investigator with error slices and redacted output.
+
 - Added five validation-only training-record valuation methods and matched data removal experiments.
 
 ## 0.2.0
