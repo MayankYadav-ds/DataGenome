@@ -13,10 +13,73 @@ from datagenome.ingestion import Dataset
 from datagenome.leakage import LeakageConfig, inspect_leakage
 from datagenome.modeling import ModelConfig, fit_baseline
 from datagenome.splits import SplitConfig, split
+from datagenome.univariate import UnivariateConfig
 
 SEEDS = (11, 23, 37, 53, 71)
 THRESHOLDS = (0.70, 0.80, 0.90, 0.95)
 TARGET = "label"
+
+
+def univariate_trials(dataset, injected, seeds):
+    results = []
+    config = LeakageConfig(univariate=UnivariateConfig(max_features=32))
+    for seed in seeds:
+        split_config = SplitConfig("stratified", seed=seed)
+        original = inspect_leakage(
+            dataset, TARGET, split(dataset, split_config, TARGET), config
+        )
+        augmented = inspect_leakage(
+            injected, TARGET, split(injected, split_config, TARGET), config
+        )
+        original_flags = predictive_flags(original)
+        injected_flags = predictive_flags(augmented)
+        expected = {"synthetic_copy", "synthetic_encoding"}
+        results.append(
+            {
+                "seed": seed,
+                "original_flags": sorted(original_flags),
+                "injected_detected": sorted(injected_flags & expected),
+                "injected_missed": sorted(expected - injected_flags),
+                "other_augmented_flags": sorted(injected_flags - expected),
+            }
+        )
+    return results
+
+
+def predictive_flags(signals):
+    return {
+        item.columns[0]
+        for item in signals
+        if item.method == "univariate_predictive"
+        and item.classification == "suspicious_heuristic"
+    }
+
+
+def legitimate_control(seeds):
+    # The predictor is sampled first and available before the target is assigned.
+    rng = Random(314159)
+    values = [rng.uniform(-1, 1) for _ in range(300)]
+    data = Dataset(
+        ("available_predictor", "independent_noise", TARGET),
+        tuple(
+            (str(value), str(rng.random()), str(int(value >= 0))) for value in values
+        ),
+    )
+    config = LeakageConfig(univariate=UnivariateConfig())
+    results = []
+    for seed in seeds:
+        manifest = split(data, SplitConfig("stratified", seed=seed), TARGET)
+        signals = inspect_leakage(data, TARGET, manifest, config)
+        results.append(
+            {
+                "seed": seed,
+                "false_leakage_alerts": sorted(predictive_flags(signals)),
+                "confirmed_violations": sum(
+                    item.classification == "confirmed_violation" for item in signals
+                ),
+            }
+        )
+    return results
 
 
 def evaluate(dataset, target, seeds=SEEDS):
@@ -130,6 +193,7 @@ def evaluate(dataset, target, seeds=SEEDS):
             for a, b in zip(left, right, strict=True)
         ),
         "detector_trials": audits,
+        "univariate_trials": univariate_trials(dataset, injected, seeds),
         "intervention_trials": trials,
         "skipped": skipped,
         "intervention_summary": summary,
@@ -164,6 +228,7 @@ def main():
             "seeds": SEEDS,
             "mask_seed": 2026,
             "datasets": results,
+            "legitimate_predictor_control": legitimate_control(SEEDS),
             "elapsed_seconds": perf_counter() - start,
         },
         indent=2,

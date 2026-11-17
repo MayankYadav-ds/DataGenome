@@ -92,3 +92,45 @@ def test_cli_manifest_roundtrip(tmp_path) -> None:
         ]
     )
     assert json.loads(response)["split"] == json.loads(manifest.read_text())["split"]
+
+
+def test_univariate_cli_and_api_opt_in(tmp_path):
+    path = tmp_path / "input.csv"
+    path.write_bytes(CSV)
+    command = [
+        sys.executable,
+        "-m",
+        "datagenome",
+        "detect-leakage",
+        str(path),
+        "--target",
+        "label",
+        "--univariate",
+        "--univariate-folds",
+        "2",
+    ]
+    result = json.loads(subprocess.check_output(command))
+    assert any(item["method"] == "univariate_predictive" for item in result["leakage"])
+
+    async def exercise():
+        async with AsyncClient(
+            transport=ASGITransport(app=create_app()), base_url="http://test"
+        ) as client:
+            path = "/api/v1/datasets/leakage?filename=test.csv&target=label"
+            for suffix, enabled in (
+                ("", False),
+                ("&univariate=true&univariate_folds=2", True),
+            ):
+                response = await client.post(
+                    path + suffix, content=CSV, headers={"content-type": "text/csv"}
+                )
+                assert response.status_code == 200
+                assert (
+                    any(
+                        item["method"] == "univariate_predictive"
+                        for item in response.json()["leakage"]
+                    )
+                    == enabled
+                )
+
+    asyncio.run(exercise())

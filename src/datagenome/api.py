@@ -36,6 +36,11 @@ class AnalysisQuery(BaseModel):
     filename: str = Field(min_length=1, max_length=255)
     max_depth: int = Field(default=8, ge=1, le=16)
     trees: int = Field(default=32, ge=1, le=64)
+    univariate: bool = False
+    univariate_folds: int = Field(default=3, ge=2, le=5)
+    univariate_max_features: int = Field(default=16, ge=1, le=32)
+    univariate_minimum_score: float = Field(default=0.90, gt=0, le=1)
+    univariate_minimum_lift: float = Field(default=0.20, gt=0, le=1)
     association_threshold: float = Field(default=0.9, gt=0, le=1)
     candidate_limit: int = Field(default=10000, ge=1, le=100000)
     max_anomaly_rows: int = Field(default=2000, ge=5, le=5000)
@@ -187,6 +192,11 @@ def create_app(
                     imputation=query.imputation,
                     candidate_limit=query.candidate_limit,
                     association_threshold=query.association_threshold,
+                    univariate=query.univariate,
+                    univariate_folds=query.univariate_folds,
+                    univariate_max_features=query.univariate_max_features,
+                    univariate_minimum_score=query.univariate_minimum_score,
+                    univariate_minimum_lift=query.univariate_minimum_lift,
                     max_anomaly_rows=query.max_anomaly_rows,
                     iqr_multiplier=query.iqr_multiplier,
                     z_threshold=query.z_threshold,

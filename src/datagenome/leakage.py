@@ -9,6 +9,7 @@ from .identity import fingerprint
 from .ingestion import Dataset, DatasetError
 from .numeric import number
 from .splits import PARTITIONS, Manifest, column, timestamp, validate
+from .univariate import UnivariateConfig, evaluate_univariate
 
 
 @dataclass(frozen=True)
@@ -33,6 +34,7 @@ class LeakageConfig:
     unavailable: tuple[str, ...] = ()
     candidate_limit: int = 10000
     association_threshold: float = 0.9
+    univariate: UnivariateConfig | None = None
 
 
 def feature_rows(dataset: Dataset, target: str | None) -> list[tuple[str, ...]]:
@@ -80,6 +82,7 @@ def inspect_leakage(
                     "confirmed_violation": "high",
                     "insufficient_evidence": "info",
                     "unsupported_analysis": "info",
+                    "no_signal": "info",
                 }.get(classification, "warning"),
                 columns,
                 records[:100],
@@ -305,4 +308,22 @@ def inspect_leakage(
             "Exclude this feature before fitting.",
             "Uses supplied availability metadata.",
         )
+    if config.univariate is not None:
+        for result in evaluate_univariate(
+            dataset,
+            target_index,
+            train,
+            manifest.config.seed,
+            config.univariate,
+            constrained_split=bool(group or time),
+        ):
+            emit(
+                "univariate_predictive",
+                result.classification,
+                result.columns,
+                result.evidence,
+                "Review flagged features against their data provenance.",
+                "Scores use stratified training-only folds. Predictive performance does not establish leakage.",
+                thresholds=config.univariate.thresholds(),
+            )
     return output

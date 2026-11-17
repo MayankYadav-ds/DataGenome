@@ -9,6 +9,7 @@ from .intelligence import IntelligenceConfig
 from .leakage import LeakageConfig
 from .modeling import ModelConfig
 from .splits import Manifest, SplitConfig
+from .univariate import UnivariateConfig
 
 
 @dataclass
@@ -32,6 +33,11 @@ class Options:
     manifest: Manifest | None = None
     candidate_limit: int = 10000
     association_threshold: float = 0.9
+    univariate: bool = False
+    univariate_folds: int = 3
+    univariate_max_features: int = 16
+    univariate_minimum_score: float = 0.90
+    univariate_minimum_lift: float = 0.20
     max_anomaly_rows: int = 2000
     iqr_multiplier: float = 1.5
     z_threshold: float = 3.5
@@ -70,6 +76,14 @@ class Options:
                     self.unavailable,
                     self.candidate_limit,
                     self.association_threshold,
+                    UnivariateConfig(
+                        self.univariate_folds,
+                        self.univariate_max_features,
+                        self.univariate_minimum_score,
+                        self.univariate_minimum_lift,
+                    )
+                    if self.univariate
+                    else None,
                 ),
                 intervention=Intervention(
                     "remove-duplicates" in self.intervention,

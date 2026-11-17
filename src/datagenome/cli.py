@@ -49,6 +49,15 @@ def main() -> int:
         command.add_argument("--max-depth", type=int, default=8)
         command.add_argument("--trees", type=int, default=32)
         command.add_argument("--association-threshold", type=float, default=0.9)
+        command.add_argument(
+            "--univariate",
+            action="store_true",
+            help="Score individual features in training-only folds.",
+        )
+        command.add_argument("--univariate-folds", type=int, default=3)
+        command.add_argument("--univariate-max-features", type=int, default=16)
+        command.add_argument("--univariate-minimum-score", type=float, default=0.90)
+        command.add_argument("--univariate-minimum-lift", type=float, default=0.20)
         command.add_argument("--candidate-limit", type=int, default=10000)
         command.add_argument("--max-anomaly-rows", type=int, default=2000)
         command.add_argument("--iqr-multiplier", type=float, default=1.5)
@@ -133,6 +142,11 @@ def main() -> int:
                     manifest,
                     candidate_limit=args.candidate_limit,
                     association_threshold=args.association_threshold,
+                    univariate=args.univariate,
+                    univariate_folds=args.univariate_folds,
+                    univariate_max_features=args.univariate_max_features,
+                    univariate_minimum_score=args.univariate_minimum_score,
+                    univariate_minimum_lift=args.univariate_minimum_lift,
                     max_anomaly_rows=args.max_anomaly_rows,
                     iqr_multiplier=args.iqr_multiplier,
                     z_threshold=args.z_threshold,
