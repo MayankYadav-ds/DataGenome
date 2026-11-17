@@ -36,7 +36,13 @@ def load_csv(source: BinaryIO, name: str, limit: int = DEFAULT_MAX_BYTES) -> Dat
     return parse_csv(source.read(limit + 1), limit)
 
 
-def parse_csv(payload: bytes | bytearray, limit: int = DEFAULT_MAX_BYTES) -> Dataset:
+def parse_csv(
+    payload: bytes | bytearray,
+    limit: int = DEFAULT_MAX_BYTES,
+    *,
+    max_rows: int | None = None,
+    max_columns: int | None = None,
+) -> Dataset:
     check_size(len(payload), limit)
     try:
         content = payload.decode("utf-8-sig")
@@ -47,11 +53,15 @@ def parse_csv(payload: bytes | bytearray, limit: int = DEFAULT_MAX_BYTES) -> Dat
     reader = csv.reader(io.StringIO(content, newline=""), strict=True)
     try:
         columns = tuple(next(reader, []))
+        if max_columns is not None and len(columns) > max_columns:
+            raise DatasetError(
+                "column_limit", "CSV exceeds the configured column limit.", 413
+            )
         if not columns:
             raise DatasetError("empty_dataset", "CSV has no header.")
         if any(not col.strip() for col in columns) or len(set(columns)) != len(columns):
             raise DatasetError("invalid_header", "Headers must be nonblank and unique.")
-        rows = []
+        rows: list[tuple[str, ...]] = []
         for row in reader:
             if not row:
                 continue
@@ -59,6 +69,10 @@ def parse_csv(payload: bytes | bytearray, limit: int = DEFAULT_MAX_BYTES) -> Dat
                 raise DatasetError(
                     "malformed_csv",
                     f"Wrong number of fields at line {reader.line_num}.",
+                )
+            if max_rows is not None and len(rows) >= max_rows:
+                raise DatasetError(
+                    "row_limit", "CSV exceeds the configured row limit.", 413
                 )
             rows.append(tuple(row))
     except csv.Error:
