@@ -31,6 +31,7 @@ class Options:
     imputation: str | None = None
     manifest: Manifest | None = None
     candidate_limit: int = 10000
+    association_threshold: float = 0.9
     max_anomaly_rows: int = 2000
     iqr_multiplier: float = 1.5
     z_threshold: float = 3.5
@@ -68,6 +69,7 @@ class Options:
                     self.cutoff,
                     self.unavailable,
                     self.candidate_limit,
+                    self.association_threshold,
                 ),
                 intervention=Intervention(
                     "remove-duplicates" in self.intervention,

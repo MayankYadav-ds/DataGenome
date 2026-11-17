@@ -36,6 +36,7 @@ class AnalysisQuery(BaseModel):
     filename: str = Field(min_length=1, max_length=255)
     max_depth: int = Field(default=8, ge=1, le=16)
     trees: int = Field(default=32, ge=1, le=64)
+    association_threshold: float = Field(default=0.9, gt=0, le=1)
     candidate_limit: int = Field(default=10000, ge=1, le=100000)
     max_anomaly_rows: int = Field(default=2000, ge=5, le=5000)
     iqr_multiplier: float = Field(default=1.5, gt=0, le=100)
@@ -185,6 +186,7 @@ def create_app(
                     exclude_record=tuple(query.exclude_record),
                     imputation=query.imputation,
                     candidate_limit=query.candidate_limit,
+                    association_threshold=query.association_threshold,
                     max_anomaly_rows=query.max_anomaly_rows,
                     iqr_multiplier=query.iqr_multiplier,
                     z_threshold=query.z_threshold,

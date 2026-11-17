@@ -74,3 +74,8 @@ interface are planned. See [research references](research/README.md) for the ori
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development checks and
 [SECURITY.md](SECURITY.md) for vulnerability reporting.
+
+## Public-dataset benchmarks
+
+Phase 2 adds an offline threshold sweep and a repeated held-out imputation comparison.
+[Run and interpret the benchmark](docs/phase-2.md).

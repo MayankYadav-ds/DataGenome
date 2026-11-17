@@ -48,6 +48,7 @@ def main() -> int:
         )
         command.add_argument("--max-depth", type=int, default=8)
         command.add_argument("--trees", type=int, default=32)
+        command.add_argument("--association-threshold", type=float, default=0.9)
         command.add_argument("--candidate-limit", type=int, default=10000)
         command.add_argument("--max-anomaly-rows", type=int, default=2000)
         command.add_argument("--iqr-multiplier", type=float, default=1.5)
@@ -131,6 +132,7 @@ def main() -> int:
                     args.imputation,
                     manifest,
                     candidate_limit=args.candidate_limit,
+                    association_threshold=args.association_threshold,
                     max_anomaly_rows=args.max_anomaly_rows,
                     iqr_multiplier=args.iqr_multiplier,
                     z_threshold=args.z_threshold,

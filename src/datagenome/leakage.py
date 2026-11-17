@@ -32,6 +32,7 @@ class LeakageConfig:
     cutoff: str | None = None
     unavailable: tuple[str, ...] = ()
     candidate_limit: int = 10000
+    association_threshold: float = 0.9
 
 
 def feature_rows(dataset: Dataset, target: str | None) -> list[tuple[str, ...]]:
@@ -51,6 +52,10 @@ def inspect_leakage(
     manifest: Manifest,
     config: LeakageConfig = LeakageConfig(),
 ) -> list[Signal]:
+    if not 0 < config.association_threshold <= 1:
+        raise DatasetError(
+            "invalid_association_threshold", "Use a threshold in (0, 1]."
+        )
     validate(dataset, manifest)
     target_index = column(dataset, target)
     output: list[Signal] = []
@@ -144,7 +149,7 @@ def inspect_leakage(
                         )
                     except (ValueError, ArithmeticError):
                         continue
-                    if strength >= 0.9:
+                    if strength >= config.association_threshold:
                         emit(
                             "predictive_association",
                             "suspicious_heuristic",
@@ -152,7 +157,9 @@ def inspect_leakage(
                             {"absolute_point_biserial": strength, "paired": len(pairs)},
                             "Verify how and when the feature is obtained.",
                             "In-sample binary association is neither causal nor proof of leakage.",
-                            thresholds={"minimum_absolute_correlation": 0.9},
+                            thresholds={
+                                "minimum_absolute_correlation": config.association_threshold
+                            },
                         )
 
             if not method and 2 <= len(values) <= 20 and len(labels) <= 20:
@@ -169,7 +176,7 @@ def inspect_leakage(
                 strength = sqrt(
                     chi_squared / (len(pairs) * min(len(values) - 1, len(labels) - 1))
                 )
-                if adequate and strength >= 0.9:
+                if adequate and strength >= config.association_threshold:
                     emit(
                         "categorical_association",
                         "suspicious_heuristic",
@@ -178,7 +185,7 @@ def inspect_leakage(
                         "Audit the provenance of the associated feature.",
                         "Training-only categorical association does not establish leakage.",
                         thresholds={
-                            "minimum_cramers_v": 0.9,
+                            "minimum_cramers_v": config.association_threshold,
                             "minimum_expected_count": 5,
                         },
                     )

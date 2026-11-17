@@ -89,3 +89,32 @@ def test_shape_limits() -> None:
         parse_csv(b"a\n1\n2\n", max_rows=1)
     with pytest.raises(DatasetError, match="column limit"):
         parse_csv(b"a,b\n1,2\n", max_columns=1)
+
+
+def test_configurable_association_preserves_heuristic_classification() -> None:
+    dataset = parse_csv(
+        b"x,y\n"
+        + b"".join(
+            f"{i % 3 + 3 * ((i // 3) % 2)},{(i // 3) % 2}\n".encode() for i in range(18)
+        )
+    )
+    generated = split(dataset, SplitConfig())
+    manifest = Manifest(
+        generated.dataset_sha256,
+        generated.config,
+        {"train": list(range(1, 13)), "validation": [13, 14, 15], "test": [16, 17, 18]},
+    )
+    strict = inspect_leakage(dataset, "y", manifest)
+    assert not any(signal.method == "predictive_association" for signal in strict)
+    loose = inspect_leakage(
+        dataset, "y", manifest, LeakageConfig(association_threshold=0.8)
+    )
+    signal = next(
+        signal for signal in loose if signal.method == "predictive_association"
+    )
+    assert signal.classification == "suspicious_heuristic"
+    assert signal.thresholds == {"minimum_absolute_correlation": 0.8}
+    with pytest.raises(DatasetError, match="threshold"):
+        inspect_leakage(
+            dataset, "y", manifest, LeakageConfig(association_threshold=float("nan"))
+        )
