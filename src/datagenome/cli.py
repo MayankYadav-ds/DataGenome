@@ -19,6 +19,7 @@ def main() -> int:
     descriptions = {
         "profile": "Profile a local CSV dataset.",
         "diagnose": "Produce expanded diagnostics and anomaly scores.",
+        "audit-labels": "Rank potentially unreliable training labels for review.",
         "detect-leakage": "Audit a reproducible split for leakage.",
         "detect-anomalies": "Calculate independent anomaly scores.",
         "split": "Generate a verified split manifest.",

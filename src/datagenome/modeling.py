@@ -1,5 +1,5 @@
 import warnings
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from dataclasses import asdict, dataclass
 from importlib.metadata import version
 from time import perf_counter
@@ -132,12 +132,7 @@ def fit_baseline(
     train_ids: Sequence[int] | None = None,
     exclude: Sequence[str] = (),
 ) -> dict[str, Any]:
-    import numpy as np
-    from sklearn.compose import ColumnTransformer
     from sklearn.exceptions import ConvergenceWarning
-    from sklearn.impute import SimpleImputer
-    from sklearn.pipeline import Pipeline
-    from sklearn.preprocessing import OneHotEncoder, StandardScaler
     from threadpoolctl import threadpool_limits
 
     validate(dataset, manifest)
@@ -192,65 +187,10 @@ def fit_baseline(
         raise DatasetError(
             "too_many_classes", "At most 50 training classes are supported."
         )
-    numeric_indices = [
-        i
-        for i, feature in enumerate(selected)
-        if numeric([dataset.rows[i - 1][feature] for i in train])
-    ]
-    numeric_set = set(numeric_indices)
-    categorical_indices = [i for i in range(len(selected)) if i not in numeric_set]
-
-    def design(ids: Sequence[int]) -> Any:
-        rows: list[list[object]] = []
-        for record_id in ids:
-            row: list[object] = []
-            for i, feature in enumerate(selected):
-                cell = dataset.rows[record_id - 1][feature]
-                if i in numeric_set:
-                    value = number(cell)
-                    row.append(
-                        float("nan") if value is None else min(1e12, max(-1e12, value))
-                    )
-                else:
-                    row.append(cell if cell.strip() else float("nan"))
-            rows.append(row)
-        return np.asarray(rows, dtype=object)
-
-    preprocess = ColumnTransformer(
-        [
-            (
-                "numeric",
-                Pipeline(
-                    [
-                        ("impute", SimpleImputer(strategy=config.imputation)),
-                        ("scale", StandardScaler()),
-                    ]
-                ),
-                numeric_indices,
-            ),
-            (
-                "categorical",
-                Pipeline(
-                    [
-                        (
-                            "impute",
-                            SimpleImputer(
-                                strategy="most_frequent", keep_empty_features=True
-                            ),
-                        ),
-                        (
-                            "encode",
-                            OneHotEncoder(handle_unknown="ignore", max_categories=32),
-                        ),
-                    ]
-                ),
-                categorical_indices,
-            ),
-        ],
-        sparse_threshold=1.0,
+    pipeline, preprocess, design, numeric_indices, categorical_indices = (
+        classification_pipeline(dataset, selected, train, config)
     )
-    estimator = make_estimator(config)
-    pipeline = Pipeline([("preprocessing", preprocess), ("estimator", estimator)])
+    estimator = pipeline.named_steps["estimator"]
     evaluation: dict[str, Any] = {}
     with threadpool_limits(limits=1):
         start = perf_counter()
@@ -324,6 +264,77 @@ def fit_baseline(
             "Numeric values are clipped to the documented range before scaling.",
         ],
     }
+
+
+def classification_pipeline(
+    dataset: Dataset, selected: list[int], train: Sequence[int], config: ModelConfig
+) -> tuple[Any, Any, Callable[[Sequence[int]], Any], list[int], list[int]]:
+    import numpy as np
+    from sklearn.compose import ColumnTransformer
+    from sklearn.impute import SimpleImputer
+    from sklearn.pipeline import Pipeline
+    from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+    numeric_indices = [
+        i
+        for i, feature in enumerate(selected)
+        if numeric([dataset.rows[i - 1][feature] for i in train])
+    ]
+    numeric_set = set(numeric_indices)
+    categorical_indices = [i for i in range(len(selected)) if i not in numeric_set]
+
+    def design(ids: Sequence[int]) -> Any:
+        rows: list[list[object]] = []
+        for record_id in ids:
+            row: list[object] = []
+            for i, feature in enumerate(selected):
+                cell = dataset.rows[record_id - 1][feature]
+                if i in numeric_set:
+                    value = number(cell)
+                    row.append(
+                        float("nan") if value is None else min(1e12, max(-1e12, value))
+                    )
+                else:
+                    row.append(cell if cell.strip() else float("nan"))
+            rows.append(row)
+        return np.asarray(rows, dtype=object)
+
+    preprocess = ColumnTransformer(
+        [
+            (
+                "numeric",
+                Pipeline(
+                    [
+                        ("impute", SimpleImputer(strategy=config.imputation)),
+                        ("scale", StandardScaler()),
+                    ]
+                ),
+                numeric_indices,
+            ),
+            (
+                "categorical",
+                Pipeline(
+                    [
+                        (
+                            "impute",
+                            SimpleImputer(
+                                strategy="most_frequent", keep_empty_features=True
+                            ),
+                        ),
+                        (
+                            "encode",
+                            OneHotEncoder(handle_unknown="ignore", max_categories=32),
+                        ),
+                    ]
+                ),
+                categorical_indices,
+            ),
+        ],
+        sparse_threshold=1.0,
+    )
+    estimator = make_estimator(config)
+    pipeline = Pipeline([("preprocessing", preprocess), ("estimator", estimator)])
+    return pipeline, preprocess, design, numeric_indices, categorical_indices
 
 
 def make_estimator(config: ModelConfig) -> Any:

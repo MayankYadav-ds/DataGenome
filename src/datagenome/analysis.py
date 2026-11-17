@@ -7,6 +7,7 @@ from .experiments import Intervention, active, compare, prepare
 from .identity import metadata
 from .ingestion import DatasetError, parse_csv
 from .intelligence import IntelligenceConfig, analyze
+from .label_audit import audit_labels
 from .leakage import LeakageConfig, inspect_leakage
 from .modeling import ModelConfig, fit_baseline
 from .profiling import profile
@@ -34,7 +35,8 @@ def execute(
     if target is not None and target not in dataset.columns:
         raise DatasetError("unknown_target", "Target must match a CSV header.")
     if (
-        operation in {"train", "evaluate", "experiment", "detect-leakage"}
+        operation
+        in {"train", "evaluate", "experiment", "detect-leakage", "audit-labels"}
         and target is None
     ):
         raise DatasetError("missing_target", "This operation requires a target column.")
@@ -65,6 +67,8 @@ def execute(
             ]
     elif operation == "detect-anomalies":
         report["anomalies"] = detect_anomalies(dataset, target, anomaly)
+    elif operation == "audit-labels" and manifest and target is not None:
+        report["label_audit"] = audit_labels(dataset, target, manifest)
     elif operation == "detect-leakage" and manifest and target is not None:
         report["leakage"] = [
             asdict(signal)

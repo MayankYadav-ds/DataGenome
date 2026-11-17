@@ -216,6 +216,7 @@ def create_app(
         ("datasets/diagnose", "diagnose"),
         ("datasets/anomalies", "detect-anomalies"),
         ("datasets/leakage", "detect-leakage"),
+        ("datasets/label-audit", "audit-labels"),
         ("datasets/split", "split"),
         ("models/train", "train"),
         ("models/evaluate", "evaluate"),

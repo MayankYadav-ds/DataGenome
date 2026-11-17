@@ -69,7 +69,7 @@ methodology and benchmarks](docs/phase-1.md).
 
 Phase 0 uses descriptive statistics. Future data valuation experiments can use
 [OpenDataVal](https://papers.nips.cc/paper_files/paper/2023/hash/5b047c7d862059a5df623c1ce2982fca-Abstract-Datasets_and_Benchmarks.html),
-a NeurIPS 2023 benchmark for comparing valuation algorithms. Phase 1 implements split-aware diagnostics and controlled validation comparisons. Label quality, attribution, drift, fairness, and a web
+a NeurIPS 2023 benchmark for comparing valuation algorithms. Phase 1 implements split-aware diagnostics and controlled validation comparisons. Attribution, drift, fairness, and a web
 interface are planned. See [research references](research/README.md) for the original papers.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development checks and
@@ -79,3 +79,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development checks and
 
 Phase 2 adds an offline threshold sweep and a repeated held-out imputation comparison.
 [Run and interpret the benchmark](docs/phase-2.md).
+
+## Training label audit
+
+Use `python -m datagenome audit-labels data.csv --target label` to rank training labels for human review. [Method, benchmark and limitations](docs/label-audit.md).
