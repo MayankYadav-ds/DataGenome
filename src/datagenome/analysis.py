@@ -5,6 +5,7 @@ from typing import Any
 from .anomalies import AnomalyConfig, detect_anomalies
 from .error_slices import analyze_errors
 from .experiments import Intervention, active, compare, prepare
+from .fairness import FairnessConfig, audit_fairness, compare_fairness
 from .identity import metadata
 from .ingestion import DatasetError, parse_csv
 from .intelligence import IntelligenceConfig, analyze
@@ -13,6 +14,7 @@ from .label_audit import audit_labels
 from .leakage import LeakageConfig, inspect_leakage
 from .modeling import ModelConfig, fit_baseline
 from .profiling import profile
+from .proxies import detect_proxies
 from .removal import compare_removal
 from .splits import Manifest, SplitConfig, split, validate
 from .valuation import ValuationConfig, value_data
@@ -38,6 +40,8 @@ def execute(
     record_id: int | None = None,
     minimum_support: int = 10,
     privacy_mode: str = "detailed",
+    audit_attributes: tuple[str, ...] = (),
+    positive_label: str | None = None,
 ) -> dict[str, Any]:
     start = perf_counter()
     dataset = parse_csv(payload, limit, max_rows=rows, max_columns=columns)
@@ -53,6 +57,8 @@ def execute(
             "audit-labels",
             "value-data",
             "compare-removal",
+            "audit-fairness",
+            "fairness-comparison",
             "investigate",
             "analyze-errors",
             "investigate-intervention",
@@ -70,7 +76,40 @@ def execute(
     report["identity"] = metadata(
         dataset, payload, target, asdict(manifest.config) if manifest else None
     )
-    if operation == "diagnose":
+    if (
+        operation in {"audit-fairness", "fairness-comparison"}
+        and manifest
+        and target is not None
+    ):
+        config = FairnessConfig(
+            audit_attributes,
+            positive_label,
+            minimum_support,
+            summary_only=privacy_mode != "detailed",
+        )
+        result = (
+            audit_fairness(dataset, target, manifest, config, model)
+            if operation == "audit-fairness"
+            else compare_fairness(
+                dataset, target, manifest, config, model, intervention.excluded_records
+            )
+        )
+        report = {"schema_version": "1.0", "operation": operation, "fairness": result}
+    elif operation == "detect-proxies" and manifest:
+        if len(audit_attributes) != 1:
+            raise DatasetError(
+                "proxy_attribute", "Supply one sensitive column for proxy diagnostics."
+            )
+        result = detect_proxies(
+            dataset,
+            manifest,
+            audit_attributes[0],
+            target,
+            min_support=minimum_support,
+            summary_only=privacy_mode != "detailed",
+        )
+        report = {"schema_version": "1.0", "operation": operation, "proxies": result}
+    elif operation == "diagnose":
         report.update(
             profile=asdict(profile(dataset, target)),
             intelligence=analyze(dataset, target, intelligence),

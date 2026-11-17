@@ -22,6 +22,9 @@ def main() -> int:
         "value-data": "Value training records on the validation partition.",
         "compare-removal": "Compare class-capped training removal strategies.",
         "investigate": "Inspect a validation prediction.",
+        "audit-fairness": "Audit binary classification by supplied attributes.",
+        "fairness-comparison": "Check subgroup changes after explicit training exclusions.",
+        "detect-proxies": "Screen training features for sensitive-attribute associations.",
         "analyze-errors": "Find exploratory validation error slices.",
         "audit-labels": "Rank potentially unreliable training labels for review.",
         "detect-leakage": "Audit a reproducible split for leakage.",
@@ -51,6 +54,15 @@ def main() -> int:
         command.add_argument(
             "--manifest", type=Path, help="Reuse a saved split report."
         )
+        if name in {"audit-fairness", "fairness-comparison", "detect-proxies"}:
+            command.add_argument("--sensitive-column", action="append", default=[])
+            command.add_argument("--positive-label")
+            command.add_argument("--minimum-support", type=int, default=20)
+            command.add_argument(
+                "--privacy-mode",
+                choices=("detailed", "redacted", "summary"),
+                default="summary",
+            )
         if name in {"investigate", "analyze-errors"}:
             command.add_argument(
                 "--record-id", type=int, help="One-based validation record ID."
@@ -189,6 +201,8 @@ def main() -> int:
                     record_id=getattr(args, "record_id", None),
                     minimum_support=getattr(args, "minimum_support", 10),
                     privacy_mode=getattr(args, "privacy_mode", "detailed"),
+                    audit_attributes=tuple(getattr(args, "sensitive_column", [])),
+                    positive_label=getattr(args, "positive_label", None),
                     candidate_limit=args.candidate_limit,
                     association_threshold=args.association_threshold,
                     univariate=args.univariate,

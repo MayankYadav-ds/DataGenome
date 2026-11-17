@@ -92,3 +92,7 @@ removal comparisons with class-specific reporting. [Algorithms, usage and benchm
 ## Model failure investigation
 
 Analyze a validation prediction, screen error slices, or run a prespecified removal policy on an independent holdout. [Investigator and privacy options](docs/investigator.md) and [independent evaluation](docs/independent.md).
+
+## Fairness and distribution drift
+
+Audit supplied groups, screen potential proxies, compare datasets, and confirm exploratory error slices on a frozen holdout. [Phase 6 methodology and usage](docs/fairness-drift.md).

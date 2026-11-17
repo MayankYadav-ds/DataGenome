@@ -12,6 +12,7 @@ from pydantic import BaseModel, Field
 from starlette.concurrency import run_in_threadpool
 
 from . import __version__
+from .drift import DriftConfig, detect_drift
 from .ingestion import (
     DEFAULT_MAX_BYTES,
     DatasetError,
@@ -30,6 +31,14 @@ CSV_BODY = {
         "content": {"text/csv": {"schema": {"type": "string", "format": "binary"}}},
     }
 }
+
+
+class DriftUpload(BaseModel):
+    reference_csv: str = Field(min_length=1)
+    comparison_csv: str = Field(min_length=1)
+    target: str | None = Field(default=None, max_length=255)
+    iid: bool = False
+    privacy_mode: Literal["detailed", "redacted", "summary"] = "summary"
 
 
 class AnalysisQuery(BaseModel):
@@ -53,7 +62,9 @@ class AnalysisQuery(BaseModel):
     removal_fraction: float = Field(default=0.1, gt=0, le=0.2)
     record_id: int | None = Field(default=None, ge=1)
     minimum_support: int = Field(default=10, ge=5, le=500)
-    privacy_mode: Literal["detailed", "redacted", "summary"] = "detailed"
+    privacy_mode: Literal["detailed", "redacted", "summary"] | None = None
+    sensitive_column: list[str] = Field(default_factory=list, max_length=3)
+    positive_label: str | None = Field(default=None, max_length=255)
     association_threshold: float = Field(default=0.9, gt=0, le=1)
     candidate_limit: int = Field(default=10000, ge=1, le=100000)
     max_anomaly_rows: int = Field(default=2000, ge=5, le=5000)
@@ -172,6 +183,66 @@ def create_app(
                 )
             )
 
+    @app.post(
+        "/api/v1/datasets/drift",
+        openapi_extra={
+            "requestBody": {
+                "required": True,
+                "content": {
+                    "application/json": {"schema": DriftUpload.model_json_schema()}
+                },
+            }
+        },
+    )
+    async def drift_upload(request: Request) -> dict[str, Any]:
+        if gate.locked():
+            raise DatasetError(
+                "analysis_busy", "Retry when the active request finishes.", 503
+            )
+        if (
+            request.headers.get("content-type", "").split(";", 1)[0].strip().lower()
+            != "application/json"
+        ):
+            raise DatasetError(
+                "unsupported_media_type", "Expected application/json.", 415
+            )
+        async with gate:
+            payload = bytearray()
+            async for chunk in request.stream():
+                check_size(len(payload) + len(chunk), 2 * limit + 1024)
+                payload.extend(chunk)
+            try:
+                spec = DriftUpload.model_validate_json(payload)
+                a, b = (
+                    spec.reference_csv.encode("utf-8"),
+                    spec.comparison_csv.encode("utf-8"),
+                )
+            except (ValueError, UnicodeError):
+                raise DatasetError(
+                    "invalid_drift_upload", "Supply two valid CSV strings."
+                ) from None
+
+            def run() -> dict[str, Any]:
+                left = parse_csv(
+                    a, limit, max_rows=min(rows, 10000), max_columns=min(columns, 64)
+                )
+                right = parse_csv(
+                    b, limit, max_rows=min(rows, 10000), max_columns=min(columns, 64)
+                )
+                return {
+                    "schema_version": "1.0",
+                    "drift": detect_drift(
+                        left,
+                        right,
+                        DriftConfig(
+                            iid=spec.iid, summary_only=spec.privacy_mode != "detailed"
+                        ),
+                        target=spec.target,
+                    ),
+                }
+
+            return await run_in_threadpool(run)
+
     def endpoint(operation: str) -> Callable[..., Awaitable[dict[str, Any]]]:
         async def run(
             request: Request, query: Annotated[AnalysisQuery, Query()]
@@ -213,7 +284,15 @@ def create_app(
                     removal_fraction=query.removal_fraction,
                     record_id=query.record_id,
                     minimum_support=query.minimum_support,
-                    privacy_mode=query.privacy_mode,
+                    privacy_mode=query.privacy_mode
+                    or (
+                        "summary"
+                        if operation
+                        in {"audit-fairness", "fairness-comparison", "detect-proxies"}
+                        else "detailed"
+                    ),
+                    audit_attributes=tuple(query.sensitive_column),
+                    positive_label=query.positive_label,
                     candidate_limit=query.candidate_limit,
                     association_threshold=query.association_threshold,
                     univariate=query.univariate,
@@ -237,6 +316,9 @@ def create_app(
         return run
 
     for path, operation in (
+        ("datasets/fairness", "audit-fairness"),
+        ("datasets/proxies", "detect-proxies"),
+        ("experiments/fairness-comparison", "fairness-comparison"),
         ("datasets/diagnose", "diagnose"),
         ("datasets/anomalies", "detect-anomalies"),
         ("datasets/leakage", "detect-leakage"),

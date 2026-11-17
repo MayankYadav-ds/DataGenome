@@ -58,6 +58,8 @@ class Options:
     record_id: int | None = None
     minimum_support: int = 10
     privacy_mode: str = "detailed"
+    audit_attributes: tuple[str, ...] = ()
+    positive_label: str | None = None
 
     def run(
         self,
@@ -85,6 +87,8 @@ class Options:
                 record_id=self.record_id,
                 minimum_support=self.minimum_support,
                 privacy_mode=self.privacy_mode,
+                audit_attributes=self.audit_attributes,
+                positive_label=self.positive_label,
                 target=self.target,
                 limit=limit,
                 rows=rows,

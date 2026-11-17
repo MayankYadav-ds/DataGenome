@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added group-aware and historical audit folds, fairness diagnostics, distribution and performance drift, and frozen slice confirmation.
+
 - Added frozen holdout evaluation, an experimental logistic influence engine, and a validation prediction investigator with error slices and redacted output.
 
 - Added five validation-only training-record valuation methods and matched data removal experiments.
