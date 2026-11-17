@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Added five validation-only training-record valuation methods and matched data removal experiments.
+
 ## 0.2.0
 
 - Added deterministic dataset identities and reproducible split manifests.

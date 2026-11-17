@@ -10,6 +10,7 @@ from .leakage import LeakageConfig
 from .modeling import ModelConfig
 from .splits import Manifest, SplitConfig
 from .univariate import UnivariateConfig
+from .valuation import ValuationConfig
 
 
 @dataclass
@@ -46,6 +47,14 @@ class Options:
     missing_high: float = 0.30
     max_depth: int = 8
     trees: int = 32
+    valuation_method: str = "loo"
+    utility: str = "accuracy"
+    utility_class: str | None = None
+    max_evaluations: int = 256
+    permutations: int = 16
+    k: int = 3
+    valuation_seconds: float = 30
+    removal_fraction: float = 0.1
 
     def run(
         self,
@@ -59,6 +68,17 @@ class Options:
             return execute(
                 operation,
                 payload,
+                valuation=ValuationConfig(
+                    self.valuation_method,
+                    self.utility,
+                    self.utility_class,
+                    self.seed,
+                    self.max_evaluations,
+                    self.permutations,
+                    self.k,
+                    self.valuation_seconds,
+                ),
+                removal_fraction=self.removal_fraction,
                 target=self.target,
                 limit=limit,
                 rows=rows,

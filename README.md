@@ -83,3 +83,8 @@ Phase 2 adds an offline threshold sweep and a repeated held-out imputation compa
 ## Training label audit
 
 Use `python -m datagenome audit-labels data.csv --target label` to rank training labels for human review. [Method, benchmark and limitations](docs/label-audit.md).
+
+## Training record valuation
+
+Phase 4 adds a validation-only valuation SDK, CLI and local API, plus matched data
+removal comparisons with class-specific reporting. [Algorithms, usage and benchmark](docs/valuation.md).

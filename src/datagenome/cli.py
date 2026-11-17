@@ -19,6 +19,8 @@ def main() -> int:
     descriptions = {
         "profile": "Profile a local CSV dataset.",
         "diagnose": "Produce expanded diagnostics and anomaly scores.",
+        "value-data": "Value training records on the validation partition.",
+        "compare-removal": "Compare class-capped training removal strategies.",
         "audit-labels": "Rank potentially unreliable training labels for review.",
         "detect-leakage": "Audit a reproducible split for leakage.",
         "detect-anomalies": "Calculate independent anomaly scores.",
@@ -59,6 +61,29 @@ def main() -> int:
         command.add_argument("--univariate-max-features", type=int, default=16)
         command.add_argument("--univariate-minimum-score", type=float, default=0.90)
         command.add_argument("--univariate-minimum-lift", type=float, default=0.20)
+        if name in {"value-data", "compare-removal"}:
+            command.add_argument(
+                "--method",
+                choices=("loo", "shapley", "mc-shapley", "knn-shapley", "banzhaf"),
+                default="loo",
+            )
+            command.add_argument(
+                "--utility",
+                choices=(
+                    "accuracy",
+                    "balanced_accuracy",
+                    "macro_f1",
+                    "negative_log_loss",
+                    "class_recall",
+                ),
+                default="accuracy",
+            )
+            command.add_argument("--utility-class")
+            command.add_argument("--max-evaluations", type=int, default=256)
+            command.add_argument("--permutations", type=int, default=16)
+            command.add_argument("--k", type=int, default=3)
+            command.add_argument("--valuation-seconds", type=float, default=30)
+            command.add_argument("--removal-fraction", type=float, default=0.1)
         command.add_argument("--candidate-limit", type=int, default=10000)
         command.add_argument("--max-anomaly-rows", type=int, default=2000)
         command.add_argument("--iqr-multiplier", type=float, default=1.5)
@@ -141,6 +166,14 @@ def main() -> int:
                     tuple(args.exclude_record),
                     args.imputation,
                     manifest,
+                    valuation_method=getattr(args, "method", "loo"),
+                    utility=getattr(args, "utility", "accuracy"),
+                    utility_class=getattr(args, "utility_class", None),
+                    max_evaluations=getattr(args, "max_evaluations", 256),
+                    permutations=getattr(args, "permutations", 16),
+                    k=getattr(args, "k", 3),
+                    valuation_seconds=getattr(args, "valuation_seconds", 30),
+                    removal_fraction=getattr(args, "removal_fraction", 0.1),
                     candidate_limit=args.candidate_limit,
                     association_threshold=args.association_threshold,
                     univariate=args.univariate,

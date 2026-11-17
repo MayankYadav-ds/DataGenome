@@ -41,6 +41,16 @@ class AnalysisQuery(BaseModel):
     univariate_max_features: int = Field(default=16, ge=1, le=32)
     univariate_minimum_score: float = Field(default=0.90, gt=0, le=1)
     univariate_minimum_lift: float = Field(default=0.20, gt=0, le=1)
+    method: Literal["loo", "shapley", "mc-shapley", "knn-shapley", "banzhaf"] = "loo"
+    utility: Literal[
+        "accuracy", "balanced_accuracy", "macro_f1", "negative_log_loss", "class_recall"
+    ] = "accuracy"
+    utility_class: str | None = None
+    max_evaluations: int = Field(default=256, ge=1, le=1024)
+    permutations: int = Field(default=16, ge=2, le=128)
+    k: int = Field(default=3, ge=1, le=1000)
+    valuation_seconds: float = Field(default=30, gt=0, le=120)
+    removal_fraction: float = Field(default=0.1, gt=0, le=0.2)
     association_threshold: float = Field(default=0.9, gt=0, le=1)
     candidate_limit: int = Field(default=10000, ge=1, le=100000)
     max_anomaly_rows: int = Field(default=2000, ge=5, le=5000)
@@ -190,6 +200,14 @@ def create_app(
                     suspected_feature=tuple(query.suspected_feature),
                     exclude_record=tuple(query.exclude_record),
                     imputation=query.imputation,
+                    valuation_method=query.method,
+                    utility=query.utility,
+                    utility_class=query.utility_class,
+                    max_evaluations=query.max_evaluations,
+                    permutations=query.permutations,
+                    k=query.k,
+                    valuation_seconds=query.valuation_seconds,
+                    removal_fraction=query.removal_fraction,
                     candidate_limit=query.candidate_limit,
                     association_threshold=query.association_threshold,
                     univariate=query.univariate,
@@ -217,6 +235,8 @@ def create_app(
         ("datasets/anomalies", "detect-anomalies"),
         ("datasets/leakage", "detect-leakage"),
         ("datasets/label-audit", "audit-labels"),
+        ("datasets/valuation", "value-data"),
+        ("experiments/data-removal", "compare-removal"),
         ("datasets/split", "split"),
         ("models/train", "train"),
         ("models/evaluate", "evaluate"),

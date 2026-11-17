@@ -11,7 +11,9 @@ from .label_audit import audit_labels
 from .leakage import LeakageConfig, inspect_leakage
 from .modeling import ModelConfig, fit_baseline
 from .profiling import profile
+from .removal import compare_removal
 from .splits import Manifest, SplitConfig, split, validate
+from .valuation import ValuationConfig, value_data
 
 
 def execute(
@@ -29,6 +31,8 @@ def execute(
     manifest: Manifest | None = None,
     intelligence: IntelligenceConfig = IntelligenceConfig(),
     anomaly: AnomalyConfig = AnomalyConfig(),
+    valuation: ValuationConfig = ValuationConfig(),
+    removal_fraction: float = 0.1,
 ) -> dict[str, Any]:
     start = perf_counter()
     dataset = parse_csv(payload, limit, max_rows=rows, max_columns=columns)
@@ -36,7 +40,15 @@ def execute(
         raise DatasetError("unknown_target", "Target must match a CSV header.")
     if (
         operation
-        in {"train", "evaluate", "experiment", "detect-leakage", "audit-labels"}
+        in {
+            "train",
+            "evaluate",
+            "experiment",
+            "detect-leakage",
+            "audit-labels",
+            "value-data",
+            "compare-removal",
+        }
         and target is None
     ):
         raise DatasetError("missing_target", "This operation requires a target column.")
@@ -67,6 +79,14 @@ def execute(
             ]
     elif operation == "detect-anomalies":
         report["anomalies"] = detect_anomalies(dataset, target, anomaly)
+    elif operation == "value-data" and manifest and target is not None:
+        report["valuation"] = value_data(
+            dataset, target, manifest, valuation, model=model
+        )
+    elif operation == "compare-removal" and manifest and target is not None:
+        report["removal"] = compare_removal(
+            dataset, target, manifest, valuation, model, removal_fraction
+        )
     elif operation == "audit-labels" and manifest and target is not None:
         report["label_audit"] = audit_labels(dataset, target, manifest)
     elif operation == "detect-leakage" and manifest and target is not None:
