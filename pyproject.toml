@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
-dependencies = ["numpy>=1.26,<3", "scikit-learn>=1.6,<2", "threadpoolctl>=3.5,<4"]
+dependencies = ["numpy>=1.26,<3", "scipy>=1.10,<2", "scikit-learn>=1.6,<2", "threadpoolctl>=3.5,<4"]
 
 [project.optional-dependencies]
 api = ["fastapi>=0.121,<1", "uvicorn>=0.35,<1"]
@@ -27,7 +27,7 @@ strict = true
 files = ["src/datagenome"]
 
 [[tool.mypy.overrides]]
-module = ["sklearn.*", "threadpoolctl"]
+module = ["sklearn.*", "threadpoolctl", "scipy.*"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
