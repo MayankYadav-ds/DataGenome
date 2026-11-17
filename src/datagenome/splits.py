@@ -11,7 +11,7 @@ PARTITIONS = ("train", "validation", "test")
 
 
 def column(dataset: Dataset, name: str | None) -> int:
-    if name not in dataset.columns:
+    if name is None or name not in dataset.columns:
         raise DatasetError(
             "unknown_column", "Configured column must match a CSV header."
         )
@@ -80,6 +80,28 @@ def restore(report: Any) -> Manifest:
 
 
 def validate(dataset: Dataset, manifest: Manifest) -> None:
+    config = manifest.config
+    if (
+        config.strategy not in {"random", "stratified", "group", "chronological"}
+        or type(config.seed) is not int
+        or not 0 <= config.seed < 2**32
+        or len(config.ratios) != 3
+        or not all(
+            type(value) in (float, int) and 0 < value < 1 for value in config.ratios
+        )
+        or abs(sum(config.ratios) - 1) > 1e-9
+        or (
+            config.group is not None
+            and (not isinstance(config.group, str) or not config.group)
+        )
+        or (
+            config.time is not None
+            and (not isinstance(config.time, str) or not config.time)
+        )
+        or bool(config.group) != (config.strategy == "group")
+        or bool(config.time) != (config.strategy == "chronological")
+    ):
+        raise DatasetError("invalid_manifest", "Manifest configuration is invalid.")
     groups = manifest.partitions
     if manifest.dataset_sha256 != canonical(dataset) or set(groups) != set(PARTITIONS):
         raise DatasetError("invalid_manifest", "Manifest does not match the dataset.")
@@ -90,7 +112,6 @@ def validate(dataset: Dataset, manifest: Manifest) -> None:
         raise DatasetError(
             "invalid_manifest", "Partitions must cover every record exactly once."
         )
-    config = manifest.config
     if config.strategy == "group":
         feature = column(dataset, config.group)
         keys = [

@@ -1,10 +1,13 @@
-from collections import defaultdict
+from collections import Counter
 from dataclasses import dataclass
 from itertools import combinations
+from math import sqrt
 from statistics import correlation
 
 from .duplicates import near_pairs
+from .identity import fingerprint
 from .ingestion import Dataset, DatasetError
+from .numeric import number
 from .splits import PARTITIONS, Manifest, column, timestamp, validate
 
 
@@ -63,14 +66,16 @@ def inspect_leakage(
         thresholds: dict[str, object] | None = None,
         scope: str = "",
     ) -> None:
-        from .identity import fingerprint
-
         output.append(
             Signal(
                 method + ":" + fingerprint([columns, scope]),
                 classification,
                 method,
-                "warning" if classification != "confirmed_violation" else "high",
+                {
+                    "confirmed_violation": "high",
+                    "insufficient_evidence": "info",
+                    "unsupported_analysis": "info",
+                }.get(classification, "warning"),
                 columns,
                 records[:100],
                 evidence,
@@ -93,10 +98,17 @@ def inspect_leakage(
         ]
         labels = {label for _, label in pairs}
         values = {value for value, _ in pairs}
-        mapping: dict[str, set[str]] = defaultdict(set)
-        for value, label in pairs:
-            mapping[value].add(label)
-        if len(pairs) >= 6 and min(len(labels), len(values)) >= 2:
+        if len(pairs) < 6 or len(labels) < 2:
+            emit(
+                "target_association_insufficient",
+                "insufficient_evidence",
+                (name,),
+                {"paired": len(pairs), "classes": len(labels)},
+                "Collect more labeled training records.",
+                "Requires paired training evidence.",
+                thresholds={"minimum_pairs": 6, "minimum_classes": 2},
+            )
+        elif len(values) >= 2:
             if all(value == label for value, label in pairs):
                 method = "target_copy"
             elif len(values) == len(labels) == len(set(pairs)) and len(
@@ -116,8 +128,6 @@ def inspect_leakage(
                     thresholds={"minimum_pairs": 6, "minimum_pairs_per_class_ratio": 3},
                 )
             elif len(labels) == 2:
-                from .numeric import number
-
                 numeric = [
                     (number(value), float(label == min(labels)))
                     for value, label in pairs
@@ -144,6 +154,34 @@ def inspect_leakage(
                             "In-sample binary association is neither causal nor proof of leakage.",
                             thresholds={"minimum_absolute_correlation": 0.9},
                         )
+
+            if not method and 2 <= len(values) <= 20 and len(labels) <= 20:
+                counts = Counter(pairs)
+                feature_counts = Counter(value for value, _ in pairs)
+                label_counts = Counter(label for _, label in pairs)
+                chi_squared = 0.0
+                adequate = True
+                for value, count in feature_counts.items():
+                    for label, total in label_counts.items():
+                        expected = count * total / len(pairs)
+                        adequate &= expected >= 5
+                        chi_squared += (counts[value, label] - expected) ** 2 / expected
+                strength = sqrt(
+                    chi_squared / (len(pairs) * min(len(values) - 1, len(labels) - 1))
+                )
+                if adequate and strength >= 0.9:
+                    emit(
+                        "categorical_association",
+                        "suspicious_heuristic",
+                        (name,),
+                        {"cramers_v": min(strength, 1.0), "paired": len(pairs)},
+                        "Audit the provenance of the associated feature.",
+                        "Training-only categorical association does not establish leakage.",
+                        thresholds={
+                            "minimum_cramers_v": 0.9,
+                            "minimum_expected_count": 5,
+                        },
+                    )
 
     features = feature_rows(dataset, target)
     group = config.group or manifest.config.group

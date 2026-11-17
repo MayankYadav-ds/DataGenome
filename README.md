@@ -3,7 +3,7 @@
 Debug the data, not just the model.
 
 DataGenome profiles local CSV datasets and reports observations that can help explain model
-failures. Phase 0 measures data properties and identifies issues for review. Finding counts
+failures. The profiler measures data properties and identifies issues for review. Finding counts
 are computed from the input. The class imbalance assessment uses a heuristic threshold.
 
 ## Install
@@ -15,7 +15,7 @@ python -m venv .venv
 .\.venv\Scripts\python -m pip install ".[api]"
 ```
 
-Install `.` for the CLI alone. You can also run `python -m datagenome` from the activated environment. The profiling engine uses the Python standard library.
+Install `.` for the CLI alone. You can also run `python -m datagenome` from the activated environment. The original profiler uses the Python standard library. Phase 1 adds NumPy and scikit-learn for anomaly detection and model baselines.
 The optional API uses FastAPI (MIT) and Uvicorn (BSD-3-Clause), which are compatible
 with the project's Apache-2.0 license.
 
@@ -58,13 +58,18 @@ The CLI and API process each dataset in memory. Reports include label values if 
 is supplied, so handle reports with the same care as source data. The API is intended
 for local use.
 
+## Advanced diagnostics and experiments
+
+Version 0.2 adds dataset fingerprints, reproducible splits, advanced profiling,
+anomaly scores, leakage audits, classification baselines, and controlled validation
+experiments. Use `python -m datagenome --help` for all commands. [Phase 1 CLI, API,
+methodology and benchmarks](docs/phase-1.md).
+
 ## Research and roadmap
 
 Phase 0 uses descriptive statistics. Future data valuation experiments can use
 [OpenDataVal](https://papers.nips.cc/paper_files/paper/2023/hash/5b047c7d862059a5df623c1ce2982fca-Abstract-Datasets_and_Benchmarks.html),
-a NeurIPS 2023 benchmark for comparing valuation algorithms. The next phase should
-define split-aware diagnostics and a controlled baseline for testing data interventions
-against a fixed held-out set. Label quality, attribution, drift, fairness, and a web
+a NeurIPS 2023 benchmark for comparing valuation algorithms. Phase 1 implements split-aware diagnostics and controlled validation comparisons. Label quality, attribution, drift, fairness, and a web
 interface are planned. See [research references](research/README.md) for the original papers.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development checks and
