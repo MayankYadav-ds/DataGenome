@@ -90,12 +90,7 @@ label diagnostics, model training, metrics, CLI and REST are regression tested.
 The benchmark provides cross-seed and cross-model stability measurements for
 small reference fixtures. It does not establish real-world ranking stability.
 
-Influence functions remain planned. The differentiable starting point is a
-fixed, L2-regularized logistic model with a damped Hessian solve for the
-validation-loss gradient. Fold-dependent preprocessing and the finite change
-of deleting a row can invalidate that local approximation. An implementation
-needs numerical and leave-one-out agreement validation before exposure.
-[Influence functions](https://proceedings.mlr.press/v70/koh17a.html).
+Phase 5 adds [experimental logistic influence](influence.md) for a fixed preprocessing objective. These local loss derivatives are distinct from the global coalition utilities described here.
 
 In the two six-record reference games, 16 sampled permutations produced mean
 absolute errors of 0.022 and 0.030 utility units. Exact versus sampled Spearman
