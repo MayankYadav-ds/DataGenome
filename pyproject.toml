@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "datagenome"
+version = "0.1.0"
+description = "Local dataset profiling and diagnostics"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+
+[project.optional-dependencies]
+api = ["fastapi>=0.121,<1", "uvicorn>=0.35,<1"]
+dev = ["build>=1,<2", "httpx>=0.28,<1", "mypy>=1,<3", "pytest>=8,<10", "ruff>=0.12,<1"]
+
+[project.scripts]
+datagenome = "datagenome.cli:main"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.mypy]
+strict = true
+files = ["src/datagenome"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
