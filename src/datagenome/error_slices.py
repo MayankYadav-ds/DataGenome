@@ -39,7 +39,12 @@ def analyze_errors(
     target_index = column(dataset, target)
     train = manifest.partitions["train"]
     ids = manifest.partitions["validation"]
-    features = [j for j in range(len(dataset.columns)) if j != target_index]
+    features = [
+        j
+        for j, name in enumerate(dataset.columns)
+        if j != target_index
+        and name not in {manifest.config.group, manifest.config.time}
+    ]
     labels = [dataset.rows[i - 1][target_index] for i in train]
     truth = [dataset.rows[i - 1][target_index] for i in ids]
     if (

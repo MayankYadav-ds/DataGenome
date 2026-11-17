@@ -165,7 +165,9 @@ def fit_baseline(
     selected = [
         i
         for i, name in enumerate(dataset.columns)
-        if i != target_index and name not in exclude
+        if i != target_index
+        and name not in exclude
+        and name not in {manifest.config.group, manifest.config.time}
     ]
     if not selected:
         raise DatasetError("no_features", "At least one training feature is required.")

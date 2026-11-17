@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from statistics import mean
 from typing import TypedDict
 
+from .folds import connected_groups
 from .ingestion import Dataset, DatasetError
 from .numeric import number, numeric
 
@@ -58,6 +59,7 @@ def evaluate_univariate(
     config: UnivariateConfig,
     *,
     constrained_split: bool,
+    group_index: int | None = None,
 ) -> list[UnivariateResult]:
     config.validate()
     definition: dict[str, object] = {
@@ -123,16 +125,61 @@ def evaluate_univariate(
     from sklearn.dummy import DummyClassifier
     from sklearn.impute import SimpleImputer
     from sklearn.metrics import balanced_accuracy_score
-    from sklearn.model_selection import StratifiedKFold
+    from sklearn.model_selection import StratifiedGroupKFold, StratifiedKFold
     from sklearn.pipeline import make_pipeline
     from sklearn.preprocessing import OneHotEncoder
     from sklearn.tree import DecisionTreeClassifier
 
     partitions = []
     cv = StratifiedKFold(n_splits=config.folds, shuffle=True, random_state=seed)
-    for fit, score in cv.split(labels, labels):
+    if group_index is None:
+        indices = list(cv.split(labels, labels))
+    else:
+        groups = connected_groups(
+            [
+                (
+                    row[group_index],
+                    tuple(
+                        value
+                        for j, value in enumerate(row)
+                        if j not in {group_index, target_index}
+                    ),
+                )
+                for row in labeled
+            ]
+        )
+        if (
+            any(not row[group_index].strip() for row in labeled)
+            or len(set(groups)) < config.folds
+        ):
+            return [
+                UnivariateResult(
+                    (),
+                    "insufficient_evidence",
+                    {
+                        **definition,
+                        "reason": "Grouped evaluation needs enough complete, distinct groups.",
+                    },
+                )
+            ]
+        grouped = StratifiedGroupKFold(
+            n_splits=config.folds, shuffle=True, random_state=seed
+        )
+        indices = list(grouped.split(labels, labels, groups))
+    for fit, score in indices:
         fit_labels = [labels[i] for i in fit]
         score_labels = [labels[i] for i in score]
+        if set(fit_labels) != set(counts) or set(score_labels) != set(counts):
+            return [
+                UnivariateResult(
+                    (),
+                    "insufficient_evidence",
+                    {
+                        **definition,
+                        "reason": "Inner folds cannot preserve all classes without group overlap.",
+                    },
+                )
+            ]
         dummy = DummyClassifier(strategy="most_frequent").fit(
             [[0]] * len(fit), fit_labels
         )
@@ -141,7 +188,9 @@ def evaluate_univariate(
         )
         partitions.append((fit, score, fit_labels, score_labels, baseline))
 
-    features = [i for i in range(len(dataset.columns)) if i != target_index]
+    features = [
+        i for i in range(len(dataset.columns)) if i != target_index and i != group_index
+    ]
     results = []
     for index in features[: config.max_features]:
         name = dataset.columns[index]

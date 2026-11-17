@@ -91,6 +91,27 @@ def final_metrics(metrics: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def claim_holdout(manifest: Manifest, ledger: Path, protocol_id: str) -> str:
+    ledger.mkdir(parents=True, exist_ok=True)
+    key = fingerprint([manifest.dataset_sha256, sorted(manifest.partitions["test"])])
+    receipt = ledger / (key + ".json")
+    try:
+        create_json(
+            receipt,
+            {
+                "status": "claimed",
+                "protocol_sha256": protocol_id,
+                "held_out_scored": False,
+            },
+        )
+    except DatasetError as error:
+        raise DatasetError(
+            "holdout_consumed", "This partition is already claimed in this ledger."
+        ) from error
+
+    return key
+
+
 def score_frozen(dataset: Dataset, protocol_path: Path, ledger: Path) -> dict[str, Any]:
     """Consume a final partition once within this ledger and score prespecified arms."""
     start = perf_counter()
@@ -139,26 +160,16 @@ def score_frozen(dataset: Dataset, protocol_path: Path, ledger: Path) -> dict[st
             "The protocol is invalid or does not match this dataset.",
         ) from error
 
-    ledger.mkdir(parents=True, exist_ok=True)
-    key = fingerprint([manifest.dataset_sha256, sorted(manifest.partitions["test"])])
-    receipt = ledger / (key + ".json")
-    try:
-        create_json(
-            receipt,
-            {
-                "status": "claimed",
-                "protocol_sha256": protocol_id,
-                "held_out_scored": False,
-            },
-        )
-    except DatasetError as error:
-        raise DatasetError(
-            "holdout_consumed", "This partition is already claimed in this ledger."
-        ) from error
+    key = claim_holdout(manifest, ledger, protocol_id)
 
     def feature_key(i: int) -> tuple[str, ...]:
         row = dataset.rows[i - 1]
-        return row[:target_index] + row[target_index + 1 :]
+        return tuple(
+            value
+            for j, value in enumerate(row)
+            if j != target_index
+            and dataset.columns[j] not in {manifest.config.group, manifest.config.time}
+        )
 
     development = {
         feature_key(i)

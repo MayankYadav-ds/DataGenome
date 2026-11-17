@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from importlib.metadata import version
 from typing import Any
 
+from .folds import connected_groups, historical_folds
 from .ingestion import Dataset, DatasetError
 from .modeling import ModelConfig, classification_pipeline
 from .splits import Manifest, column, validate
@@ -13,6 +14,8 @@ class LabelAuditConfig:
     folds: int = 5
     minimum_alternative_probability: float = 0.60
     minimum_probability_gap: float = 0.30
+    temporal_gap_seconds: int = 0
+    temporal_window_seconds: int | None = None
 
 
 def audit_labels(
@@ -33,7 +36,12 @@ def audit_labels(
         )
     validate(dataset, manifest)
     target_index = column(dataset, target)
-    features = [i for i in range(len(dataset.columns)) if i != target_index]
+    features = [
+        i
+        for i, name in enumerate(dataset.columns)
+        if i != target_index
+        and name not in {manifest.config.group, manifest.config.time}
+    ]
     train = manifest.partitions["train"]
     records = [i for i in train if dataset.rows[i - 1][target_index].strip()]
     labels = [dataset.rows[i - 1][target_index] for i in records]
@@ -64,11 +72,6 @@ def audit_labels(
     def skip(status: str, reason: str) -> dict[str, Any]:
         return {**report, "status": status, "reason": reason}
 
-    if manifest.config.strategy in {"group", "chronological"}:
-        return skip(
-            "unsupported",
-            "Inner folds cannot enforce the outer group or time constraints.",
-        )
     if not features or len(features) > 128 or len(train) > 5000:
         return skip(
             "unsupported",
@@ -86,29 +89,66 @@ def audit_labels(
     from sklearn.model_selection import StratifiedGroupKFold
     from threadpoolctl import threadpool_limits
 
-    group_ids: dict[tuple[str, ...], int] = {}
-    groups = [
-        group_ids.setdefault(
-            tuple(dataset.rows[i - 1][j] for j in features), len(group_ids)
+    partitions: list[tuple[list[int], list[int]]]
+    if manifest.config.time is not None:
+        partitions = historical_folds(
+            dataset,
+            records,
+            manifest.config.time,
+            config.folds,
+            config.temporal_gap_seconds,
+            config.temporal_window_seconds,
         )
-        for i in records
-    ]
-    if len(group_ids) < config.folds:
+        partitions = [
+            (fit, score)
+            for fit, score in partitions
+            if len({labels[i] for i in fit}) >= 2
+            and {labels[i] for i in score} <= {labels[i] for i in fit}
+        ]
+        report["method"] = "historical_out_of_fold_logistic_regression"
+        report["temporal_gap_seconds"] = config.temporal_gap_seconds
+        report["temporal_window_seconds"] = config.temporal_window_seconds
+        report["limitations"][2] = (
+            "Only strictly earlier observations are fitted. Near duplicates may recur over time."
+        )
+    else:
+        group_index = (
+            column(dataset, manifest.config.group) if manifest.config.group else None
+        )
+        keys = [
+            (tuple(dataset.rows[i - 1][j] for j in features),)
+            if group_index is None
+            else (
+                tuple(dataset.rows[i - 1][j] for j in features),
+                dataset.rows[i - 1][group_index],
+            )
+            for i in records
+        ]
+        groups = connected_groups(keys)
+        if len(set(groups)) < config.folds:
+            return skip(
+                "insufficient_evidence",
+                "Too few distinct feature groups for the requested folds.",
+            )
+        splitter = StratifiedGroupKFold(
+            n_splits=config.folds, shuffle=True, random_state=manifest.config.seed
+        )
+        partitions = [
+            (fit.tolist(), score.tolist())
+            for fit, score in splitter.split(labels, labels, groups)
+        ]
+        if any(
+            len({labels[i] for i in fit}) != len(counts) or not score
+            for fit, score in partitions
+        ):
+            return skip(
+                "insufficient_evidence",
+                "Grouped folds cannot retain every class in training.",
+            )
+    if not partitions:
         return skip(
             "insufficient_evidence",
-            "Too few distinct feature groups for the requested folds.",
-        )
-    splitter = StratifiedGroupKFold(
-        n_splits=config.folds, shuffle=True, random_state=manifest.config.seed
-    )
-    partitions = list(splitter.split(labels, labels, groups))
-    if any(
-        len({labels[i] for i in fit}) != len(counts) or not len(score)
-        for fit, score in partitions
-    ):
-        return skip(
-            "insufficient_evidence",
-            "Grouped folds cannot retain every class in training.",
+            "No historical fold has enough prior label support.",
         )
 
     model = ModelConfig(seed=manifest.config.seed)
@@ -157,6 +197,7 @@ def audit_labels(
     return {
         **report,
         "evaluated_records": scored_records,
+        "unscored_labeled_records": len(records) - scored_records,
         "candidate_count": len(candidates),
         "disagreements": disagreements,
         "candidates": candidates,

@@ -50,7 +50,11 @@ def inspect_prediction(
             "investigation_validation_labels",
             "Validation labels must be known binary labels.",
         )
-    features = [i for i in range(len(dataset.columns)) if i != index]
+    features = [
+        i
+        for i, name in enumerate(dataset.columns)
+        if i != index and name not in {manifest.config.group, manifest.config.time}
+    ]
     if not features:
         raise DatasetError(
             "investigation_features", "At least one numeric feature is required."

@@ -50,6 +50,7 @@ class UtilityEvaluator:
         validation: Sequence[int],
         config: ValuationConfig,
         model: ModelConfig,
+        excluded: tuple[str | None, ...] = (),
     ) -> None:
         self.dataset = dataset
         self.config = config
@@ -57,7 +58,11 @@ class UtilityEvaluator:
         self.train = sorted(train)
         self.validation = list(validation)
         target_index = column(dataset, target)
-        self.features = [i for i in range(len(dataset.columns)) if i != target_index]
+        self.features = [
+            i
+            for i, name in enumerate(dataset.columns)
+            if i != target_index and name not in excluded
+        ]
         self.target_index = target_index
         self.labels = [dataset.rows[i - 1][target_index] for i in self.validation]
         self.classes = sorted(set(self.labels))
@@ -225,6 +230,7 @@ def value_data(
             413,
         )
     target_index = column(dataset, target)
+    excluded = (manifest.config.group, manifest.config.time)
 
     def features_of(i: int) -> tuple[str, ...]:
         row = dataset.rows[i - 1]
@@ -256,7 +262,9 @@ def value_data(
         raise DatasetError(
             "invalid_model", "Unsupported valuation model configuration."
         )
-    engine = UtilityEvaluator(dataset, target, train, validation, config, model)
+    engine = UtilityEvaluator(
+        dataset, target, train, validation, config, model, excluded
+    )
     variability = None
     convergence: list[dict[str, float | int]] = []
     full = (1 << n) - 1

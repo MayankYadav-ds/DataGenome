@@ -35,6 +35,7 @@ class LeakageConfig:
     candidate_limit: int = 10000
     association_threshold: float = 0.9
     univariate: UnivariateConfig | None = None
+    availability: tuple[tuple[str, str], ...] = ()
 
 
 def feature_rows(dataset: Dataset, target: str | None) -> list[tuple[str, ...]]:
@@ -193,11 +194,15 @@ def inspect_leakage(
                         },
                     )
 
-    features = feature_rows(dataset, target)
     group = config.group or manifest.config.group
     time = config.time or manifest.config.time
     group_index = column(dataset, group) if group else None
     time_index = column(dataset, time) if time else None
+    feature_names = tuple(
+        name for name in dataset.columns if name not in {target, group, time}
+    )
+    indices = [column(dataset, name) for name in feature_names]
+    features = [tuple(row[i] for i in indices) for row in dataset.rows]
     cutoff = timestamp(config.cutoff) if config.cutoff else None
     if cutoff is not None and time_index is None:
         raise DatasetError(
@@ -219,6 +224,45 @@ def inspect_leakage(
                 )
     else:
         dates = []
+    if len(config.availability) > 32 or len(
+        {name for name, _ in config.availability}
+    ) != len(config.availability):
+        raise DatasetError(
+            "availability_config",
+            "Supply up to 32 unique feature availability mappings.",
+        )
+    if config.availability and time_index is None:
+        raise DatasetError(
+            "missing_timestamp_column",
+            "Availability auditing needs prediction timestamps.",
+        )
+    for feature, available_at in config.availability:
+        if feature not in feature_names or available_at in {
+            target,
+            time,
+            group,
+            feature,
+        }:
+            raise DatasetError(
+                "availability_config",
+                "Use a predictive feature and a separate availability timestamp column.",
+            )
+        idx = column(dataset, available_at)
+        late = tuple(
+            i
+            for i, row in enumerate(dataset.rows, 1)
+            if timestamp(row[idx]) > dates[i - 1]
+        )
+        if late:
+            emit(
+                "feature_available_after_prediction",
+                "confirmed_violation",
+                (feature, available_at),
+                {"affected": len(late)},
+                "Exclude or lag this feature before model fitting.",
+                "Only supplied feature availability timestamps are checked.",
+                late,
+            )
     for left, right in combinations(PARTITIONS, 2):
         a, b = manifest.partitions[left], manifest.partitions[right]
         scope = f"{left}:{right}"
@@ -226,15 +270,15 @@ def inspect_leakage(
             ("cross_split_rows", dataset.rows),
             ("cross_split_features", features),
         ):
+            if method == "cross_split_features" and not feature_names:
+                continue
             lookup = {keys[i - 1] for i in a}
             hits = tuple(i for i in b if keys[i - 1] in lookup)
             if hits:
                 emit(
                     method,
                     "confirmed_violation",
-                    dataset.columns
-                    if method.endswith("rows")
-                    else tuple(name for name in dataset.columns if name != target),
+                    dataset.columns if method.endswith("rows") else feature_names,
                     {"affected": len(hits), "partitions": [left, right]},
                     "Create an explicit split that keeps repeats together.",
                     "Exact parsed-cell matches can also occur naturally.",
@@ -288,7 +332,7 @@ def inspect_leakage(
         emit(
             "cross_split_near_matches",
             "suspicious_heuristic",
-            tuple(name for name in dataset.columns if name != target),
+            feature_names,
             {"candidate_matches": len(close), "pairs": close[:100]},
             "Review close records before selecting a split.",
             "Sorted-neighbor search can miss pairs. One differing field may be legitimate.",
@@ -315,7 +359,8 @@ def inspect_leakage(
             train,
             manifest.config.seed,
             config.univariate,
-            constrained_split=bool(group or time),
+            constrained_split=bool(time),
+            group_index=column(dataset, group) if group else None,
         ):
             emit(
                 "univariate_predictive",
