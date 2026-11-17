@@ -16,6 +16,8 @@ def compare_removal(
     config: ValuationConfig,
     model: ModelConfig,
     fraction: float,
+    *,
+    include_duplicates: bool = False,
 ) -> dict[str, Any]:
     if not 0 < fraction <= 0.20:
         raise DatasetError(
@@ -62,6 +64,15 @@ def compare_removal(
         "random": randomized,
         "label_audit": [row["record_id"] for row in audit["candidates"]],
     }
+    if include_duplicates:
+        seen = set()
+        duplicates = []
+        for record in sorted(train):
+            row = dataset.rows[record - 1]
+            if row in seen:
+                duplicates.append(record)
+            seen.add(row)
+        candidates["duplicates"] = duplicates
     baseline = fit_baseline(dataset, target, manifest, model)["metrics"]["validation"]
     arms: dict[str, Any] = {}
     for name, ordering in candidates.items():

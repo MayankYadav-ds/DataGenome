@@ -72,7 +72,7 @@ Source data is read-only and valuation reports can reveal labels and record IDs.
 
 Limits are 128 training rows for LOO, eight for exact Shapley and Banzhaf, 64 for
 Monte Carlo, and 1,000 for KNN. All methods cap validation at 500 rows and features
-at 32. Retraining accepts up to 1,024 cached utility evaluations, up to 128
+at 32. Retraining accepts up to 1,024 cached utility evaluations, up to 256
 permutations and a cooperative deadline checked between evaluations. Parallel
 fits are disabled. A single fit can finish after the deadline before cancellation
 is observed. Budget exhaustion returns a structured error. KNN uses an analytic
@@ -111,3 +111,5 @@ had enough eligible matches and averaged +7.50 points. Their average uses a
 different set of runs. On the eight planted-corruption runs, KNN bottom-K
 precision and recall averaged 1.00 on these fixtures, while the matched random
 control averaged 0.225 precision. Test rows were reserved.
+
+Phase 5 adds an [independent evaluation and permutation stability workflow](independent.md).

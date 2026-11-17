@@ -206,7 +206,7 @@ def value_data(
         or config.metric not in UTILITIES
         or not 0 <= config.seed < 2**32
         or not 1 <= config.max_evaluations <= 1024
-        or not 2 <= config.permutations <= 128
+        or not 2 <= config.permutations <= 256
         or not 1 <= config.k <= 1000
         or not 0 < config.seconds <= 120
     ):
