@@ -203,7 +203,11 @@ def derive(version: dict[str, Any], plan: Transform) -> dict[str, Any]:
     retained_train = [record for record in ids if record in training]
     from collections import Counter
 
-    before = Counter(original.rows[position[record]][index] for record in training)
+    before = Counter(
+        original.rows[position[record]][index]
+        for record in training
+        if original.rows[position[record]][index].strip()
+    )
     after = Counter(
         data.rows[ids.index(record)][new_index] for record in retained_train
     )

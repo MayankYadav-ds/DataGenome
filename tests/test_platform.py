@@ -387,3 +387,37 @@ def test_workspace_cli_review_reconstruction_and_report(tmp_path):
         ]
     )
     assert "DataGenome diagnostic report" in output.read_text()
+
+
+def test_manual_correction_can_fill_blank_training_target_without_losing_classes(
+    tmp_path,
+):
+    import csv
+    import io
+    from dataclasses import replace
+
+    from datagenome.identity import canonical
+
+    store, project, _, _, data, manifest = fixture(tmp_path)
+    chosen = manifest.partitions["train"][0]
+    known = data.rows[chosen - 1][-1]
+    rows = list(data.rows)
+    rows[chosen - 1] = (*rows[chosen - 1][:-1], "")
+    stream = io.StringIO(newline="")
+    writer = csv.writer(stream)
+    writer.writerow(data.columns)
+    writer.writerows(rows)
+    payload = stream.getvalue().encode()
+    changed = parse_csv(payload)
+    source = register(
+        store,
+        project,
+        payload,
+        "label",
+        replace(manifest, dataset_sha256=canonical(changed)),
+    )
+    derived = apply(
+        store, project, source["id"], Transform(corrections=((chosen, known),))
+    )
+    assert table(derived).rows[chosen - 1][-1] == known
+    assert table(source).rows[chosen - 1][-1] == ""
