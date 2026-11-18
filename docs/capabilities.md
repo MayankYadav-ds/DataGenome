@@ -1,29 +1,26 @@
-# Capability inventory after Phase 7
+# Capability inventory after Phase 7.1 (0.4)
 
 | State | Capability |
 |---|---|
-| Implemented and regression verified | CSV ingestion/profile, fingerprints, bounded diagnostics, manifests, group/chronological separation, label audits, error slices, local CLI and REST |
-| Implemented and regression verified | Five valuation methods, frozen independent removal protocol and shared slice-confirmation ledger |
-| Implemented and verified in this milestone | SQLite local projects, immutable logical versions, dry runs, explicit training corrections and exclusions, protected provenance, reconstruction and export |
-| Implemented and verified in this milestone | Engine orchestration, partial failures, exact-configuration caches, engine progress, health coverage, deterministic recommendations with conflicts |
-| Implemented and verified in this milestone | Explicit plan review, bounded authorized retraining, random removal controls, per-class outcomes, two-objective nondominance |
-| Implemented with limited deployment scope | One-process queued analysis jobs, cancellation between engines, interruption recovery and local project artifact scoping |
-| Experimental | Health weights, priority rules, influence derivatives, heuristic label and proxy findings, resampling intervals |
-| Partially implemented | Group/temporal uncertainty supports paired bounded outcomes; it is not wired into every model/subgroup report |
-| Partially implemented | JSON contains full engine findings; Markdown and CSV support health/status summaries |
-| Partially implemented | Background queue runs diagnostics; experiments run synchronously with fit limits |
-| Partially implemented | Version history and reconstruction support a prior-version restore by selection; no mutable active-version pointer |
-| Unsupported | Chronological univariate scoring, target-horizon purging, group-dependent fairness inference beyond the paired SDK |
-| Unsupported | Learned persistent dataset transformations, arbitrary new label classes, automatic inferred relabeling |
-| Planned | Predictive proxy verification, independent sensitive-subgroup intervention scoreboards, automatic compatible-plan search, PDF reports, authenticated multi-user service |
-| Not blocked | UCI grouped and temporal acquisition succeeded; no paid infrastructure was used |
+| Implemented and regression verified | CSV ingestion/profiling, fingerprints, diagnostics, immutable split manifests, group/chronological partition separation |
+| Implemented and regression verified | Training-fold univariate heuristic scoring on supported random/group data; exact target agreement and configured split violations retain separate evidence classes |
+| Implemented and regression verified | Out-of-fold label auditing, five valuation methods, logistic influence approximation, failure slices, fairness measurements and drift diagnostics with existing documented limits |
+| Implemented and regression verified | Immutable logical dataset versions, safe reviewed corrections/exclusions, training guards, reconstruction, comparison and export |
+| Implemented in 7.1 | Training-only declarative numeric/categorical imputation, standard/robust scaling, selected features and bounded one-hot encoding; schema/digest checks and unknown-category handling |
+| Implemented in 7.1 | Deterministic structural candidate generation, compatible combinations, conflict rejection, review-first search, bounded evaluations and two-objective nondominance |
+| Implemented in 7.1 | Persistent queued analysis and experiment jobs, active experiment deduplication, fit/engine-boundary cancellation, restart interruption recovery, one worker |
+| Implemented in 7.1 | Argon2id local accounts, revocable sessions, ownership checks, isolated expiring guests, lifecycle deletion and configurable result retention |
+| Implemented in 7.1 | Auth-aware OpenAPI, frontend contract, computed summary tables/series, JSON/CSV/Markdown exports |
+| Implemented with scientific limits | Paired independent/group/temporal bootstrap for validation accuracy, balanced accuracy and macro F1; minimum units/class-support gates |
+| Experimental | Health weights, priority rules, logistic influence, heuristic label/proxy findings, approximate percentile intervals |
+| Partial | Pareto search uses balanced accuracy/macro F1; log loss, cost and removal counts are measured but not configurable search objectives; subgroup/worst-group/disparity uncertainty unavailable |
+| Partial | Reports retrieve project/version/experiment sections through related endpoints rather than a single fully joined dashboard document; Markdown/CSV remain summary exports |
+| Partial | Occupancy frozen replication scores baseline/random removal; HAR post-run cross-seed overlap invalidated independence; dependent-data selection policies were ineligible |
+| Unsupported and deferred | Chronological univariate scoring, horizon/availability purging, predictive proxy verification and automatic label inference |
+| Unsupported | Guest/account merging, sharing, internet-facing production certification, encryption at rest, email recovery, multi-process workers |
 
-The complete Phase 7 definition remains partial because the listed unsupported
-scientific workflows and broader automatic search are not available. Phase 8
-can use the local contracts after reviewing these limits. A frontend does not
-remove the need for independent model and subgroup validation.
-
-Earlier milestone methods and scope are documented in the corresponding guides.
-See [platform guide](platform.md), [fairness and drift](fairness-drift.md),
-[influence](influence.md), [independent evaluation](independent.md), and
-[valuation](valuation.md).
+The frontend workflow gate concerns the tested **local application**. Unsupported
+research algorithms do not receive fabricated scores or implicit random-CV fallbacks.
+Earlier engine-specific guides remain authoritative for their estimator assumptions.
+See [phase audit](phase-7.1.md), [security](security.md),
+[frontend contract](frontend-integration.md), and [platform architecture](platform.md).

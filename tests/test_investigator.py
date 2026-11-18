@@ -4,6 +4,7 @@ import subprocess
 import sys
 
 import pytest
+from auth_helpers import authenticate_async
 from httpx import ASGITransport, AsyncClient
 
 from datagenome.api import create_app
@@ -99,6 +100,7 @@ def test_investigation_cli_and_redacted_api(tmp_path):
         async with AsyncClient(
             transport=ASGITransport(app=create_app()), base_url="http://local"
         ) as client:
+            await authenticate_async(client)
             response = await client.post(
                 f"/api/v1/models/investigate?filename=data.csv&target=label&record_id={record}&privacy_mode=redacted",
                 content=payload,

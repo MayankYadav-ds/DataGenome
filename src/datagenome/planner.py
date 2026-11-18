@@ -1,3 +1,4 @@
+from collections.abc import Callable
 from dataclasses import asdict, replace
 from random import Random
 from time import perf_counter
@@ -19,7 +20,27 @@ def evaluate_plans(
     authorized: bool = False,
     model: ModelConfig = ModelConfig(),
     max_fits: int = 6,
+    cancelled: Callable[[], bool] | None = None,
+    event: Callable[[dict[str, Any]], None] | None = None,
+    seconds: float = 120,
+    experiment_id: str | None = None,
 ) -> dict[str, Any]:
+    deadline_start = perf_counter()
+    if not 0 < seconds <= 120:
+        raise DatasetError(
+            "experiment_budget", "Use a cooperative deadline in (0,120]."
+        )
+
+    def boundary(completed: int) -> None:
+        if event:
+            event({"stage": "fit_complete", "completed_fits": completed})
+        if cancelled and cancelled():
+            raise DatasetError("job_cancelled", "Experiment stopped at a fit boundary.")
+        if perf_counter() - deadline_start > seconds:
+            raise DatasetError(
+                "experiment_timeout", "Experiment reached its cooperative deadline."
+            )
+
     if not 1 <= len(plans) <= 4 or not 2 <= max_fits <= 6:
         raise DatasetError(
             "planner_budget", "Use 1–4 explicit plans and at most six fits."
@@ -104,31 +125,45 @@ def evaluate_plans(
             for i in b.partitions["validation"]
         ]:
             raise DatasetError("experiment_validation", "Validation labels changed.")
-    experiment = store.put(
-        project,
-        "experiment",
-        {
-            "state": "running",
-            "version_id": version_id,
-            "plans": [asdict(p) for p in plans],
-            "model": asdict(model),
-            "split_sha256": manifest_of(version).fingerprint,
-            "warnings": [],
-            "limitations": [
-                "Validation is exploratory. Independent scoring requires a frozen protocol."
-            ],
-        },
-    )
+    if experiment_id is not None:
+        experiment = store.get(project, experiment_id, "experiment")
+    else:
+        experiment = store.put(
+            project,
+            "experiment",
+            {
+                "state": "running",
+                "version_id": version_id,
+                "plans": [asdict(p) for p in plans],
+                "model": asdict(model),
+                "split_sha256": manifest_of(version).fingerprint,
+                "warnings": [],
+                "limitations": [
+                    "Validation is exploratory. Independent scoring requires a frozen protocol."
+                ],
+            },
+        )
     started = perf_counter()
     try:
+        boundary(0)
         baseline = fit_baseline(
-            table(version), version["target"], manifest_of(version), model
+            table(version),
+            version["target"],
+            manifest_of(version),
+            model,
+            include_predictions=True,
         )
+        boundary(1)
         arms = []
         for arm_index, (candidate, plan) in enumerate(zip(derived, plans, strict=True)):
             result = fit_baseline(
-                table(candidate), candidate["target"], manifest_of(candidate), model
+                table(candidate),
+                candidate["target"],
+                manifest_of(candidate),
+                model,
+                include_predictions=True,
             )
+            boundary(arm_index + 2)
             persisted = apply(store, project, version_id, plan)
             left, right = (
                 baseline["metrics"]["validation"],
@@ -147,11 +182,45 @@ def evaluate_plans(
                 else None
                 for label, row in left["per_class"].items()
             }
+            from .uncertainty import ResamplingConfig, metric_intervals
+
+            manifest = manifest_of(version)
+            data = table(version)
+            unit_column = manifest.config.group or manifest.config.time
+            units = [
+                data.rows[i - 1][data.columns.index(unit_column)]
+                if unit_column
+                else str(i)
+                for i in manifest.partitions["validation"]
+            ]
+            uncertainty = metric_intervals(
+                baseline["validation_predictions"]["actual"],
+                baseline["validation_predictions"]["predicted"],
+                result["validation_predictions"]["predicted"],
+                units,
+                ResamplingConfig(
+                    mode="group"
+                    if manifest.config.group
+                    else "temporal"
+                    if manifest.config.time
+                    else "independent",
+                    samples=99,
+                ),
+            )
+            if manifest.config.group and manifest.config.time:
+                uncertainty = {
+                    name: {
+                        "status": "unsupported_combined_dependence",
+                        "percentile_95": None,
+                    }
+                    for name in ("accuracy", "balanced_accuracy", "macro_f1")
+                }
             arms.append(
                 {
                     "version_id": persisted["id"],
                     "role": plan_roles[arm_index],
                     "metrics": right,
+                    "uncertainty": uncertainty,
                     "delta": delta,
                     "class_recall_change": recalls,
                     "training_seconds": result["train_seconds"],
@@ -188,12 +257,17 @@ def evaluate_plans(
             ],
         }
     except Exception as error:
+        terminal = (
+            "cancelled"
+            if isinstance(error, DatasetError) and error.code == "job_cancelled"
+            else "failed"
+        )
         store.put(
             project,
             "experiment_result",
             {
                 "experiment_id": experiment["id"],
-                "state": "failed",
+                "state": terminal,
                 "error_type": type(error).__name__,
             },
             experiment["id"] + ".result",

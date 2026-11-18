@@ -538,6 +538,37 @@ def report_view(report: dict[str, Any], privacy: str = "summary") -> dict[str, A
             "unassessed": measured["unassessed"],
             "critical_violation_count": len(measured["critical_violations"]),
         },
+        "tables": {
+            "engine_status": {
+                "columns": ["engine", "status"],
+                "rows": [
+                    [key, value["status"]] for key, value in report["engines"].items()
+                ],
+            }
+        },
+        "series": {
+            "health_coverage": [
+                {"name": "assessed", "value": measured["coverage"]},
+                {"name": "unassessed", "value": 1 - measured["coverage"]},
+            ],
+            "recommendation_categories": [
+                {"name": name, "value": count}
+                for name, count in sorted(
+                    Counter(
+                        item["category"] for item in report["recommendations"]
+                    ).items()
+                )
+            ],
+        },
+        "execution": {
+            "elapsed_seconds": report.get("elapsed_seconds"),
+            "dependencies": report.get("dependencies"),
+        },
+        "unavailable": [
+            "project_overview",
+            "version_history",
+            "intervention_comparisons",
+        ],
         "recommendation_counts": dict(
             Counter(item["category"] for item in report["recommendations"])
         ),

@@ -6,6 +6,7 @@ from datetime import UTC, datetime, timedelta
 from random import Random
 
 import pytest
+from auth_helpers import authenticate_async
 from httpx import ASGITransport, AsyncClient
 
 from datagenome.api import create_app
@@ -200,6 +201,7 @@ def test_phase6_cli_and_rest(tmp_path):
         async with AsyncClient(
             transport=ASGITransport(app=create_app()), base_url="http://local"
         ) as client:
+            await authenticate_async(client)
             for endpoint in ("fairness", "proxies"):
                 response = await client.post(
                     "/api/v1/datasets/" + endpoint,

@@ -1,3 +1,4 @@
+from dataclasses import asdict
 from pathlib import Path
 from typing import Any, Literal
 
@@ -59,6 +60,7 @@ class JobInfo(Contract):
     cancel_requested: bool
     error: str | None
     result_id: str | None
+    experiment_id: str | None = None
     created_at: str
     updated_at: str
     events: list[dict[str, Any]]
@@ -139,6 +141,19 @@ class PlanRequest(Contract):
         )
 
 
+class SearchRequest(Contract):
+    project_id: str = Field(min_length=32, max_length=32)
+    version_id: str = Field(min_length=32, max_length=32)
+    maximum_candidates: int = Field(default=4, ge=1, le=4)
+
+
+class PreprocessingRequest(Contract):
+    features: list[str] = Field(default_factory=list, max_length=32)
+    numeric_imputation: Literal["median", "mean"] = "median"
+    scaling: Literal["standard", "robust", "none"] = "standard"
+    category_limit: int = Field(default=32, ge=2, le=32)
+
+
 class InterventionRequest(Contract):
     project_id: str = Field(min_length=32, max_length=32)
     version_id: str = Field(min_length=32, max_length=32)
@@ -152,6 +167,7 @@ class ExperimentRequest(Contract):
     plans: list[PlanRequest] = Field(min_length=1, max_length=4)
     authorized: bool = False
     max_fits: int = Field(default=6, ge=2, le=6)
+    seconds: float = Field(default=120, gt=0, le=120)
 
 
 def version_metadata(version: dict[str, Any]) -> dict[str, Any]:
@@ -173,17 +189,59 @@ def attach_platform(app: FastAPI, database: Path) -> None:
 
     app.add_middleware(PlatformBodyLimit)
     store = Store(database)
+    import os
+    import sqlite3
+
+    from .auth import install_auth
+
+    auth = install_auth(
+        app,
+        store,
+        secure_cookie=os.environ.get("DATAGENOME_HTTPS") == "1",
+        registration=os.environ.get("DATAGENOME_REGISTRATION", "1") == "1",
+    )
+    app.state.auth = auth
     service = JobService(store, recover=False)
     router = APIRouter(prefix="/api/v1")
 
+    from threading import Event, Thread
+
+    maintenance_stop = Event()
+    maintenance_thread: Thread | None = None
+
+    def maintenance() -> None:
+        from .lifecycle import retention
+
+        while not maintenance_stop.wait(60):
+            try:
+                auth.cleanup()
+                days = os.environ.get("DATAGENOME_RETENTION_DAYS")
+                if days is not None:
+                    retention(store, int(days))
+            except (DatasetError, ValueError, sqlite3.Error):
+                # Configuration errors never expose sensitive artifacts in logs.
+                continue
+
     def startup() -> None:
         # Recovery is only appropriate for the one owning application process.
-        nonlocal service
+        nonlocal service, maintenance_thread
+        auth.cleanup()
         service = JobService(store, recover=True)
         service.start()
+        maintenance_thread = Thread(
+            target=maintenance, name="datagenome-retention", daemon=True
+        )
+        maintenance_thread.start()
 
     app.router.add_event_handler("startup", startup)
-    app.router.add_event_handler("shutdown", lambda: service.close())
+
+    def shutdown() -> None:
+        maintenance_stop.set()
+        if maintenance_thread is not None:
+            maintenance_thread.join(timeout=2)
+        service.close()
+
+    app.router.add_event_handler("shutdown", shutdown)
 
     @router.get("/capabilities")
     def capabilities() -> dict[str, Any]:
@@ -199,11 +257,30 @@ def attach_platform(app: FastAPI, database: Path) -> None:
                 "select_earlier_version",
             ],
             "jobs": {"workers": 1, "queue_limit": 8, "cooperative_cancellation": True},
-            "security": "local single-user service; project scoping is not authentication",
+            "security": "revocable local sessions, CSRF tokens and server-side project ownership",
+            "authentication": {
+                "guest": True,
+                "registration": auth.registration,
+                "https_cookie": auth.secure_cookie,
+            },
+            "experiments": {
+                "asynchronous": True,
+                "maximum_fits": 6,
+                "maximum_seconds": 120,
+            },
+            "preprocessing": [
+                "numeric_imputation",
+                "categorical_imputation",
+                "standard",
+                "robust",
+                "one_hot",
+                "feature_selection",
+            ],
             "unsupported": [
                 "chronological_univariate",
                 "label_horizon_purging",
-                "learned_dataset_transforms",
+                "predictive_proxy_verification",
+                "subgroup_intervention_uncertainty",
                 "automatic_recommendation_application",
             ],
             "experimental": [
@@ -215,7 +292,12 @@ def attach_platform(app: FastAPI, database: Path) -> None:
         }
 
     @router.post("/projects", response_model=ProjectInfo)
-    def create_project(spec: ProjectRequest) -> dict[str, Any]:
+    def create_project(spec: ProjectRequest, request: Request) -> dict[str, Any]:
+        limit = 3 if request.state.user["guest"] else 50
+        if len(store.list("", "project", 100)) >= limit:
+            raise DatasetError(
+                "project_quota", "Workspace reached its project limit.", 429
+            )
         return store.project(spec.name)
 
     @router.get("/projects", response_model=list[ProjectInfo])
@@ -239,6 +321,14 @@ def attach_platform(app: FastAPI, database: Path) -> None:
             ) from None
         store.require_project(spec.project_id)
         data = parse_csv(spec.csv.encode(), max_rows=5000, max_columns=64)
+        if request.state.user["guest"] and (
+            len(data.rows) > 500 or len(data.columns) > 32
+        ):
+            raise DatasetError(
+                "guest_dataset_limit",
+                "Guest datasets allow 500 rows and 32 columns.",
+                413,
+            )
         manifest = split(
             data,
             SplitConfig(
@@ -310,13 +400,13 @@ def attach_platform(app: FastAPI, database: Path) -> None:
         )
 
     @router.post("/analyses", response_model=JobInfo)
-    def analysis(spec: AnalysisRequest) -> dict[str, Any]:
+    def analysis(spec: AnalysisRequest, request: Request) -> dict[str, Any]:
         return service.submit(
             spec.project_id,
             spec.version_id,
             DiagnosticConfig(
                 tuple(spec.engines),
-                spec.seconds,
+                min(spec.seconds, 30) if request.state.user["guest"] else spec.seconds,
                 tuple(spec.attributes),
                 spec.record_id,
                 privacy=spec.privacy,
@@ -353,7 +443,16 @@ def attach_platform(app: FastAPI, database: Path) -> None:
         return {"recommendations": value["report"]["recommendations"]}
 
     @router.post("/experiments")
-    def experiment(spec: ExperimentRequest) -> dict[str, Any]:
+    def experiment(spec: ExperimentRequest, request: Request) -> dict[str, Any]:
+        if spec.authorized:
+            guest = request.state.user["guest"]
+            return service.submit_experiment(
+                spec.project_id,
+                spec.version_id,
+                [asdict(plan.transform()) for plan in spec.plans],
+                seconds=min(spec.seconds, 30) if guest else spec.seconds,
+                max_fits=min(spec.max_fits, 3) if guest else spec.max_fits,
+            )
         return evaluate_plans(
             store,
             spec.project_id,
@@ -373,7 +472,12 @@ def attach_platform(app: FastAPI, database: Path) -> None:
         except DatasetError as error:
             if error.code != "artifact_not_found":
                 raise
-            return value
+            with store.connection() as db:
+                row = db.execute(
+                    "SELECT state,error FROM jobs WHERE project=? AND json_extract(request,'$.experiment_id')=? ORDER BY created DESC LIMIT 1",
+                    (project_id, experiment_id),
+                ).fetchone()
+            return {**value, **(dict(row) if row else {})}
         return {**value, **result}
 
     @router.get("/reports/{analysis_id}")
@@ -393,4 +497,218 @@ def attach_platform(app: FastAPI, database: Path) -> None:
             export_report(value["report"], format, privacy), media_type=types[format]
         )
 
+    from .lifecycle import delete_dataset, delete_project
+
+    @router.get("/projects/{project_id}")
+    def project_info(project_id: str) -> dict[str, Any]:
+        return store.get("", project_id, "project")
+
+    @router.patch("/projects/{project_id}", response_model=ProjectInfo)
+    def rename(project_id: str, spec: ProjectRequest) -> dict[str, Any]:
+        value = store.get("", project_id, "project")
+        value["name"] = spec.name
+        import json
+
+        with store.connection() as db:
+            db.execute(
+                "UPDATE artifacts SET body=? WHERE id=? AND kind='project'",
+                (json.dumps(value), project_id),
+            )
+        return value
+
+    @router.delete("/projects/{project_id}")
+    def erase_project(project_id: str) -> dict[str, str]:
+        delete_project(store, project_id)
+        return {"status": "deleted"}
+
+    @router.delete("/datasets/{version_id}")
+    def erase_dataset(version_id: str, project_id: str) -> dict[str, Any]:
+        return delete_dataset(store, project_id, version_id)
+
+    @router.get("/datasets/{version_id}/preview")
+    def bounded_preview(
+        version_id: str,
+        project_id: str,
+        reviewed: bool = False,
+        limit: int = Query(default=10, ge=1, le=20),
+    ) -> dict[str, Any]:
+        value = store.get(project_id, version_id, "version")
+        if not reviewed:
+            raise DatasetError(
+                "preview_review", "Explicit review is required to view raw rows."
+            )
+        return {
+            "columns": value["columns"],
+            "rows": value["rows"][:limit],
+            "record_ids": value["record_ids"][:limit],
+        }
+
+    @router.get("/reports")
+    def reports(
+        project_id: str,
+        limit: int = Query(default=50, ge=1, le=100),
+        offset: int = Query(default=0, ge=0),
+    ) -> list[dict[str, Any]]:
+        return [
+            {
+                "id": value["id"],
+                "created_at": value["created_at"],
+                "version_id": value["version_id"],
+            }
+            for value in store.list(project_id, "analysis", limit, offset)
+        ]
+
+    @router.delete("/reports/{analysis_id}")
+    def erase_report(analysis_id: str, project_id: str) -> dict[str, str]:
+        store.get(project_id, analysis_id, "analysis")
+        with store.connection() as db:
+            db.execute(
+                "DELETE FROM artifacts WHERE id=? AND project=? AND kind='analysis'",
+                (analysis_id, project_id),
+            )
+        return {"status": "deleted"}
+
+    @router.get("/analyses/{analysis_id}/findings")
+    def findings(
+        analysis_id: str,
+        project_id: str,
+        privacy: Literal["summary", "redacted", "detailed"] = "summary",
+    ) -> dict[str, Any]:
+        return report_view(
+            store.get(project_id, analysis_id, "analysis")["report"], privacy
+        )
+
+    @router.get("/analyses/{analysis_id}/health")
+    def health_result(analysis_id: str, project_id: str) -> dict[str, Any]:
+        return dict(
+            report_view(
+                store.get(project_id, analysis_id, "analysis")["report"], "summary"
+            )["health"]
+        )
+
+    @router.post("/datasets/demo")
+    def demo(spec: ProjectRequest, request: Request) -> dict[str, Any]:
+        # spec.name labels an explicitly requested new project.
+        project = create_project(spec, request)
+        text = "x,z,label\n" + "".join(f"{i},{i % 5},{i % 2}\n" for i in range(60))
+        payload = text.encode()
+        data = parse_csv(payload, max_rows=500, max_columns=32)
+        version = register(
+            store,
+            project["id"],
+            payload,
+            "label",
+            split(data, SplitConfig("stratified"), "label"),
+        )
+        return {"project": project, "version": version_metadata(version)}
+
+    @router.post("/datasets/{version_id}/preprocessing")
+    def fit_preprocessing(
+        version_id: str, project_id: str, spec: PreprocessingRequest
+    ) -> dict[str, Any]:
+        from .preprocessing import LearnedConfig, persist_parameters
+
+        result = persist_parameters(
+            store,
+            project_id,
+            version_id,
+            LearnedConfig(
+                tuple(spec.features),
+                spec.numeric_imputation,
+                spec.scaling,
+                spec.category_limit,
+            ),
+        )
+        return {
+            "id": result["id"],
+            "parameters_sha256": result["parameters_sha256"],
+            "output_width": result["parameters"]["output_width"],
+        }
+
+    @router.get("/preprocessing/{artifact_id}")
+    def preprocessing_info(artifact_id: str, project_id: str) -> dict[str, Any]:
+        result = store.get(project_id, artifact_id, "preprocessing")
+        return {
+            "id": result["id"],
+            "version_id": result["parameters"]["version_id"],
+            "output_width": result["parameters"]["output_width"],
+            "parameters_sha256": result["parameters_sha256"],
+        }
+
+    @router.post("/preprocessing/{artifact_id}/preview")
+    def preprocessing_preview(
+        artifact_id: str, project_id: str, version_id: str, reviewed: bool = False
+    ) -> dict[str, Any]:
+        from .preprocessing import transform_parameters
+
+        if not reviewed:
+            raise DatasetError(
+                "preview_review",
+                "Explicit review is required for transformed row previews.",
+            )
+        artifact = store.get(project_id, artifact_id, "preprocessing")
+        version = store.get(project_id, version_id, "version")
+        return {
+            "rows": transform_parameters(
+                artifact,
+                table(version),
+                list(range(1, min(10, len(version["rows"])) + 1)),
+            )
+        }
+
+    @router.post("/plans/search")
+    def search(spec: SearchRequest) -> dict[str, Any]:
+        from .search import generate_candidates
+
+        return generate_candidates(
+            store,
+            spec.project_id,
+            spec.version_id,
+            maximum_candidates=spec.maximum_candidates,
+        )
+
     app.include_router(router)
+
+    def verified_openapi() -> dict[str, Any]:
+        from fastapi.openapi.utils import get_openapi
+
+        if app.openapi_schema is None:
+            schema = get_openapi(
+                title=app.title, version=app.version, routes=app.routes
+            )
+            schema["paths"]["/api/v1/datasets"]["post"]["requestBody"] = {
+                "required": True,
+                "content": {
+                    "application/json": {"schema": DatasetRequest.model_json_schema()}
+                },
+            }
+            schema.setdefault("components", {}).setdefault("securitySchemes", {})[
+                "LocalSession"
+            ] = {"type": "apiKey", "in": "cookie", "name": "datagenome_session"}
+            public = {
+                "/api/v1/capabilities",
+                "/api/v1/auth/guest",
+                "/api/v1/auth/register",
+                "/api/v1/auth/login",
+            }
+            for path, operations in schema["paths"].items():
+                for method, operation in operations.items():
+                    if (
+                        path.startswith("/api/v1/")
+                        and path not in public
+                        and isinstance(operation, dict)
+                    ):
+                        operation["security"] = [{"LocalSession": []}]
+                        if method in {"post", "patch", "put", "delete"}:
+                            operation.setdefault("parameters", []).append(
+                                {
+                                    "name": "X-CSRF-Token",
+                                    "in": "header",
+                                    "required": True,
+                                    "schema": {"type": "string"},
+                                }
+                            )
+            app.openapi_schema = schema
+        return app.openapi_schema
+
+    app.openapi = verified_openapi  # type: ignore[method-assign]

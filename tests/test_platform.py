@@ -3,6 +3,7 @@ import sqlite3
 from dataclasses import replace
 
 import pytest
+from auth_helpers import authenticate
 from fastapi.testclient import TestClient
 
 from datagenome.api import create_app
@@ -171,6 +172,7 @@ def test_dependent_bootstrap_resamples_units_and_reports_support():
 def test_platform_routes_end_to_end_project_isolation_and_jobs(tmp_path, monkeypatch):
     monkeypatch.setenv("DATAGENOME_STORE", str(tmp_path / "api.sqlite3"))
     with TestClient(create_app()) as client:
+        authenticate(client)
         project = client.post("/api/v1/projects", json={"name": "demo"}).json()["id"]
         payload = "x,constant,label\n" + "".join(
             f"{i},secret,{i % 2}\n" for i in range(60)
@@ -290,6 +292,7 @@ def test_cancellation_during_engine_is_observed_before_completion(
 def test_request_limit_and_unknown_plan_fields(tmp_path, monkeypatch):
     monkeypatch.setenv("DATAGENOME_STORE", str(tmp_path / "api.sqlite3"))
     with TestClient(create_app()) as client:
+        authenticate(client)
         response = client.post(
             "/api/v1/projects",
             content=b"x" * 6_000_001,

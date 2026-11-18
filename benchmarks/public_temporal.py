@@ -16,20 +16,7 @@ from datagenome.uncertainty import ResamplingConfig, paired_interval
 URL = "https://archive.ics.uci.edu/static/public/357/occupancy+detection.zip"
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--archive", type=Path, required=True)
-    parser.add_argument("--output", type=Path, required=True)
-    args = parser.parse_args()
-    if not args.archive.exists():
-        with urllib.request.urlopen(URL, timeout=60) as source:
-            raw = source.read(3_000_001)
-        if len(raw) > 3_000_000:
-            raise ValueError("Occupancy archive exceeds budget.")
-        with args.archive.open("xb") as out:
-            out.write(raw)
-    if args.archive.stat().st_size > 3_000_000:
-        raise ValueError("Archive exceeds size budget.")
+def load(path: Path):
     names = (
         "Temperature",
         "Humidity",
@@ -42,7 +29,7 @@ def main():
     rows = {}
     duplicates = 0
     conflicting_timestamps: set[str] = set()
-    with zipfile.ZipFile(args.archive) as archive:
+    with zipfile.ZipFile(path) as archive:
         for name in sorted(archive.namelist()):
             if not name.endswith(".txt"):
                 continue
@@ -75,6 +62,24 @@ def main():
             if key not in conflicting_timestamps
         ),
     )
+    return data, duplicates, conflicting_timestamps
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--archive", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args()
+    if not args.archive.exists():
+        with urllib.request.urlopen(URL, timeout=60) as source:
+            raw = source.read(3_000_001)
+        if len(raw) > 3_000_000:
+            raise ValueError("Occupancy archive exceeds budget.")
+        with args.archive.open("xb") as out:
+            out.write(raw)
+    if args.archive.stat().st_size > 3_000_000:
+        raise ValueError("Archive exceeds size budget.")
+    data, duplicates, conflicting_timestamps = load(args.archive)
     results = []
     for seed in (19, 47):
         manifest = split(

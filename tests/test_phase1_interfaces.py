@@ -3,6 +3,7 @@ import json
 import subprocess
 import sys
 
+from auth_helpers import authenticate_async
 from httpx import ASGITransport, AsyncClient
 
 from datagenome.api import create_app
@@ -18,6 +19,7 @@ def test_phase1_api_routes() -> None:
         async with AsyncClient(
             transport=ASGITransport(app=app), base_url="http://test"
         ) as client:
+            await authenticate_async(client)
             for path, result in (
                 ("datasets/diagnose", "intelligence"),
                 ("datasets/anomalies", "anomalies"),
@@ -52,6 +54,7 @@ def test_phase1_api_routes() -> None:
         async with AsyncClient(
             transport=ASGITransport(app=capped), base_url="http://test"
         ) as client:
+            await authenticate_async(client)
             response = await client.post(
                 "/api/v1/datasets/profile?filename=test.csv",
                 content=CSV,
@@ -116,6 +119,7 @@ def test_univariate_cli_and_api_opt_in(tmp_path):
         async with AsyncClient(
             transport=ASGITransport(app=create_app()), base_url="http://test"
         ) as client:
+            await authenticate_async(client)
             path = "/api/v1/datasets/leakage?filename=test.csv&target=label"
             for suffix, enabled in (
                 ("", False),

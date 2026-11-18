@@ -1,3 +1,5 @@
+> HTTP security and async experiment behavior changed in 0.4. Read [the 7.1 contract](frontend-integration.md) and [security model](security.md). Direct trusted CLI examples below remain valid.
+
 # Local improvement workspace
 
 Version 0.3 introduces one local SQLite store connecting diagnostic orchestration,

@@ -1,0 +1,472 @@
+{
+  "public_replication": [
+    {
+      "dataset": "har",
+      "protocol_sha256": "ce11352cf576cc20ff5d14d6dce2994ec20a7ed0ef0fa29fa19ea32d1e747ec7",
+      "rows": 1718,
+      "evaluation_records": 161,
+      "baseline": {
+        "accuracy": 0.5217391304347826,
+        "balanced_accuracy": 0.5149726561220814,
+        "macro_f1": 0.4873063071382399
+      },
+      "matched_random_5pct_removal": {
+        "accuracy": 0.5341614906832298,
+        "balanced_accuracy": 0.5314137767298687,
+        "macro_f1": 0.5027177597765833
+      },
+      "uncertainty": {
+        "accuracy": {
+          "status": "insufficient_evidence",
+          "effective_units": 3,
+          "interval": null
+        },
+        "balanced_accuracy": {
+          "status": "insufficient_evidence",
+          "effective_units": 3,
+          "interval": null
+        },
+        "macro_f1": {
+          "status": "insufficient_evidence",
+          "effective_units": 3,
+          "interval": null
+        }
+      },
+      "ineligible_arms": {
+        "low_value_removal": "No frozen validated dependence-aware valuation selection policy.",
+        "label_audit_exclusion": "No frozen validated dependence-aware exclusion policy.",
+        "other_improvement": "No evidence-based eligible intervention prespecified."
+      },
+      "limitations": [
+        "POST-RUN AUDIT: 57 test records were scored in Phase 7 seed-47 validation. This result is descriptive only, not independent replication; no replacement scoring was run.",
+        "One frozen partition per dataset; no claim of universal improvement.",
+        "HAR windows depend on subjects; Occupancy blocks assume adequate temporal dependence coverage.",
+        "No sensitive subgroup definitions were supplied; subgroup outcomes are unavailable.",
+        "This local ledger cannot prevent deliberate reuse in a different directory."
+      ],
+      "independent_evaluation_status": "ineligible_prior_validation_overlap",
+      "previously_scored_validation_overlap_records": 57
+    },
+    {
+      "dataset": "occupancy",
+      "protocol_sha256": "c0520a56cf0b5f6b1c7156ecbd391a40b6ed01ca2b9e914e71eac35e900fbb7b",
+      "rows": 2058,
+      "evaluation_records": 412,
+      "baseline": {
+        "accuracy": 0.9927184466019418,
+        "balanced_accuracy": 0.9950657894736843,
+        "macro_f1": 0.9906713460885317
+      },
+      "matched_random_5pct_removal": {
+        "accuracy": 0.9927184466019418,
+        "balanced_accuracy": 0.9950657894736843,
+        "macro_f1": 0.9906713460885317
+      },
+      "uncertainty": {
+        "accuracy": {
+          "status": "estimated",
+          "observed_change": 0.0,
+          "percentile_95": [
+            0.0,
+            0.0
+          ],
+          "valid_replicates": 199,
+          "configuration": {
+            "mode": "temporal",
+            "samples": 199,
+            "seed": 19,
+            "block_length": 12,
+            "minimum_units": 8
+          },
+          "effective_units": 34
+        },
+        "balanced_accuracy": {
+          "status": "estimated",
+          "observed_change": 0.0,
+          "percentile_95": [
+            0.0,
+            0.0
+          ],
+          "valid_replicates": 199,
+          "configuration": {
+            "mode": "temporal",
+            "samples": 199,
+            "seed": 19,
+            "block_length": 12,
+            "minimum_units": 8
+          },
+          "effective_units": 34
+        },
+        "macro_f1": {
+          "status": "estimated",
+          "observed_change": 0.0,
+          "percentile_95": [
+            0.0,
+            0.0
+          ],
+          "valid_replicates": 199,
+          "configuration": {
+            "mode": "temporal",
+            "samples": 199,
+            "seed": 19,
+            "block_length": 12,
+            "minimum_units": 8
+          },
+          "effective_units": 34
+        }
+      },
+      "ineligible_arms": {
+        "low_value_removal": "No frozen validated dependence-aware valuation selection policy.",
+        "label_audit_exclusion": "No frozen validated dependence-aware exclusion policy.",
+        "other_improvement": "No evidence-based eligible intervention prespecified."
+      },
+      "limitations": [
+        "One frozen partition per dataset; no claim of universal improvement.",
+        "HAR windows depend on subjects; Occupancy blocks assume adequate temporal dependence coverage.",
+        "No sensitive subgroup definitions were supplied; subgroup outcomes are unavailable.",
+        "This local ledger cannot prevent deliberate reuse in a different directory."
+      ],
+      "independent_evaluation_status": "eligible_untouched_chronological_test"
+    }
+  ],
+  "synthetic_workflow": {
+    "schema_version": "1.0",
+    "trials": [
+      {
+        "seed": 19,
+        "scenario": "clean",
+        "coverage": 0.7142857142857143,
+        "recommendations": 3,
+        "engine_states": {
+          "profile": "completed",
+          "intelligence": "completed",
+          "leakage": "completed",
+          "labels": "completed",
+          "anomalies": "completed",
+          "valuation": "unsupported_or_failed"
+        },
+        "reconstruction_equal": true,
+        "accuracy_deltas": [
+          0.0
+        ],
+        "class_recall_deltas": [
+          {
+            "0": 0.0,
+            "1": 0.0
+          }
+        ],
+        "held_out_evaluated": false,
+        "job_state": "completed"
+      },
+      {
+        "seed": 19,
+        "scenario": "missing",
+        "coverage": 0.7142857142857143,
+        "recommendations": 5,
+        "engine_states": {
+          "profile": "completed",
+          "intelligence": "completed",
+          "leakage": "completed",
+          "labels": "completed",
+          "anomalies": "completed",
+          "valuation": "unsupported_or_failed"
+        },
+        "reconstruction_equal": true,
+        "accuracy_deltas": [
+          0.0
+        ],
+        "class_recall_deltas": [
+          {
+            "0": 0.0,
+            "1": 0.0
+          }
+        ],
+        "held_out_evaluated": false,
+        "job_state": "completed"
+      },
+      {
+        "seed": 19,
+        "scenario": "label-noise",
+        "coverage": 0.7142857142857143,
+        "recommendations": 3,
+        "engine_states": {
+          "profile": "completed",
+          "intelligence": "completed",
+          "leakage": "completed",
+          "labels": "completed",
+          "anomalies": "completed",
+          "valuation": "unsupported_or_failed"
+        },
+        "reconstruction_equal": true,
+        "accuracy_deltas": [
+          0.0
+        ],
+        "class_recall_deltas": [
+          {
+            "0": 0.0,
+            "1": 0.0
+          }
+        ],
+        "held_out_evaluated": false,
+        "job_state": "completed"
+      },
+      {
+        "seed": 19,
+        "scenario": "duplicates",
+        "coverage": 0.7142857142857143,
+        "recommendations": 4,
+        "engine_states": {
+          "profile": "completed",
+          "intelligence": "completed",
+          "leakage": "completed",
+          "labels": "completed",
+          "anomalies": "completed",
+          "valuation": "unsupported_or_failed"
+        },
+        "reconstruction_equal": true,
+        "accuracy_deltas": [
+          0.0,
+          0.0
+        ],
+        "class_recall_deltas": [
+          {
+            "0": 0.0,
+            "1": 0.0
+          },
+          {
+            "0": 0.0,
+            "1": 0.0
+          }
+        ],
+        "held_out_evaluated": false,
+        "job_state": "completed"
+      },
+      {
+        "seed": 19,
+        "scenario": "harmful-feature-removal",
+        "coverage": 0.7142857142857143,
+        "recommendations": 3,
+        "engine_states": {
+          "profile": "completed",
+          "intelligence": "completed",
+          "leakage": "completed",
+          "labels": "completed",
+          "anomalies": "completed",
+          "valuation": "unsupported_or_failed"
+        },
+        "reconstruction_equal": true,
+        "accuracy_deltas": [
+          -0.19999999999999996
+        ],
+        "class_recall_deltas": [
+          {
+            "0": -0.30000000000000004,
+            "1": -0.09999999999999998
+          }
+        ],
+        "held_out_evaluated": false,
+        "job_state": "completed"
+      },
+      {
+        "seed": 19,
+        "scenario": "minority-guard",
+        "coverage": 0.7142857142857143,
+        "recommendations": 4,
+        "engine_states": {
+          "profile": "completed",
+          "intelligence": "completed",
+          "leakage": "completed",
+          "labels": "completed",
+          "anomalies": "completed",
+          "valuation": "unsupported_or_failed"
+        },
+        "rejected": "class_preservation",
+        "job_state": "completed"
+      },
+      {
+        "seed": 47,
+        "scenario": "clean",
+        "coverage": 0.7142857142857143,
+        "recommendations": 3,
+        "engine_states": {
+          "profile": "completed",
+          "intelligence": "completed",
+          "leakage": "completed",
+          "labels": "completed",
+          "anomalies": "completed",
+          "valuation": "unsupported_or_failed"
+        },
+        "reconstruction_equal": true,
+        "accuracy_deltas": [
+          0.0
+        ],
+        "class_recall_deltas": [
+          {
+            "0": 0.0,
+            "1": 0.0
+          }
+        ],
+        "held_out_evaluated": false,
+        "job_state": "completed"
+      },
+      {
+        "seed": 47,
+        "scenario": "missing",
+        "coverage": 0.7142857142857143,
+        "recommendations": 5,
+        "engine_states": {
+          "profile": "completed",
+          "intelligence": "completed",
+          "leakage": "completed",
+          "labels": "completed",
+          "anomalies": "completed",
+          "valuation": "unsupported_or_failed"
+        },
+        "reconstruction_equal": true,
+        "accuracy_deltas": [
+          0.0
+        ],
+        "class_recall_deltas": [
+          {
+            "0": 0.0,
+            "1": 0.0
+          }
+        ],
+        "held_out_evaluated": false,
+        "job_state": "completed"
+      },
+      {
+        "seed": 47,
+        "scenario": "label-noise",
+        "coverage": 0.7142857142857143,
+        "recommendations": 3,
+        "engine_states": {
+          "profile": "completed",
+          "intelligence": "completed",
+          "leakage": "completed",
+          "labels": "completed",
+          "anomalies": "completed",
+          "valuation": "unsupported_or_failed"
+        },
+        "reconstruction_equal": true,
+        "accuracy_deltas": [
+          0.0
+        ],
+        "class_recall_deltas": [
+          {
+            "0": 0.0,
+            "1": 0.0
+          }
+        ],
+        "held_out_evaluated": false,
+        "job_state": "completed"
+      },
+      {
+        "seed": 47,
+        "scenario": "duplicates",
+        "coverage": 0.7142857142857143,
+        "recommendations": 4,
+        "engine_states": {
+          "profile": "completed",
+          "intelligence": "completed",
+          "leakage": "completed",
+          "labels": "completed",
+          "anomalies": "completed",
+          "valuation": "unsupported_or_failed"
+        },
+        "reconstruction_equal": true,
+        "accuracy_deltas": [
+          0.0,
+          0.0
+        ],
+        "class_recall_deltas": [
+          {
+            "0": 0.0,
+            "1": 0.0
+          },
+          {
+            "0": 0.0,
+            "1": 0.0
+          }
+        ],
+        "held_out_evaluated": false,
+        "job_state": "completed"
+      },
+      {
+        "seed": 47,
+        "scenario": "harmful-feature-removal",
+        "coverage": 0.7142857142857143,
+        "recommendations": 3,
+        "engine_states": {
+          "profile": "completed",
+          "intelligence": "completed",
+          "leakage": "completed",
+          "labels": "completed",
+          "anomalies": "completed",
+          "valuation": "unsupported_or_failed"
+        },
+        "reconstruction_equal": true,
+        "accuracy_deltas": [
+          -0.75
+        ],
+        "class_recall_deltas": [
+          {
+            "0": -0.8,
+            "1": -0.7
+          }
+        ],
+        "held_out_evaluated": false,
+        "job_state": "completed"
+      },
+      {
+        "seed": 47,
+        "scenario": "minority-guard",
+        "coverage": 0.7142857142857143,
+        "recommendations": 4,
+        "engine_states": {
+          "profile": "completed",
+          "intelligence": "completed",
+          "leakage": "completed",
+          "labels": "completed",
+          "anomalies": "completed",
+          "valuation": "unsupported_or_failed"
+        },
+        "rejected": "class_preservation",
+        "job_state": "completed"
+      }
+    ],
+    "runtime_seconds": 29.11498169999686,
+    "windows_memory_before": {
+      "working_set_bytes": 109821952,
+      "process_peak_working_set_bytes": 109821952
+    },
+    "windows_memory_after": {
+      "working_set_bytes": 130801664,
+      "process_peak_working_set_bytes": 135270400
+    },
+    "python_peak_bytes": 9605119
+  },
+  "local_http_measurements": {
+    "startup_seconds": 0.4467363000003388,
+    "analysis_job_seconds": 0.29522159999760333,
+    "experiment_job_seconds": 1.343601899992791,
+    "project_get_seconds": {
+      "minimum": 0.015096100003574975,
+      "median": 0.01633600000059232,
+      "maximum": 0.03503719999571331,
+      "requests": 20
+    },
+    "sqlite_bytes": 98304,
+    "peak_traced_python_bytes": 8999409,
+    "windows_process_memory": {
+      "working_set_bytes": 157757440,
+      "process_peak_working_set_bytes": 203816960
+    },
+    "method": "Single local synthetic 60-row run, TestClient HTTP stack, one worker; startup includes Argon2 dummy hash; peak tracing excludes native allocations; process peak includes earlier imports."
+  },
+  "advisory_audit": {
+    "tool": "pip-audit 2.10.1",
+    "after_environment_pip_upgrade": "no known vulnerabilities found",
+    "scope": "tested Windows compatibility environment; not all future allowed versions"
+  }
+}

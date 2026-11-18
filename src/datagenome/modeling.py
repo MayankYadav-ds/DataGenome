@@ -129,6 +129,7 @@ def fit_baseline(
     config: ModelConfig = ModelConfig(),
     *,
     include_test: bool = False,
+    include_predictions: bool = False,
     train_ids: Sequence[int] | None = None,
     exclude: Sequence[str] = (),
 ) -> dict[str, Any]:
@@ -210,6 +211,7 @@ def fit_baseline(
         partitions = {"train": train, "validation": manifest.partitions["validation"]}
         if include_test:
             partitions["test"] = manifest.partitions["test"]
+        validation_predictions: dict[str, Any] = {}
         for key, ids in partitions.items():
             evaluation_labels = labels(ids)
             if len(set(evaluation_labels) | set(training_labels)) > 50:
@@ -217,9 +219,15 @@ def fit_baseline(
                     "too_many_classes", "At most 50 evaluation classes are supported."
                 )
             design_matrix = design(ids)
+            predicted = pipeline.predict(design_matrix).tolist()
+            if include_predictions and key == "validation":
+                validation_predictions = {
+                    "actual": evaluation_labels,
+                    "predicted": predicted,
+                }
             evaluation[key] = metrics(
                 evaluation_labels,
-                pipeline.predict(design_matrix).tolist(),
+                predicted,
                 pipeline.predict_proba(design_matrix),
                 estimator.classes_.tolist(),
             )
@@ -238,6 +246,11 @@ def fit_baseline(
             map(lambda values: values.tolist(), categorical_steps["encode"].categories_)
         )
     return {
+        **(
+            {"validation_predictions": validation_predictions}
+            if include_predictions
+            else {}
+        ),
         "config": asdict(config),
         "parameters": estimator.get_params(),
         "dataset_sha256": manifest.dataset_sha256,

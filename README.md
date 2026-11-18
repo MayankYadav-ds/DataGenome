@@ -100,3 +100,14 @@ Audit supplied groups, screen potential proxies, compare datasets, and confirm e
 ## Local dataset improvement workspace
 
 Version 0.3 adds persistent projects and immutable dataset versions, reviewed training-label corrections and exclusions, diagnostic jobs and report exports. [Reproducible workflow and API](docs/platform.md) and [verified capability inventory](docs/capabilities.md).
+
+## Local authenticated backend (0.4)
+
+The local HTTP API now requires a revocable account or isolated guest session,
+with CSRF tokens on mutations. Trusted Python and CLI workflows remain local.
+Analysis and approved experiment execution use one bounded persistent worker.
+See the [frontend integration contract](docs/frontend-integration.md),
+[authentication and privacy model](docs/security.md), and
+[Phase 7.1 verification and limitations](docs/phase-7.1.md).
+This experimental release does not establish internet-facing production security.
+No Phase 8 frontend is included.

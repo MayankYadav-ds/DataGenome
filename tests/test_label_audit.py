@@ -3,6 +3,7 @@ import json
 import subprocess
 import sys
 
+from auth_helpers import authenticate_async
 from httpx import ASGITransport, AsyncClient
 
 from datagenome.api import create_app
@@ -79,6 +80,7 @@ def test_label_audit_cli_and_api(tmp_path):
         async with AsyncClient(
             transport=ASGITransport(app=create_app()), base_url="http://test"
         ) as client:
+            await authenticate_async(client)
             response = await client.post(
                 "/api/v1/datasets/label-audit?filename=labels.csv&target=label",
                 content=payload,

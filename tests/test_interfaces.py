@@ -4,6 +4,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+from auth_helpers import authenticate_async
 from httpx import ASGITransport, AsyncClient
 
 from datagenome import __version__
@@ -15,6 +16,7 @@ def test_api() -> None:
         async with AsyncClient(
             transport=ASGITransport(app=create_app(30)), base_url="http://test"
         ) as client:
+            await authenticate_async(client)
             assert (await client.get("/health")).json() == {"status": "ok"}
             assert (await client.get("/version")).json() == {"version": __version__}
             url = "/api/v1/datasets/profile"

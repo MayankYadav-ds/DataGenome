@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "datagenome"
-version = "0.3.0"
+version = "0.4.0"
 description = "Local dataset profiling and diagnostics"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -13,7 +13,7 @@ license-files = ["LICENSE"]
 dependencies = ["numpy>=1.26,<3", "scipy>=1.10,<2", "scikit-learn>=1.6,<2", "threadpoolctl>=3.5,<4"]
 
 [project.optional-dependencies]
-api = ["fastapi>=0.121,<1", "uvicorn>=0.35,<1"]
+api = ["argon2-cffi>=23.1,<26", "fastapi>=0.121,<1", "uvicorn>=0.35,<1"]
 dev = ["build>=1,<2", "httpx>=0.28,<1", "mypy>=1,<3", "pytest>=8,<10", "ruff>=0.12,<1"]
 
 [project.scripts]
