@@ -1,6 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.3.0
+
+- Added immutable logical versions, reviewed transformations, orchestration, explicit plan comparisons, bounded jobs and report views.
+- Added paired cluster/block bootstrap and reproducible public grouped/temporal acquisition benchmarks.
 
 - Added group-aware and historical audit folds, fairness diagnostics, distribution and performance drift, and frozen slice confirmation.
 

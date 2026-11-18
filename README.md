@@ -96,3 +96,7 @@ Analyze a validation prediction, screen error slices, or run a prespecified remo
 ## Fairness and distribution drift
 
 Audit supplied groups, screen potential proxies, compare datasets, and confirm exploratory error slices on a frozen holdout. [Phase 6 methodology and usage](docs/fairness-drift.md).
+
+## Local dataset improvement workspace
+
+Version 0.3 adds persistent projects and immutable dataset versions, reviewed training-label corrections and exclusions, diagnostic jobs and report exports. [Reproducible workflow and API](docs/platform.md) and [verified capability inventory](docs/capabilities.md).
