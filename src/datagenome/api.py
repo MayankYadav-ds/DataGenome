@@ -3,6 +3,7 @@ import json
 import logging
 import os
 from collections.abc import Awaitable, Callable
+from pathlib import Path
 from typing import Annotated, Any, Literal
 
 from fastapi import FastAPI, Query, Request
@@ -349,6 +350,11 @@ def create_app(
                 )
             },
         )
+    from .platform_api import attach_platform
+
+    attach_platform(
+        app, Path(os.environ.get("DATAGENOME_STORE", ".datagenome/platform.sqlite3"))
+    )
     return app
 
 

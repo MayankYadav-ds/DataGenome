@@ -16,3 +16,7 @@ demo.csv
 *.private.csv
 *.protocol.json
 *.report.json
+
+.datagenome/
+*.sqlite3
+*.sqlite3-*
