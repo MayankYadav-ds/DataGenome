@@ -91,6 +91,10 @@ assistive-technology compatibility or formal accessibility compliance. Logical
 deletion is not physical secure erasure. Continued internet hardening and broader
 scientific validation remain necessary.
 
+The first hosted run passed backend checks and caught Windows Git converting
+frontend source to CRLF before Prettier. Explicit frontend LF checkout attributes
+correct this without disabling formatting checks.
+
 The Windows CI now includes backend checks plus frontend types, lint, formatting,
 unit tests, build and real browser integration. Publication commit and hosted run
 results are reported with the release handoff after execution.

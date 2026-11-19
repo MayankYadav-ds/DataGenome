@@ -1,0 +1,3 @@
+# Keep frontend formatting stable when Windows Git enables core.autocrlf.
+frontend/** text=auto eol=lf
+frontend/public/*.png binary
