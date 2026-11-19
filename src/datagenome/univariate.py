@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from statistics import mean
 from typing import TypedDict
 
-from .folds import connected_groups
+from .folds import connected_groups, historical_folds
 from .ingestion import Dataset, DatasetError
 from .numeric import number, numeric
 
@@ -60,6 +60,7 @@ def evaluate_univariate(
     *,
     constrained_split: bool,
     group_index: int | None = None,
+    time: str | None = None,
 ) -> list[UnivariateResult]:
     config.validate()
     definition: dict[str, object] = {
@@ -71,7 +72,9 @@ def evaluate_univariate(
         "score": None,
         "baseline_score": None,
     }
-    if constrained_split:
+    if (constrained_split and time is None) or (
+        time is not None and group_index is not None
+    ):
         return [
             UnivariateResult(
                 (),
@@ -132,7 +135,19 @@ def evaluate_univariate(
 
     partitions = []
     cv = StratifiedKFold(n_splits=config.folds, shuffle=True, random_state=seed)
-    if group_index is None:
+    if time is not None:
+        records = [i for i in train_ids if dataset.rows[i - 1][target_index].strip()]
+        indices = historical_folds(dataset, records, time, config.folds)
+        definition["fold_strategy"] = "forward_only_expanding"
+        if not indices:
+            return [
+                UnivariateResult(
+                    (),
+                    "insufficient_evidence",
+                    {**definition, "reason": "Too few distinct historical timestamps."},
+                )
+            ]
+    elif group_index is None:
         indices = list(cv.split(labels, labels))
     else:
         groups = connected_groups(
@@ -189,7 +204,9 @@ def evaluate_univariate(
         partitions.append((fit, score, fit_labels, score_labels, baseline))
 
     features = [
-        i for i in range(len(dataset.columns)) if i != target_index and i != group_index
+        i
+        for i in range(len(dataset.columns))
+        if i != target_index and i != group_index and dataset.columns[i] != time
     ]
     results = []
     for index in features[: config.max_features]:
@@ -231,7 +248,9 @@ def evaluate_univariate(
                     "score": score_mean,
                     "baseline_score": baseline_mean,
                     "lift": lift,
-                    "evaluated_records": len(labeled),
+                    "evaluated_records": sum(
+                        fold["evaluated_records"] for fold in fold_scores
+                    ),
                     "fold_scores": fold_scores,
                 },
             )

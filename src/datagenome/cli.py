@@ -13,6 +13,12 @@ logger = logging.getLogger(__name__)
 
 
 def main() -> int:
+    import sys
+
+    if len(sys.argv) > 1 and sys.argv[1] == "benchmark":
+        from .benchmark import main as benchmark_main
+
+        return benchmark_main(sys.argv[2:])
     parser = argparse.ArgumentParser(prog="datagenome")
     parser.add_argument("--version", action="version", version=__version__)
     commands = parser.add_subparsers(dest="command", required=True)

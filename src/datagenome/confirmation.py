@@ -111,7 +111,7 @@ def confirm_slices(
         for i, name in enumerate(dataset.columns)
         if i != label and name not in {manifest.config.group, manifest.config.time}
     ]
-    receipt = claim_holdout(manifest, ledger, digest)
+    receipt = claim_holdout(manifest, ledger, digest, dataset, plan["target"])
     development = {
         tuple(dataset.rows[i - 1][j] for j in selected)
         for name in ("train", "validation")

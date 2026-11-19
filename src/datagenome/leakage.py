@@ -361,6 +361,7 @@ def inspect_leakage(
             config.univariate,
             constrained_split=bool(time),
             group_index=column(dataset, group) if group else None,
+            time=time,
         ):
             emit(
                 "univariate_predictive",
@@ -368,7 +369,7 @@ def inspect_leakage(
                 result.columns,
                 result.evidence,
                 "Review flagged features against their data provenance.",
-                "Scores use stratified training-only folds. Predictive performance does not establish leakage.",
+                "Scores use training-only folds, forward-only when time is configured. Predictive performance does not establish leakage.",
                 thresholds=config.univariate.thresholds(),
             )
     return output

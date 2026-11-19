@@ -91,25 +91,16 @@ def final_metrics(metrics: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def claim_holdout(manifest: Manifest, ledger: Path, protocol_id: str) -> str:
-    ledger.mkdir(parents=True, exist_ok=True)
-    key = fingerprint([manifest.dataset_sha256, sorted(manifest.partitions["test"])])
-    receipt = ledger / (key + ".json")
-    try:
-        create_json(
-            receipt,
-            {
-                "status": "claimed",
-                "protocol_sha256": protocol_id,
-                "held_out_scored": False,
-            },
-        )
-    except DatasetError as error:
-        raise DatasetError(
-            "holdout_consumed", "This partition is already claimed in this ledger."
-        ) from error
+def claim_holdout(
+    manifest: Manifest,
+    ledger: Path,
+    protocol_id: str,
+    dataset: Dataset | None = None,
+    target: str | None = None,
+) -> str:
+    from .holdouts import claim
 
-    return key
+    return claim(manifest, ledger, protocol_id, dataset, target)
 
 
 def score_frozen(dataset: Dataset, protocol_path: Path, ledger: Path) -> dict[str, Any]:
@@ -160,7 +151,9 @@ def score_frozen(dataset: Dataset, protocol_path: Path, ledger: Path) -> dict[st
             "The protocol is invalid or does not match this dataset.",
         ) from error
 
-    key = claim_holdout(manifest, ledger, protocol_id)
+    from .holdouts import claim
+
+    key = claim(manifest, ledger, protocol_id, dataset, target)
 
     def feature_key(i: int) -> tuple[str, ...]:
         row = dataset.rows[i - 1]
