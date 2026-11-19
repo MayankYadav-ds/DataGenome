@@ -27,6 +27,7 @@ import {
 import { Action, Brand, Notice, Pending, Theme } from "./ui";
 import preview from "../public/demo-preview.json";
 const Workspace = lazy(() => import("./Workspace"));
+const Research = lazy(() => import("./Research"));
 const repo = "https://github.com/MayankYadav-ds/DataGenome";
 export default function Product({ segments }: { segments: string[] }) {
   return <Root segments={segments} />;
@@ -256,7 +257,7 @@ function Root({ segments }: { segments: string[] }) {
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
           <a href={repo + "/security"}>Security</a>
-          <span>v0.5.0 · local preview</span>
+          <span>v0.6.0 · local preview</span>
         </div>
       </footer>
     </>
@@ -697,7 +698,7 @@ const info: Record<
       ],
       [
         "Currently unsupported",
-        "Chronological univariate scoring, horizon-aware purging, predictive proxy verification and subgroup intervention uncertainty remain unavailable. The HAR cross-seed result is descriptive, not independent evidence.",
+        "Forward-only chronological univariate scoring is supported. Horizon-aware purging, predictive proxy verification and subgroup intervention uncertainty remain unavailable. The HAR cross-seed result is descriptive, not independent evidence.",
       ],
     ],
   },
@@ -798,6 +799,11 @@ function Information({ page }: { page: string }) {
       </div>
       <h1>{data.title}</h1>
       <p className="intro">{data.intro}</p>
+      {page === "research" ? (
+        <Suspense fallback={<Pending text="Loading research" />}>
+          <Research />
+        </Suspense>
+      ) : null}
       {data.sections.map(([title, text]) => (
         <section key={title}>
           <h2>{title}</h2>

@@ -48,6 +48,8 @@ def claim(
                 if path.stat().st_size > 2_000_000:
                     raise ValueError
                 previous = json.loads(path.read_text(encoding="utf-8"))
+                if not isinstance(previous, dict):
+                    raise ValueError
                 # Old receipts cannot establish non-overlap. Do not silently migrate them.
                 if "record_ids" not in previous or (
                     tokens and not previous.get("feature_tokens")
@@ -56,6 +58,17 @@ def claim(
                         "holdout_legacy_ledger",
                         "Legacy receipts cannot establish non-overlap; scoring is refused.",
                     )
+                if (
+                    not isinstance(previous["record_ids"], list)
+                    or any(type(i) is not int for i in previous["record_ids"])
+                    or not isinstance(previous.get("feature_tokens", []), list)
+                    or any(
+                        not isinstance(t, str) or len(t) != 64
+                        for t in previous.get("feature_tokens", [])
+                    )
+                    or not isinstance(previous["dataset_sha256"], str)
+                ):
+                    raise ValueError
                 overlap = (
                     previous["dataset_sha256"] == manifest.dataset_sha256
                     and bool(records.intersection(previous["record_ids"]))

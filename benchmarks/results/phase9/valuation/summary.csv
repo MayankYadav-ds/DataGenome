@@ -1,0 +1,16 @@
+experiment,suite,dataset,seed,status,seconds
+valuation-synthetic-game-11-44136fa355,valuation,synthetic-game,11,evaluated,0.020274300000892254
+valuation-synthetic-11-eb8a946522,valuation,synthetic,11,evaluated,17.23067760000049
+valuation-synthetic-11-5774435851,valuation,synthetic,11,evaluated,23.484311800000796
+valuation-synthetic-11-6936c73a1b,valuation,synthetic,11,evaluated,17.84526840000035
+valuation-synthetic-11-95f52d3d8b,valuation,synthetic,11,evaluated,24.067318600000362
+valuation-synthetic-game-23-44136fa355,valuation,synthetic-game,23,evaluated,0.019894700000804733
+valuation-synthetic-23-eb8a946522,valuation,synthetic,23,evaluated,16.81642709999869
+valuation-synthetic-23-5774435851,valuation,synthetic,23,evaluated,23.074645900000178
+valuation-synthetic-23-6936c73a1b,valuation,synthetic,23,evaluated,16.42816440000024
+valuation-synthetic-23-95f52d3d8b,valuation,synthetic,23,evaluated,22.66736910000145
+valuation-synthetic-game-37-44136fa355,valuation,synthetic-game,37,evaluated,0.019494399999530287
+valuation-synthetic-37-eb8a946522,valuation,synthetic,37,evaluated,15.213395800001308
+valuation-synthetic-37-5774435851,valuation,synthetic,37,evaluated,20.97625969999899
+valuation-synthetic-37-6936c73a1b,valuation,synthetic,37,evaluated,14.662028600001577
+valuation-synthetic-37-95f52d3d8b,valuation,synthetic,37,evaluated,20.011301399999866

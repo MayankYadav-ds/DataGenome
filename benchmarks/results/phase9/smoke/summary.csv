@@ -1,0 +1,4 @@
+experiment,suite,dataset,seed,status,seconds
+valuation-synthetic-game-11-44136fa355,valuation,synthetic-game,11,evaluated,0.019499299998642527
+leakage-synthetic-11-984c9194a0,leakage,synthetic,11,evaluated,1.0441348999993352
+fairness-synthetic-11-44136fa355,fairness,synthetic,11,evaluated,0.30658910000056494

@@ -1,0 +1,47 @@
+{
+  "smoke": {
+    "sha256": "e559767cb23d0bb1c9ef8cae3ea847d82f45fea2bf1e9bee68b2716cadc0e578",
+    "trials": 3,
+    "protocol": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018"
+  },
+  "leakage": {
+    "sha256": "4afd28a59b2629ecdf96ce197e387d99b944f63dfbc44493a323d9f7274f4abc",
+    "trials": 24,
+    "protocol": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018"
+  },
+  "labels": {
+    "sha256": "cfcc6ccc9a55d59b0e9b379c8c4714eb7e93eb75641524afa21c5a29f078aea3",
+    "trials": 81,
+    "protocol": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018"
+  },
+  "valuation": {
+    "sha256": "339332807e6735350c4f377ba7339c9473f514d3bfc5ff71e75547042e7d4c65",
+    "trials": 15,
+    "protocol": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018"
+  },
+  "influence": {
+    "sha256": "3cd9d5ad2d25882e1b42922be6badc2b86a43933ad8c13140bf519611eaaaed0",
+    "trials": 138,
+    "protocol": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018"
+  },
+  "fairness": {
+    "sha256": "4cf59eebea7b48f9b193910c36c9f43e952c7de5837a53c20b5a73dd1dc79f0d",
+    "trials": 3,
+    "protocol": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018"
+  },
+  "drift": {
+    "sha256": "277d27df1eab9b40b2cf1c95b33654d1de69bda147fa1e7bf81b73ee77999a3a",
+    "trials": 60,
+    "protocol": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018"
+  },
+  "interventions": {
+    "sha256": "9b177614e0c98e55b446746583ee26507c7008a0395cd7dce11b98085f23e163",
+    "trials": 3,
+    "protocol": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018"
+  },
+  "performance": {
+    "sha256": "eaafad1fe00bcebc74ec729e634b2c57aad798512ed86885eb9d3794816866c0",
+    "trials": 30,
+    "protocol": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018"
+  }
+}

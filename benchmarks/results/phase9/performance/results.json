@@ -1,0 +1,2104 @@
+{
+  "environment": {
+    "dependencies": {
+      "datagenome": "0.5.0",
+      "numpy": "2.2.6",
+      "scikit-learn": "1.6.1",
+      "scipy": "1.17.1"
+    },
+    "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "python": "3.11.0",
+    "system": "Windows"
+  },
+  "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+  "schema_version": "1.0",
+  "seconds": 179.27826319999986,
+  "status": "completed",
+  "suite": "performance",
+  "trials": [
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 100
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "3f899761cdc7a61840c39fe6d42ef90249086d0e18e1184a3f3f717eedf85414",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-11-2c9f2f36ab",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 6225084,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "3f899761cdc7a61840c39fe6d42ef90249086d0e18e1184a3f3f717eedf85414",
+        "features": 3,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 98.6111111111111,
+        "health_weighted_score": 99.44444444444444,
+        "measured_component_total_seconds": 0.6288911999981792,
+        "recommendations": 1,
+        "rows": 100,
+        "seconds_by_component": {
+          "health": 0.00013939999917056412,
+          "health_weight_sensitivity": 0.00017670000124780927,
+          "ingestion": 0.0037635999997291947,
+          "intelligence": 0.020068600000740844,
+          "labels": 0.5878785000004427,
+          "leakage": 0.00862789999882807,
+          "profile": 0.007765999998810003,
+          "recommendations": 0.00020020000010845251,
+          "report_serialization": 0.0002702999991015531
+        },
+        "split_sha256": "88cf5266d0122041e744087a108b9750b449da1b19596a65e684998e66073072",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 0.7113915000009001,
+      "seed": 11,
+      "split_sha256": "88cf5266d0122041e744087a108b9750b449da1b19596a65e684998e66073072",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 100
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "77161c0b14465f5ecdb5929175544a51b088cb7445f25668ad09dc14901c77b1",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-11-ca9e3406bc",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 537061,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "77161c0b14465f5ecdb5929175544a51b088cb7445f25668ad09dc14901c77b1",
+        "features": 16,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 96.94444444444446,
+        "health_weighted_score": 98.77777777777779,
+        "measured_component_total_seconds": 0.5655790000000707,
+        "recommendations": 1,
+        "rows": 100,
+        "seconds_by_component": {
+          "health": 0.00012109999988751952,
+          "health_weight_sensitivity": 0.00014250000094762072,
+          "ingestion": 0.0030179999994288664,
+          "intelligence": 0.261245499999859,
+          "labels": 0.2669053999998141,
+          "leakage": 0.016945499999565072,
+          "profile": 0.01675280000017665,
+          "recommendations": 0.0001878000002761837,
+          "report_serialization": 0.0002604000001156237
+        },
+        "split_sha256": "8c37260bd01daf4b8d4c709db3dfb9e119700a8153322fda57849ae4affe60e5",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 0.5875357999993867,
+      "seed": 11,
+      "split_sha256": "8c37260bd01daf4b8d4c709db3dfb9e119700a8153322fda57849ae4affe60e5",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 500
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "61e54ae1663e01024398edd02c8a7cef55d2c9ef27d0a44334ff5b1ac6639129",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-11-dcd5989409",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 757247,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "61e54ae1663e01024398edd02c8a7cef55d2c9ef27d0a44334ff5b1ac6639129",
+        "features": 3,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 98.38888888888887,
+        "health_weighted_score": 99.35555555555555,
+        "measured_component_total_seconds": 0.5247669999971549,
+        "recommendations": 1,
+        "rows": 500,
+        "seconds_by_component": {
+          "health": 0.00012210000022605527,
+          "health_weight_sensitivity": 0.0001522999991721008,
+          "ingestion": 0.004788300000654999,
+          "intelligence": 0.0909784999985277,
+          "labels": 0.3771089999991091,
+          "leakage": 0.036932299999534735,
+          "profile": 0.014181300000927877,
+          "recommendations": 0.00022700000045006163,
+          "report_serialization": 0.0002761999985523289
+        },
+        "split_sha256": "a799322000106920998ad1466f5fdb29bfae909d5ee098e992bcf539dbaa8069",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 0.5745198000004166,
+      "seed": 11,
+      "split_sha256": "a799322000106920998ad1466f5fdb29bfae909d5ee098e992bcf539dbaa8069",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 500
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "bc9f852539e6261f0f658c507b663d451a4f76db46cb9e8efb84fe4ec01d56c4",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-11-8ce5615062",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 2281082,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "bc9f852539e6261f0f658c507b663d451a4f76db46cb9e8efb84fe4ec01d56c4",
+        "features": 16,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 97.77777777777779,
+        "health_weighted_score": 99.11111111111111,
+        "measured_component_total_seconds": 1.6437948000002507,
+        "recommendations": 1,
+        "rows": 500,
+        "seconds_by_component": {
+          "health": 0.00013000000035390258,
+          "health_weight_sensitivity": 0.00014910000027157366,
+          "ingestion": 0.015324699999837321,
+          "intelligence": 1.0682708000003913,
+          "labels": 0.428240299999743,
+          "leakage": 0.06645860000026005,
+          "profile": 0.06471249999958673,
+          "recommendations": 0.00019969999993918464,
+          "report_serialization": 0.0003090999998676125
+        },
+        "split_sha256": "6aba1b55133d2ca299eb7d51ddc313b5709524c7462baca99492f2c3b80d0c30",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 1.7377598999992188,
+      "seed": 11,
+      "split_sha256": "6aba1b55133d2ca299eb7d51ddc313b5709524c7462baca99492f2c3b80d0c30",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 1000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "c60cde2967e1682e68c9eadadf3097400fc9273a737e384e647924bd3f2d2621",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-11-45ab74a66d",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 1232131,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "c60cde2967e1682e68c9eadadf3097400fc9273a737e384e647924bd3f2d2621",
+        "features": 3,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 98.02777777777779,
+        "health_weighted_score": 99.21111111111112,
+        "measured_component_total_seconds": 0.8656736000011733,
+        "recommendations": 1,
+        "rows": 1000,
+        "seconds_by_component": {
+          "health": 0.0001627000001462875,
+          "health_weight_sensitivity": 0.00015800000073795673,
+          "ingestion": 0.009783400000742404,
+          "intelligence": 0.13167299999986426,
+          "labels": 0.6158198000011907,
+          "leakage": 0.07953409999936412,
+          "profile": 0.027921200000491808,
+          "recommendations": 0.00022899999930814374,
+          "report_serialization": 0.0003923999993276084
+        },
+        "split_sha256": "65c3e1931ee43e0ee3cc02ced5cae35b3b67be97e6b34479b4f69276a11a1b54",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 0.9650600000004488,
+      "seed": 11,
+      "split_sha256": "65c3e1931ee43e0ee3cc02ced5cae35b3b67be97e6b34479b4f69276a11a1b54",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 1000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "2c127482058c8595cc40c2aad6f9aeb9950a519590e25b85957a3c925038222c",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-11-2949846123",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 4366898,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "2c127482058c8595cc40c2aad6f9aeb9950a519590e25b85957a3c925038222c",
+        "features": 16,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 97.58333333333333,
+        "health_weighted_score": 99.03333333333333,
+        "measured_component_total_seconds": 3.158535699998538,
+        "recommendations": 1,
+        "rows": 1000,
+        "seconds_by_component": {
+          "health": 0.00013409999883151613,
+          "health_weight_sensitivity": 0.0001441000003978843,
+          "ingestion": 0.03127940000013041,
+          "intelligence": 2.1187174000006053,
+          "labels": 0.7167140000001382,
+          "leakage": 0.1645764999993844,
+          "profile": 0.12630720000015572,
+          "recommendations": 0.00022189999981492292,
+          "report_serialization": 0.0004410999990795972
+        },
+        "split_sha256": "f331308048b705db3c25d5b45679e282f54a7d02271b4aaca16611d50ba1fab8",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 3.3488263999988703,
+      "seed": 11,
+      "split_sha256": "f331308048b705db3c25d5b45679e282f54a7d02271b4aaca16611d50ba1fab8",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 5000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "f54dfa6c2c850f02948cbdaca6b26547aeab513841699b658fd11becb5cd69ea",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-11-92c82586bc",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 6365573,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "f54dfa6c2c850f02948cbdaca6b26547aeab513841699b658fd11becb5cd69ea",
+        "features": 3,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 98.01666666666667,
+        "health_weighted_score": 99.20666666666666,
+        "measured_component_total_seconds": 3.668481899998369,
+        "recommendations": 1,
+        "rows": 5000,
+        "seconds_by_component": {
+          "health": 0.00015329999951063655,
+          "health_weight_sensitivity": 0.00018180000006395858,
+          "ingestion": 0.05809100000078615,
+          "intelligence": 0.8261270000002696,
+          "labels": 2.161516099999062,
+          "leakage": 0.4699758999995538,
+          "profile": 0.15150319999884232,
+          "recommendations": 0.0004521000009845011,
+          "report_serialization": 0.00048149999929592013
+        },
+        "split_sha256": "1e9b17f982b0662f385ef3cd1d10693f9c6742338cc51d41d20ecfe9c56e1fb6",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 4.248231699999451,
+      "seed": 11,
+      "split_sha256": "1e9b17f982b0662f385ef3cd1d10693f9c6742338cc51d41d20ecfe9c56e1fb6",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 5000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "ca82fa01c99d44f8044c2be8382aa5ffebad5ddc024c945e0b805bc1e9eb479c",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-11-600b23aa0c",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 22633306,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "ca82fa01c99d44f8044c2be8382aa5ffebad5ddc024c945e0b805bc1e9eb479c",
+        "features": 16,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 98.00555555555555,
+        "health_weighted_score": 99.20222222222222,
+        "measured_component_total_seconds": 15.841777899995577,
+        "recommendations": 1,
+        "rows": 5000,
+        "seconds_by_component": {
+          "health": 0.0001407999989169184,
+          "health_weight_sensitivity": 0.0001565000002301531,
+          "ingestion": 0.16421970000010333,
+          "intelligence": 11.191998099999182,
+          "labels": 2.8905389999999898,
+          "leakage": 0.9336621000002197,
+          "profile": 0.6602556999987428,
+          "recommendations": 0.0003712999987328658,
+          "report_serialization": 0.0004346999994595535
+        },
+        "split_sha256": "79b42b9189b75956c1baade3d3c05198eedf12636f65d996054df6f5422c2fcf",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 16.809991199999786,
+      "seed": 11,
+      "split_sha256": "79b42b9189b75956c1baade3d3c05198eedf12636f65d996054df6f5422c2fcf",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 10000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "f153808d689cb641d56130acb7b02115471b8f0857f91a85c60edd13450065c0",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-11-4d0dce50e6",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 11233749,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "f153808d689cb641d56130acb7b02115471b8f0857f91a85c60edd13450065c0",
+        "features": 3,
+        "health_coverage": 0.5714285714285714,
+        "health_score": 100.0,
+        "health_weighted_score": 100.0,
+        "measured_component_total_seconds": 2.419350999998642,
+        "recommendations": 0,
+        "rows": 10000,
+        "seconds_by_component": {
+          "health": 0.0001339999998890562,
+          "health_weight_sensitivity": 0.00016789999972388614,
+          "ingestion": 0.10679919999893173,
+          "intelligence": 1.32633689999966,
+          "leakage": 0.6699050999995961,
+          "profile": 0.31547910000153934,
+          "recommendations": 0.00034129999949072953,
+          "report_serialization": 0.0001874999998108251
+        },
+        "split_sha256": "56d19bae7d6e1dda149461466e59569f23020692e73e13f47ea0aedd2688afea",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 3.4838620999998966,
+      "seed": 11,
+      "split_sha256": "56d19bae7d6e1dda149461466e59569f23020692e73e13f47ea0aedd2688afea",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 10000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "d58faea7676683874ffbaa49468b8a9745c9d3acdd8c051a318ae717957848a3",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-11-426fb9c5c6",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 45249754,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "d58faea7676683874ffbaa49468b8a9745c9d3acdd8c051a318ae717957848a3",
+        "features": 16,
+        "health_coverage": 0.5714285714285714,
+        "health_score": 100.0,
+        "health_weighted_score": 100.0,
+        "measured_component_total_seconds": 25.59319189999769,
+        "recommendations": 0,
+        "rows": 10000,
+        "seconds_by_component": {
+          "health": 0.0001300999992963625,
+          "health_weight_sensitivity": 0.00014290000035543926,
+          "ingestion": 0.3239180000000488,
+          "intelligence": 22.519104099999822,
+          "leakage": 1.4995145999982924,
+          "profile": 1.2498286000009102,
+          "recommendations": 0.0002903000004153,
+          "report_serialization": 0.0002632999985507922
+        },
+        "split_sha256": "0f3992802908a5e24f8a5f5fb130f03a14fc9e76ac9a224f0e13e1896a3d0703",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 27.58741540000119,
+      "seed": 11,
+      "split_sha256": "0f3992802908a5e24f8a5f5fb130f03a14fc9e76ac9a224f0e13e1896a3d0703",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 100
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "e3ce067689b5302b70589bda0b7e394745133af40547bb6aa668b855c6ae68c6",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-23-2c9f2f36ab",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 388400,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "e3ce067689b5302b70589bda0b7e394745133af40547bb6aa668b855c6ae68c6",
+        "features": 3,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 97.22222222222223,
+        "health_weighted_score": 98.88888888888889,
+        "measured_component_total_seconds": 0.25928340000245953,
+        "recommendations": 1,
+        "rows": 100,
+        "seconds_by_component": {
+          "health": 0.00011180000001331791,
+          "health_weight_sensitivity": 0.0001334000007773284,
+          "ingestion": 0.0008760999990045093,
+          "intelligence": 0.013607800001409487,
+          "labels": 0.23355049999918265,
+          "leakage": 0.006993900000452413,
+          "profile": 0.003591200000300887,
+          "recommendations": 0.00018190000082540791,
+          "report_serialization": 0.00023680000049353112
+        },
+        "split_sha256": "ee955ef491d7d338253a9297bbbb0cc2f6ac7ad80bab1b04a27b2ee112910474",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 0.26965239999844925,
+      "seed": 23,
+      "split_sha256": "ee955ef491d7d338253a9297bbbb0cc2f6ac7ad80bab1b04a27b2ee112910474",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 100
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "0403e43f1b00bb8e830acf63421ed04065f2292dfd0f18b5149d5da8abaf0cd9",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-23-ca9e3406bc",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 447122,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "0403e43f1b00bb8e830acf63421ed04065f2292dfd0f18b5149d5da8abaf0cd9",
+        "features": 16,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 96.38888888888887,
+        "health_weighted_score": 98.55555555555556,
+        "measured_component_total_seconds": 0.5217088000008516,
+        "recommendations": 1,
+        "rows": 100,
+        "seconds_by_component": {
+          "health": 0.0001830000001064036,
+          "health_weight_sensitivity": 0.00018079999972542282,
+          "ingestion": 0.002890800000386662,
+          "intelligence": 0.22746840000036173,
+          "labels": 0.26146430000153487,
+          "leakage": 0.013287199999467703,
+          "profile": 0.01575810000031197,
+          "recommendations": 0.00017889999980980065,
+          "report_serialization": 0.0002972999991470715
+        },
+        "split_sha256": "c2c7b3d796375946b18b32c95957d44c1d8565cd2074805cd50179274bab2c91",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 0.5409345000007306,
+      "seed": 23,
+      "split_sha256": "c2c7b3d796375946b18b32c95957d44c1d8565cd2074805cd50179274bab2c91",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 500
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "ce4ea7b546e581add8f95986adbee91d8039cf11ca1def05198609914e0c45bd",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-23-dcd5989409",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 641341,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "ce4ea7b546e581add8f95986adbee91d8039cf11ca1def05198609914e0c45bd",
+        "features": 3,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 97.88888888888887,
+        "health_weighted_score": 99.15555555555555,
+        "measured_component_total_seconds": 0.5521438999967359,
+        "recommendations": 1,
+        "rows": 500,
+        "seconds_by_component": {
+          "health": 0.00026809999872057233,
+          "health_weight_sensitivity": 0.0004513000003498746,
+          "ingestion": 0.005004099999496248,
+          "intelligence": 0.06995479999932286,
+          "labels": 0.4213024000000587,
+          "leakage": 0.039598100000148406,
+          "profile": 0.014562000000296393,
+          "recommendations": 0.0003614999986893963,
+          "report_serialization": 0.0006415999996534083
+        },
+        "split_sha256": "69a107269e7d9de281f979d163b2a02c3ab30fea9ee86960262d0af078339dc8",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 0.6040819000008923,
+      "seed": 23,
+      "split_sha256": "69a107269e7d9de281f979d163b2a02c3ab30fea9ee86960262d0af078339dc8",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 500
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "c4149432d3c805cc0a4aeaecc2b455d9dca0b58f78c37693848978e6ee328fd4",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-23-8ce5615062",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 2103322,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "c4149432d3c805cc0a4aeaecc2b455d9dca0b58f78c37693848978e6ee328fd4",
+        "features": 16,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 98.16666666666667,
+        "health_weighted_score": 99.26666666666667,
+        "measured_component_total_seconds": 1.6355854000012187,
+        "recommendations": 1,
+        "rows": 500,
+        "seconds_by_component": {
+          "health": 0.00012280000009923242,
+          "health_weight_sensitivity": 0.00014430000010179356,
+          "ingestion": 0.01565189999928407,
+          "intelligence": 1.0590636000015365,
+          "labels": 0.42492610000044806,
+          "leakage": 0.06808840000121563,
+          "profile": 0.06709349999982805,
+          "recommendations": 0.00019439999960013665,
+          "report_serialization": 0.0003003999991051387
+        },
+        "split_sha256": "deec371a646127dcd96e95529a7939a5f84a9eb1468a2c3342d6c006c1d81afa",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 1.7382975000000442,
+      "seed": 23,
+      "split_sha256": "deec371a646127dcd96e95529a7939a5f84a9eb1468a2c3342d6c006c1d81afa",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 1000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "e654bf4ca314eef0ad40cef574e966d6550956afce39123d2247c89008da541f",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-23-45ab74a66d",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 1174527,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "e654bf4ca314eef0ad40cef574e966d6550956afce39123d2247c89008da541f",
+        "features": 3,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 98.19444444444444,
+        "health_weighted_score": 99.27777777777779,
+        "measured_component_total_seconds": 0.8352209000004223,
+        "recommendations": 1,
+        "rows": 1000,
+        "seconds_by_component": {
+          "health": 0.00013159999980416615,
+          "health_weight_sensitivity": 0.00015359999997599516,
+          "ingestion": 0.009961899999325396,
+          "intelligence": 0.13309649999973772,
+          "labels": 0.5861959000012575,
+          "leakage": 0.07718060000115656,
+          "profile": 0.027890299999853596,
+          "recommendations": 0.000229199999012053,
+          "report_serialization": 0.00038130000029923394
+        },
+        "split_sha256": "50cc7468626c26ef05171a3807c384a4118a3e0ca07158f2fa64bea68c22918c",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 0.9325157000002946,
+      "seed": 23,
+      "split_sha256": "50cc7468626c26ef05171a3807c384a4118a3e0ca07158f2fa64bea68c22918c",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 1000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "6a82f1c2a465abd9f6b9fbaebe459c4d39ceb11ac4c8721273e66ee494ffc6d2",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-23-2949846123",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 4189402,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "6a82f1c2a465abd9f6b9fbaebe459c4d39ceb11ac4c8721273e66ee494ffc6d2",
+        "features": 16,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 97.94444444444446,
+        "health_weighted_score": 99.17777777777778,
+        "measured_component_total_seconds": 3.223991799997748,
+        "recommendations": 1,
+        "rows": 1000,
+        "seconds_by_component": {
+          "health": 0.00013140000010025688,
+          "health_weight_sensitivity": 0.00015189999976428226,
+          "ingestion": 0.029197500000009313,
+          "intelligence": 2.2177851000014925,
+          "labels": 0.6920157999993535,
+          "leakage": 0.15612709999913932,
+          "profile": 0.12795699999878707,
+          "recommendations": 0.00022249999892665073,
+          "report_serialization": 0.00040350000017497223
+        },
+        "split_sha256": "30290cf27fbaee1f581dad467ad3429ab16667a4940e5e93dce35b4b6de64571",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 3.4159451000014087,
+      "seed": 23,
+      "split_sha256": "30290cf27fbaee1f581dad467ad3429ab16667a4940e5e93dce35b4b6de64571",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 5000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "b15cd60cbe4e740c9b33b26b4a8c39b29625fa196df8f6f69dd6c1faa20fbcec",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-23-92c82586bc",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 6515587,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "b15cd60cbe4e740c9b33b26b4a8c39b29625fa196df8f6f69dd6c1faa20fbcec",
+        "features": 3,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 98.08888888888889,
+        "health_weighted_score": 99.23555555555555,
+        "measured_component_total_seconds": 3.772903800001586,
+        "recommendations": 1,
+        "rows": 5000,
+        "seconds_by_component": {
+          "health": 0.00012410000090312678,
+          "health_weight_sensitivity": 0.0001449999999749707,
+          "ingestion": 0.05143139999927371,
+          "intelligence": 0.740517500000351,
+          "labels": 2.3162952000002406,
+          "leakage": 0.5212842000000819,
+          "profile": 0.14231819999986328,
+          "recommendations": 0.0003544000010151649,
+          "report_serialization": 0.0004337999998824671
+        },
+        "split_sha256": "393e1ce175521c4826af36b3e0fc9a98809ffc514446bf5f778caad0c5091d67",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 4.324752000000444,
+      "seed": 23,
+      "split_sha256": "393e1ce175521c4826af36b3e0fc9a98809ffc514446bf5f778caad0c5091d67",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 5000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "4876c91e94fb1cc7eb924651570ca7340b66827ef220a88449c026a49f29c82c",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-23-600b23aa0c",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 22630746,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "4876c91e94fb1cc7eb924651570ca7340b66827ef220a88449c026a49f29c82c",
+        "features": 16,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 98.07222222222224,
+        "health_weighted_score": 99.22888888888889,
+        "measured_component_total_seconds": 15.63644469999781,
+        "recommendations": 1,
+        "rows": 5000,
+        "seconds_by_component": {
+          "health": 0.00013629999921249691,
+          "health_weight_sensitivity": 0.00015139999959501438,
+          "ingestion": 0.16943129999890516,
+          "intelligence": 10.968883999999889,
+          "labels": 2.8881457000006776,
+          "leakage": 0.9299728000005416,
+          "profile": 0.6789131999994424,
+          "recommendations": 0.0003581000000849599,
+          "report_serialization": 0.0004518999994616024
+        },
+        "split_sha256": "bbe038e42b56197714aa4b7eebad9c6688979eb4b0d1591948af3ce1e739feeb",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 16.591094900000826,
+      "seed": 23,
+      "split_sha256": "bbe038e42b56197714aa4b7eebad9c6688979eb4b0d1591948af3ce1e739feeb",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 10000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "27472cf9781c54d3fb1681e69bc1cc120e6912db17e9e5cb66f8c28196bbe716",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-23-4d0dce50e6",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 11236591,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "27472cf9781c54d3fb1681e69bc1cc120e6912db17e9e5cb66f8c28196bbe716",
+        "features": 3,
+        "health_coverage": 0.5714285714285714,
+        "health_score": 100.0,
+        "health_weighted_score": 100.0,
+        "measured_component_total_seconds": 2.414375400001518,
+        "recommendations": 0,
+        "rows": 10000,
+        "seconds_by_component": {
+          "health": 0.00014280000141297933,
+          "health_weight_sensitivity": 0.00016340000001946464,
+          "ingestion": 0.10708080000040354,
+          "intelligence": 1.301412299999356,
+          "leakage": 0.6979129000010289,
+          "profile": 0.3071586000005482,
+          "recommendations": 0.0002921999985119328,
+          "report_serialization": 0.00021240000023681205
+        },
+        "split_sha256": "3baa8c4d628b4e6cf1c154cc5876c12193c6b32f110da749b509d26f66774c23",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 3.4666613999997935,
+      "seed": 23,
+      "split_sha256": "3baa8c4d628b4e6cf1c154cc5876c12193c6b32f110da749b509d26f66774c23",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 10000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "83309c3784a6ad29275e402602755f426c35a29572817b3501a795fa2fc8c47a",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-23-426fb9c5c6",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 45250338,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "83309c3784a6ad29275e402602755f426c35a29572817b3501a795fa2fc8c47a",
+        "features": 16,
+        "health_coverage": 0.5714285714285714,
+        "health_score": 100.0,
+        "health_weighted_score": 100.0,
+        "measured_component_total_seconds": 25.528739200006385,
+        "recommendations": 0,
+        "rows": 10000,
+        "seconds_by_component": {
+          "health": 0.00014280000141297933,
+          "health_weight_sensitivity": 0.00015350000103353523,
+          "ingestion": 0.34606320000057167,
+          "intelligence": 22.28033300000061,
+          "leakage": 1.5530780000008235,
+          "profile": 1.3484661999991658,
+          "recommendations": 0.000308600001517334,
+          "report_serialization": 0.00019390000124985818
+        },
+        "split_sha256": "6e948a93c6e27be15f5030c67dbd50ce71b25f9170a2033937d302f883c91d2d",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 27.61454529999901,
+      "seed": 23,
+      "split_sha256": "6e948a93c6e27be15f5030c67dbd50ce71b25f9170a2033937d302f883c91d2d",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 100
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "2426f4737d2aa01e2a194ed88529808df826ec5affe6ccba47003d9deae4c57a",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-37-2c9f2f36ab",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 385958,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "2426f4737d2aa01e2a194ed88529808df826ec5affe6ccba47003d9deae4c57a",
+        "features": 3,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 98.33333333333333,
+        "health_weighted_score": 99.33333333333333,
+        "measured_component_total_seconds": 0.27316850000352133,
+        "recommendations": 1,
+        "rows": 100,
+        "seconds_by_component": {
+          "health": 0.0001171000003523659,
+          "health_weight_sensitivity": 0.00014080000073590782,
+          "ingestion": 0.0009038000007421942,
+          "intelligence": 0.013097099999868078,
+          "labels": 0.2480544000009104,
+          "leakage": 0.006851699999970151,
+          "profile": 0.003596500000639935,
+          "recommendations": 0.00017769999976735562,
+          "report_serialization": 0.0002294000005349517
+        },
+        "split_sha256": "d849160d4a1917ac9de0ed2ad302175c22281fe4bcf9166f7ccfca81d3b5ca18",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 0.2839010000006965,
+      "seed": 37,
+      "split_sha256": "d849160d4a1917ac9de0ed2ad302175c22281fe4bcf9166f7ccfca81d3b5ca18",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 100
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "9b856e369b9fa4872dc89067f4cca022ba6a300fa1f5bbc33e9a8e0ae1a853b7",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-37-ca9e3406bc",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 446110,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "9b856e369b9fa4872dc89067f4cca022ba6a300fa1f5bbc33e9a8e0ae1a853b7",
+        "features": 16,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 95.27777777777779,
+        "health_weighted_score": 98.11111111111111,
+        "measured_component_total_seconds": 0.520231500000591,
+        "recommendations": 1,
+        "rows": 100,
+        "seconds_by_component": {
+          "health": 0.00011859999904118013,
+          "health_weight_sensitivity": 0.0001413000009051757,
+          "ingestion": 0.0028995000011491356,
+          "intelligence": 0.23177149999901303,
+          "labels": 0.25579909999942174,
+          "leakage": 0.013339100001758197,
+          "profile": 0.015744099999210448,
+          "recommendations": 0.00016540000069653615,
+          "report_serialization": 0.00025289999939559493
+        },
+        "split_sha256": "c57cf62c5248247869949a22d25c66336dc48e75d3ab4ba0312b6480b55bfd35",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 0.5393598999999085,
+      "seed": 37,
+      "split_sha256": "c57cf62c5248247869949a22d25c66336dc48e75d3ab4ba0312b6480b55bfd35",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 500
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "61286c8b67cc8318ac54487a88d5a38f5322a3f92d87456516f718ae2d8f298c",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-37-dcd5989409",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 641370,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "61286c8b67cc8318ac54487a88d5a38f5322a3f92d87456516f718ae2d8f298c",
+        "features": 3,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 97.77777777777779,
+        "health_weighted_score": 99.11111111111111,
+        "measured_component_total_seconds": 0.528680000001259,
+        "recommendations": 1,
+        "rows": 500,
+        "seconds_by_component": {
+          "health": 0.00012649999916902743,
+          "health_weight_sensitivity": 0.00015300000086426735,
+          "ingestion": 0.0049295000007987255,
+          "intelligence": 0.0648256999993464,
+          "labels": 0.41125149999970745,
+          "leakage": 0.03358709999884013,
+          "profile": 0.013294100001076004,
+          "recommendations": 0.00020680000125139486,
+          "report_serialization": 0.000305800000205636
+        },
+        "split_sha256": "dd6998d46939079a7d1e8931931c3eb30aaadf4884aec33198b6ea7f5af48047",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 0.579892400000972,
+      "seed": 37,
+      "split_sha256": "dd6998d46939079a7d1e8931931c3eb30aaadf4884aec33198b6ea7f5af48047",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 500
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "2cc7fe244599a74237ddf7456647f698be329fb5000a0db9735e270b89923e1a",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-37-8ce5615062",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 2104466,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "2cc7fe244599a74237ddf7456647f698be329fb5000a0db9735e270b89923e1a",
+        "features": 16,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 97.44444444444446,
+        "health_weighted_score": 98.97777777777779,
+        "measured_component_total_seconds": 1.6822139999985666,
+        "recommendations": 1,
+        "rows": 500,
+        "seconds_by_component": {
+          "health": 0.000124399999549496,
+          "health_weight_sensitivity": 0.0001419000000169035,
+          "ingestion": 0.016565500000069733,
+          "intelligence": 1.084592100000009,
+          "labels": 0.4415556000003562,
+          "leakage": 0.06874269999934768,
+          "profile": 0.06997260000025562,
+          "recommendations": 0.00020339999900897965,
+          "report_serialization": 0.0003157999999530148
+        },
+        "split_sha256": "a926d06f0ee3201519d3c2968069634444a18c3a107f21a3b59fa9226f8663a7",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 1.7829452000005404,
+      "seed": 37,
+      "split_sha256": "a926d06f0ee3201519d3c2968069634444a18c3a107f21a3b59fa9226f8663a7",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 1000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "ad22cd306c023c59ca576c9b45ffc5fbe8afa771131c59d15e3d931a9a346a3f",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-37-45ab74a66d",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 1174327,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "ad22cd306c023c59ca576c9b45ffc5fbe8afa771131c59d15e3d931a9a346a3f",
+        "features": 3,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 98.02777777777779,
+        "health_weighted_score": 99.21111111111112,
+        "measured_component_total_seconds": 0.8662243999988277,
+        "recommendations": 1,
+        "rows": 1000,
+        "seconds_by_component": {
+          "health": 0.00012210000022605527,
+          "health_weight_sensitivity": 0.00014259999989008065,
+          "ingestion": 0.01002410000000964,
+          "intelligence": 0.12954590000117605,
+          "labels": 0.6228937999985646,
+          "leakage": 0.07539929999984452,
+          "profile": 0.027491499999086955,
+          "recommendations": 0.00022329999956127722,
+          "report_serialization": 0.0003818000004685018
+        },
+        "split_sha256": "1f88546d0c4a4b78b0daca7b5f8ef20bf6dcdbb3480d6e995a202b00175b791d",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 0.9660153000004357,
+      "seed": 37,
+      "split_sha256": "1f88546d0c4a4b78b0daca7b5f8ef20bf6dcdbb3480d6e995a202b00175b791d",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 1000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "1e591480506040916b26ee78707cce19d272477a2d48d5d7d76afe42b8cda271",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-37-2949846123",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 4191674,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "1e591480506040916b26ee78707cce19d272477a2d48d5d7d76afe42b8cda271",
+        "features": 16,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 97.88888888888887,
+        "health_weighted_score": 99.15555555555555,
+        "measured_component_total_seconds": 3.298965699999826,
+        "recommendations": 1,
+        "rows": 1000,
+        "seconds_by_component": {
+          "health": 0.0001295000001846347,
+          "health_weight_sensitivity": 0.00014719999853696208,
+          "ingestion": 0.02972539999973378,
+          "intelligence": 2.2400073999997403,
+          "labels": 0.7301531000011892,
+          "leakage": 0.1719388000001345,
+          "profile": 0.12624680000044464,
+          "recommendations": 0.0002172999993490521,
+          "report_serialization": 0.00040020000051299576
+        },
+        "split_sha256": "1f06c7ebe75f81685da13650129711eaf3e4b051d34117d8dcf69c5d954aa327",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 3.494707899999412,
+      "seed": 37,
+      "split_sha256": "1f06c7ebe75f81685da13650129711eaf3e4b051d34117d8dcf69c5d954aa327",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 5000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "d5cf50b6af5ba7c20dbdfde9b03a2338d3387d567d73093fe5273287ef0229b8",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-37-92c82586bc",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 6462325,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "d5cf50b6af5ba7c20dbdfde9b03a2338d3387d567d73093fe5273287ef0229b8",
+        "features": 3,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 98.08888888888889,
+        "health_weighted_score": 99.23555555555555,
+        "measured_component_total_seconds": 3.508542399995349,
+        "recommendations": 1,
+        "rows": 5000,
+        "seconds_by_component": {
+          "health": 0.00014929999997548293,
+          "health_weight_sensitivity": 0.0001756999990902841,
+          "ingestion": 0.05113889999847743,
+          "intelligence": 0.7575904999994236,
+          "labels": 2.1125513999995746,
+          "leakage": 0.44255060000068625,
+          "profile": 0.14350419999937003,
+          "recommendations": 0.0003923999993276084,
+          "report_serialization": 0.0004893999994237674
+        },
+        "split_sha256": "df5a3b5c84d75eb15253ca05ade4e0a764bb41fa3842154f3065abd3ce740cb4",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 4.047183799999402,
+      "seed": 37,
+      "split_sha256": "df5a3b5c84d75eb15253ca05ade4e0a764bb41fa3842154f3065abd3ce740cb4",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 5000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "504e851bd58997ade1bce8686eaf7be297b6d31454d89091dac175cda57b17cd",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-37-600b23aa0c",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 22283890,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "504e851bd58997ade1bce8686eaf7be297b6d31454d89091dac175cda57b17cd",
+        "features": 16,
+        "health_coverage": 0.7142857142857143,
+        "health_score": 97.95555555555556,
+        "health_weighted_score": 99.18222222222222,
+        "measured_component_total_seconds": 15.751977300002181,
+        "recommendations": 1,
+        "rows": 5000,
+        "seconds_by_component": {
+          "health": 0.0001401999998051906,
+          "health_weight_sensitivity": 0.00015640000128769316,
+          "ingestion": 0.17546049999873503,
+          "intelligence": 11.033669799999188,
+          "labels": 2.9575557000007393,
+          "leakage": 0.8411795000010898,
+          "profile": 0.7430134000005637,
+          "recommendations": 0.0003775000004679896,
+          "report_serialization": 0.0004243000003043562
+        },
+        "split_sha256": "c3686468f9dda888017327658023b044fc7bc31f6eb5508fee869f7203dd88ea",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 16.731853499999488,
+      "seed": 37,
+      "split_sha256": "c3686468f9dda888017327658023b044fc7bc31f6eb5508fee869f7203dd88ea",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 3,
+        "rows": 10000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "53d2f0b9ac6ad14b2cfed2495b773def0b5352c3e8db7708f50c7a31a24a0028",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-37-4d0dce50e6",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 11233757,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "53d2f0b9ac6ad14b2cfed2495b773def0b5352c3e8db7708f50c7a31a24a0028",
+        "features": 3,
+        "health_coverage": 0.5714285714285714,
+        "health_score": 100.0,
+        "health_weighted_score": 100.0,
+        "measured_component_total_seconds": 2.5926271000007546,
+        "recommendations": 0,
+        "rows": 10000,
+        "seconds_by_component": {
+          "health": 0.00012880000031145755,
+          "health_weight_sensitivity": 0.00015469999925699085,
+          "ingestion": 0.09883780000018305,
+          "intelligence": 1.412604699999065,
+          "leakage": 0.7580794000004971,
+          "profile": 0.3222832000010385,
+          "recommendations": 0.00032479999936185777,
+          "report_serialization": 0.0002137000010407064
+        },
+        "split_sha256": "f1a3748ef3d7961cf1811e6d0889a2d4eb2414dbc4974f89eb0d9fc5777e7832",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 3.6020123999987845,
+      "seed": 37,
+      "split_sha256": "f1a3748ef3d7961cf1811e6d0889a2d4eb2414dbc4974f89eb0d9fc5777e7832",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "features": 16,
+        "rows": 10000
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "2c478bc039b07f317f67d9eee96f657454c388d638182bf7096d8b0adef51ce4",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "performance-synthetic-37-426fb9c5c6",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 45256698,
+      "result": {
+        "all_require_review": true,
+        "dataset_sha256": "2c478bc039b07f317f67d9eee96f657454c388d638182bf7096d8b0adef51ce4",
+        "features": 16,
+        "health_coverage": 0.5714285714285714,
+        "health_score": 100.0,
+        "health_weighted_score": 100.0,
+        "measured_component_total_seconds": 25.61249570000109,
+        "recommendations": 0,
+        "rows": 10000,
+        "seconds_by_component": {
+          "health": 0.0002660999998624902,
+          "health_weight_sensitivity": 0.000255299999480485,
+          "ingestion": 0.32986999999957334,
+          "intelligence": 22.39398280000023,
+          "leakage": 1.6105239000007714,
+          "profile": 1.2768064000010781,
+          "recommendations": 0.00048100000094564166,
+          "report_serialization": 0.0003101999991486082
+        },
+        "split_sha256": "85a4f76c524ef060c1128cd5cf6170d3ed551d5756faa0d32087411f02ae1ad7",
+        "warning": "Component total excludes models, valuation and experiments. Python allocation peak is recorded in trial envelope, excludes native allocations. Other suites time their own models; no process peak working-set measurement."
+      },
+      "seconds": 27.621787399999448,
+      "seed": 37,
+      "split_sha256": "85a4f76c524ef060c1128cd5cf6170d3ed551d5756faa0d32087411f02ae1ad7",
+      "status": "evaluated",
+      "suite": "performance",
+      "system": "Windows",
+      "warnings": []
+    }
+  ]
+}

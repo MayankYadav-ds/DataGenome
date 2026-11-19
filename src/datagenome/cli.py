@@ -144,6 +144,7 @@ def main() -> int:
         command.add_argument(
             "--imputation", choices=("median", "mean", "most_frequent")
         )
+    commands.add_parser("benchmark", help="Run a frozen, bounded research benchmark.")
     args = parser.parse_args()
     if args.max_bytes < 1 or (
         args.command != "profile"

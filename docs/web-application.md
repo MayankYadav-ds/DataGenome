@@ -1,4 +1,4 @@
-# DataGenome web application — 0.5 local preview
+# DataGenome web application — 0.6 local preview
 
 Debug the data, not just the model. The web application connects the existing Python
 engines to an owned, review-oriented workflow. It is a pre-1.0 local application,
@@ -210,7 +210,7 @@ future installations are vulnerability-free. Recheck advisories before deploymen
 
 - No public internet deployment, encrypted database, sharing/organization permissions,
   guest/account transfer, email verification, password recovery or social login.
-- No chronological univariate scoring, label-horizon purging, predictive proxy
+- Forward-only chronological univariate scoring is supported. No label-horizon purging, predictive proxy
   verification or subgroup intervention confidence intervals. Existing research
   limitations and the HAR independent-evaluation correction remain unchanged.
 - The web laboratory uses fixed logistic-regression defaults and the two supported

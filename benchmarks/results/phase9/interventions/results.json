@@ -1,0 +1,1852 @@
+{
+  "environment": {
+    "dependencies": {
+      "datagenome": "0.5.0",
+      "numpy": "2.2.6",
+      "scikit-learn": "1.6.1",
+      "scipy": "1.17.1"
+    },
+    "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "python": "3.11.0",
+    "system": "Windows"
+  },
+  "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+  "schema_version": "1.0",
+  "seconds": 8.775687999999718,
+  "status": "completed",
+  "suite": "interventions",
+  "trials": [
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "block": 0
+      },
+      "dataset": "digits01",
+      "dataset_sha256": "ac5da30b8a534ca8486ed0fe5fb9fa032402aa2c9e0429d36c73e73c9493d378",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "interventions-digits01-11-9c09699633",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "https://archive.ics.uci.edu/dataset/80/optical+recognition+of+handwritten+digits",
+      "python": "3.11.0",
+      "python_peak_bytes": 6206413,
+      "result": {
+        "arms": {
+          "combined": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.012385286949458812,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.006954131592179017,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": true,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": 0.11011727932250885
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "duplicates": {
+            "eligible_count": 0,
+            "requested_count": 5,
+            "status": "insufficient_candidates"
+          },
+          "highest": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.1309680037830589,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 0.9836065573770492,
+                "balanced_accuracy": 0.9838709677419355,
+                "macro_f1": 0.9836065573770492,
+                "negative_log_loss": -0.1395179593362253,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 0.967741935483871
+                }
+              }
+            },
+            "oracle": false,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": -0.008465437511091231
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "label_exclusion": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.04545331478414448,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.05489661156368045,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": 0.07704925148782318
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "lowest": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.06028754984367658,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.05585406878647457,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": 0.06221501642829108
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "oracle_correction": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.012196914755916262,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.006879384805162913,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": true,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": 0.1103056515160514
+            },
+            "removed_count": 0,
+            "status": "scored",
+            "training_records": 119,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "original": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.12250256627196766,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 0.9836065573770492,
+                "balanced_accuracy": 0.9838709677419355,
+                "macro_f1": 0.9836065573770492,
+                "negative_log_loss": -0.13137596511073446,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 0.967741935483871
+                }
+              }
+            },
+            "oracle": false,
+            "removed_count": 0,
+            "status": "scored",
+            "training_records": 119
+          },
+          "random": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.06730005653875813,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.08979372212422938,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": 0.05520250973320953
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 11
+                },
+                "effective_units": 61,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          }
+        },
+        "dataset_sha256": "ac5da30b8a534ca8486ed0fe5fb9fa032402aa2c9e0429d36c73e73c9493d378",
+        "evaluation_records": 61,
+        "held_out_scored": true,
+        "protocol_sha256": "d524b02ecc3e934719edf5152c60bd914ab918f157e5063d2518a7a9faae00c0",
+        "split_sha256": "513a892877e9f94cd0a934b1f3177471ecc61d477d0ee7ffcb886622fe4f61fb",
+        "warning": "Record-disjoint within this run; unidentified writers may induce dependence. Bootstrap assumes IID rows and is conditional, not domain-level uncertainty. Oracle corrections use known synthetic truth and are not deployable label predictions."
+      },
+      "seconds": 3.316182699998535,
+      "seed": 11,
+      "split_sha256": "513a892877e9f94cd0a934b1f3177471ecc61d477d0ee7ffcb886622fe4f61fb",
+      "status": "evaluated",
+      "suite": "interventions",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "block": 1
+      },
+      "dataset": "digits01",
+      "dataset_sha256": "8b94eae7cdb3dd819ad9b19be040fa4e20f82b1f4eaf57ecb52c1505e210221f",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "interventions-digits01-23-85c444bd08",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "https://archive.ics.uci.edu/dataset/80/optical+recognition+of+handwritten+digits",
+      "python": "3.11.0",
+      "python_peak_bytes": 1344329,
+      "result": {
+        "arms": {
+          "combined": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.011941262922124819,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.0069967262601123535,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": true,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": 0.11032542441789106
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "duplicates": {
+            "eligible_count": 0,
+            "requested_count": 5,
+            "status": "insufficient_candidates"
+          },
+          "highest": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.1289603539897434,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.10909296869090555,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": -0.006693666649727523
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "label_exclusion": {
+            "metrics": {
+              "independent": {
+                "accuracy": 0.9833333333333333,
+                "balanced_accuracy": 0.9833333333333334,
+                "macro_f1": 0.9833287024173382,
+                "negative_log_loss": -0.06696972910528226,
+                "per_class_recall": {
+                  "0": 0.9666666666666667,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.054739828594421516,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "paired_differences": {
+              "accuracy": -0.01666666666666672,
+              "balanced_accuracy": -0.016666666666666607,
+              "macro_f1": -0.016671297582661837,
+              "negative_log_loss": 0.055296958234733615
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": -0.01666666666666672,
+                "percentile_95": [
+                  -0.06666666666666665,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": -0.016666666666666607,
+                "percentile_95": [
+                  -0.0625,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": -0.016671297582661837,
+                "percentile_95": [
+                  -0.06674082313681873,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "lowest": {
+            "metrics": {
+              "independent": {
+                "accuracy": 0.9833333333333333,
+                "balanced_accuracy": 0.9833333333333334,
+                "macro_f1": 0.9833287024173382,
+                "negative_log_loss": -0.07302549779638492,
+                "per_class_recall": {
+                  "0": 0.9666666666666667,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.04813328690622176,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "paired_differences": {
+              "accuracy": -0.01666666666666672,
+              "balanced_accuracy": -0.016666666666666607,
+              "macro_f1": -0.016671297582661837,
+              "negative_log_loss": 0.04924118954363095
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": -0.01666666666666672,
+                "percentile_95": [
+                  -0.06666666666666665,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": -0.016666666666666607,
+                "percentile_95": [
+                  -0.0625,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": -0.016671297582661837,
+                "percentile_95": [
+                  -0.06674082313681873,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "oracle_correction": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.01177024790549011,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.006879384805162913,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": true,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": 0.11049643943452576
+            },
+            "removed_count": 0,
+            "status": "scored",
+            "training_records": 119,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "original": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.12226668734001588,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.10204974205597489,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "removed_count": 0,
+            "status": "scored",
+            "training_records": 119
+          },
+          "random": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.07581623105060417,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.0565830339504274,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": 0.046450456289411704
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 23
+                },
+                "effective_units": 60,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          }
+        },
+        "dataset_sha256": "8b94eae7cdb3dd819ad9b19be040fa4e20f82b1f4eaf57ecb52c1505e210221f",
+        "evaluation_records": 60,
+        "held_out_scored": true,
+        "protocol_sha256": "0ec6e05cf942f0553b00a877f59ec6923f92eb86ced64a505115ecc9683d9188",
+        "split_sha256": "66ed02fd2a65d14d7d8b3d4e716c7b6f46077c016829f0e5c0fa39b22536f16c",
+        "warning": "Record-disjoint within this run; unidentified writers may induce dependence. Bootstrap assumes IID rows and is conditional, not domain-level uncertainty. Oracle corrections use known synthetic truth and are not deployable label predictions."
+      },
+      "seconds": 2.7873737000008987,
+      "seed": 23,
+      "split_sha256": "66ed02fd2a65d14d7d8b3d4e716c7b6f46077c016829f0e5c0fa39b22536f16c",
+      "status": "evaluated",
+      "suite": "interventions",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "block": 2
+      },
+      "dataset": "digits01",
+      "dataset_sha256": "06f0e21db9b4115ef3dbcca3bf98991fd6e3d2c269a05af2c58c5ffa36c6864e",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "interventions-digits01-37-7ea0d26c9b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "https://archive.ics.uci.edu/dataset/80/optical+recognition+of+handwritten+digits",
+      "python": "3.11.0",
+      "python_peak_bytes": 1343899,
+      "result": {
+        "arms": {
+          "combined": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.008199069625725471,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.006976824165764236,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": true,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": 0.11698723428437333
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "duplicates": {
+            "eligible_count": 0,
+            "requested_count": 5,
+            "status": "insufficient_candidates"
+          },
+          "highest": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.13145877305082498,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.1152013674858793,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": -0.0062724691407261834
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "label_exclusion": {
+            "metrics": {
+              "independent": {
+                "accuracy": 0.9830508474576272,
+                "balanced_accuracy": 0.9833333333333334,
+                "macro_f1": 0.9830508474576272,
+                "negative_log_loss": -0.06726039753313354,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 0.9666666666666667
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.056293471048009885,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "paired_differences": {
+              "accuracy": -0.016949152542372836,
+              "balanced_accuracy": -0.016666666666666607,
+              "macro_f1": -0.016949152542372836,
+              "negative_log_loss": 0.057925906376965264
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": -0.016949152542372836,
+                "percentile_95": [
+                  -0.06779661016949157,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": -0.016666666666666607,
+                "percentile_95": [
+                  -0.05714285714285716,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": -0.016949152542372836,
+                "percentile_95": [
+                  -0.06781609195402294,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "lowest": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.05595556433313325,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.052433259297460844,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": 0.06923073957696554
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "oracle_correction": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.008073919849641339,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.006879384805162913,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": true,
+            "paired_differences": {
+              "accuracy": 0.0,
+              "balanced_accuracy": 0.0,
+              "macro_f1": 0.0,
+              "negative_log_loss": 0.11711238406045746
+            },
+            "removed_count": 0,
+            "status": "scored",
+            "training_records": 119,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": 0.0,
+                "percentile_95": [
+                  0.0,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          },
+          "original": {
+            "metrics": {
+              "independent": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.1251863039100988,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.10862315154497076,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "removed_count": 0,
+            "status": "scored",
+            "training_records": 119
+          },
+          "random": {
+            "metrics": {
+              "independent": {
+                "accuracy": 0.9830508474576272,
+                "balanced_accuracy": 0.9833333333333334,
+                "macro_f1": 0.9830508474576272,
+                "negative_log_loss": -0.06713813721135099,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 0.9666666666666667
+                }
+              },
+              "validation": {
+                "accuracy": 1.0,
+                "balanced_accuracy": 1.0,
+                "macro_f1": 1.0,
+                "negative_log_loss": -0.05482202577283537,
+                "per_class_recall": {
+                  "0": 1.0,
+                  "1": 1.0
+                }
+              }
+            },
+            "oracle": false,
+            "paired_differences": {
+              "accuracy": -0.016949152542372836,
+              "balanced_accuracy": -0.016666666666666607,
+              "macro_f1": -0.016949152542372836,
+              "negative_log_loss": 0.05804816669874781
+            },
+            "removed_count": 5,
+            "status": "scored",
+            "training_records": 114,
+            "uncertainty": {
+              "accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": -0.016949152542372836,
+                "percentile_95": [
+                  -0.06779661016949157,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "balanced_accuracy": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": -0.016666666666666607,
+                "percentile_95": [
+                  -0.05714285714285716,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              },
+              "macro_f1": {
+                "configuration": {
+                  "block_length": 5,
+                  "minimum_units": 8,
+                  "mode": "independent",
+                  "samples": 199,
+                  "seed": 37
+                },
+                "effective_units": 59,
+                "observed_change": -0.016949152542372836,
+                "percentile_95": [
+                  -0.06781609195402294,
+                  0.0
+                ],
+                "status": "estimated",
+                "valid_replicates": 199
+              }
+            }
+          }
+        },
+        "dataset_sha256": "06f0e21db9b4115ef3dbcca3bf98991fd6e3d2c269a05af2c58c5ffa36c6864e",
+        "evaluation_records": 59,
+        "held_out_scored": true,
+        "protocol_sha256": "442cb13901d34fcdfda30c3e45c6e1a1a33bd555383cb204ae0a3ba700e11e40",
+        "split_sha256": "c87ae6741c561f93ba0d90f3e71074ad85901c5a61ea9aa7158059055d72eec0",
+        "warning": "Record-disjoint within this run; unidentified writers may induce dependence. Bootstrap assumes IID rows and is conditional, not domain-level uncertainty. Oracle corrections use known synthetic truth and are not deployable label predictions."
+      },
+      "seconds": 2.6281767999989825,
+      "seed": 37,
+      "split_sha256": "c87ae6741c561f93ba0d90f3e71074ad85901c5a61ea9aa7158059055d72eec0",
+      "status": "evaluated",
+      "suite": "interventions",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    }
+  ]
+}

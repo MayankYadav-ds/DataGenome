@@ -1,0 +1,2623 @@
+{
+  "environment": {
+    "dependencies": {
+      "datagenome": "0.5.0",
+      "numpy": "2.2.6",
+      "scikit-learn": "1.6.1",
+      "scipy": "1.17.1"
+    },
+    "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "python": "3.11.0",
+    "system": "Windows"
+  },
+  "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+  "schema_version": "1.0",
+  "seconds": 232.59597439999925,
+  "status": "completed",
+  "suite": "valuation",
+  "trials": [
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {},
+      "dataset": "synthetic-game",
+      "dataset_sha256": null,
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-game-11-44136fa355",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 33584,
+      "result": {
+        "banzhaf_max_error": 0.0,
+        "efficiency_residual": 0.0,
+        "mc": {
+          "bottom_k_agreement": 0.5,
+          "kendall": 0.6,
+          "mean_absolute_error": 0.05584509334924063,
+          "spearman": 0.7,
+          "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+          "top_k_agreement": 0.5,
+          "undefined_reason": null
+        },
+        "shapley_max_error": 9.71445146547012e-17
+      },
+      "seconds": 0.020274300000892254,
+      "seed": 11,
+      "split_sha256": null,
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "model": "logistic-regression",
+        "utility": "accuracy"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "009d1a68d402f2b96f98a05197541246a56cd83d9bf118e6af204fc0321eb599",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-11-eb8a946522",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 6002493,
+      "result": {
+        "comparisons_to_shapley": {
+          "banzhaf": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.8666666666666666,
+            "mean_absolute_error": 0.01996527777777776,
+            "spearman": 0.942857142857143,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "knn-shapley": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.4666666666666666,
+            "mean_absolute_error": 0.08055555555555555,
+            "spearman": 0.7142857142857143,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "loo": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.894427190999916,
+            "mean_absolute_error": 0.06944444444444446,
+            "spearman": 0.9411239481143202,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-128": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9999999999999999,
+            "mean_absolute_error": 0.00967881944444444,
+            "spearman": 1.0,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-32": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9999999999999999,
+            "mean_absolute_error": 0.01377314814814815,
+            "spearman": 1.0,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-8": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9999999999999999,
+            "mean_absolute_error": 0.02291666666666667,
+            "spearman": 1.0,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          }
+        },
+        "dataset_sha256": "009d1a68d402f2b96f98a05197541246a56cd83d9bf118e6af204fc0321eb599",
+        "methods": {
+          "banzhaf": {
+            "computation": {
+              "elapsed_seconds": 3.7290575000006356,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.08593750000000001,
+              0.1380208333333333,
+              0.054687500000000014,
+              0.04947916666666666,
+              -0.04947916666666667,
+              -0.07552083333333334
+            ]
+          },
+          "knn-shapley": {
+            "computation": {
+              "elapsed_seconds": 0.004965500000253087,
+              "model_fits": 0,
+              "utility_evaluations": 0
+            },
+            "scores": [
+              0.11388888888888887,
+              0.1013888888888889,
+              0.06666666666666667,
+              0.12222222222222222,
+              0.07777777777777778,
+              0.04583333333333334
+            ]
+          },
+          "loo": {
+            "computation": {
+              "elapsed_seconds": 0.8103276000001642,
+              "model_fits": 7,
+              "utility_evaluations": 7
+            },
+            "scores": [
+              0.0,
+              0.08333333333333337,
+              0.0,
+              0.0,
+              -0.16666666666666663,
+              -0.25
+            ]
+          },
+          "mc-shapley-128": {
+            "computation": {
+              "elapsed_seconds": 3.8294083999990107,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.07812500000000001,
+              0.13606770833333334,
+              0.02083333333333333,
+              0.031901041666666685,
+              -0.08593749999999999,
+              -0.09765625
+            ]
+          },
+          "mc-shapley-32": {
+            "computation": {
+              "elapsed_seconds": 3.149111400000038,
+              "model_fits": 41,
+              "utility_evaluations": 55
+            },
+            "scores": [
+              0.05989583333333334,
+              0.15625,
+              0.010416666666666668,
+              0.031250000000000014,
+              -0.06770833333333333,
+              -0.10677083333333334
+            ]
+          },
+          "mc-shapley-8": {
+            "computation": {
+              "elapsed_seconds": 1.9130153999994945,
+              "model_fits": 25,
+              "utility_evaluations": 36
+            },
+            "scores": [
+              0.08333333333333334,
+              0.17708333333333334,
+              -0.010416666666666657,
+              0.020833333333333343,
+              -0.08333333333333331,
+              -0.10416666666666667
+            ]
+          },
+          "shapley": {
+            "computation": {
+              "elapsed_seconds": 3.755654399999912,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.07083333333333336,
+              0.12083333333333335,
+              0.023611111111111104,
+              0.04583333333333335,
+              -0.0736111111111111,
+              -0.10416666666666666
+            ]
+          }
+        },
+        "model": "logistic-regression",
+        "split_sha256": "4fd0cd9d22f72b3608957ebb3acd1996f292a9786f36ff31030a599e287e2260",
+        "utility": "accuracy",
+        "warning": "LOO/Banzhaf/KNN estimate different games; MAE across different games is descriptive, not approximation error. Only MC approximates exact model Shapley."
+      },
+      "seconds": 17.23067760000049,
+      "seed": 11,
+      "split_sha256": "4fd0cd9d22f72b3608957ebb3acd1996f292a9786f36ff31030a599e287e2260",
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "model": "logistic-regression",
+        "utility": "negative_log_loss"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "009d1a68d402f2b96f98a05197541246a56cd83d9bf118e6af204fc0321eb599",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-11-5774435851",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 623362,
+      "result": {
+        "comparisons_to_shapley": {
+          "banzhaf": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9999999999999999,
+            "mean_absolute_error": 3.227701251917346,
+            "spearman": 1.0,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "loo": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.4666666666666666,
+            "mean_absolute_error": 0.9570511999614526,
+            "spearman": 0.5428571428571429,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-128": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.6,
+            "mean_absolute_error": 1.2008967328501463,
+            "spearman": 0.7142857142857143,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-32": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.6,
+            "mean_absolute_error": 1.8987089029760515,
+            "spearman": 0.7714285714285715,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-8": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.3333333333333333,
+            "mean_absolute_error": 3.700305046586845,
+            "spearman": 0.4285714285714286,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          }
+        },
+        "dataset_sha256": "009d1a68d402f2b96f98a05197541246a56cd83d9bf118e6af204fc0321eb599",
+        "methods": {
+          "banzhaf": {
+            "computation": {
+              "elapsed_seconds": 4.937875700001314,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              4.278180551420339,
+              3.538325996225282,
+              2.873865183473417,
+              4.224787366030328,
+              1.9215402006978637,
+              2.6348543425759385
+            ]
+          },
+          "loo": {
+            "computation": {
+              "elapsed_seconds": 0.6654732000006334,
+              "model_fits": 7,
+              "utility_evaluations": 7
+            },
+            "scores": [
+              0.04057371555446887,
+              0.1124765123876521,
+              0.06746341042595738,
+              0.024360811659298043,
+              -0.07553533010787528,
+              -0.04894616430557863
+            ]
+          },
+          "mc-shapley-128": {
+            "computation": {
+              "elapsed_seconds": 5.62265810000099,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              2.188933851533185,
+              2.2021198799061943,
+              0.4005726355801874,
+              0.17288016870290865,
+              -2.790154038585224,
+              -2.0690063682181603
+            ]
+          },
+          "mc-shapley-32": {
+            "computation": {
+              "elapsed_seconds": 4.739566500000365,
+              "model_fits": 41,
+              "utility_evaluations": 55
+            },
+            "scores": [
+              4.226009742426288,
+              3.3355094350638868,
+              -2.673653223781113,
+              1.004918242809138,
+              -1.734890885731478,
+              -4.052547181867632
+            ]
+          },
+          "mc-shapley-8": {
+            "computation": {
+              "elapsed_seconds": 2.521430800001326,
+              "model_fits": 25,
+              "utility_evaluations": 36
+            },
+            "scores": [
+              5.645738605663279,
+              4.9696619618468665,
+              -3.123530209457562,
+              -3.412444075559288,
+              0.9344486174895761,
+              -4.908528771063781
+            ]
+          },
+          "shapley": {
+            "computation": {
+              "elapsed_seconds": 4.969355300001553,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              1.2144712831577733,
+              0.6509211854042475,
+              -0.6764563000928933,
+              1.1756487575763406,
+              -1.416458423322833,
+              -0.8427803738035435
+            ]
+          }
+        },
+        "model": "logistic-regression",
+        "split_sha256": "4fd0cd9d22f72b3608957ebb3acd1996f292a9786f36ff31030a599e287e2260",
+        "utility": "negative_log_loss",
+        "warning": "LOO/Banzhaf/KNN estimate different games; MAE across different games is descriptive, not approximation error. Only MC approximates exact model Shapley."
+      },
+      "seconds": 23.484311800000796,
+      "seed": 11,
+      "split_sha256": "4fd0cd9d22f72b3608957ebb3acd1996f292a9786f36ff31030a599e287e2260",
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "model": "decision-tree",
+        "utility": "accuracy"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "009d1a68d402f2b96f98a05197541246a56cd83d9bf118e6af204fc0321eb599",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-11-6936c73a1b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 920502,
+      "result": {
+        "comparisons_to_shapley": {
+          "banzhaf": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 1.0,
+            "mean_absolute_error": 0.006134259259259259,
+            "spearman": 1.0,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "knn-shapley": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.5520524474738834,
+            "mean_absolute_error": 0.08796296296296297,
+            "spearman": 0.7247137945655605,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "loo": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.5976143046671968,
+            "mean_absolute_error": 0.02453703703703704,
+            "spearman": 0.6642111641550715,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-128": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9660917830792959,
+            "mean_absolute_error": 0.0044704861111111134,
+            "spearman": 0.9856107606091624,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-32": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.6900655593423541,
+            "mean_absolute_error": 0.008449074074074083,
+            "spearman": 0.8116794499134278,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-8": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.6900655593423541,
+            "mean_absolute_error": 0.013194444444444446,
+            "spearman": 0.753702346348183,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          }
+        },
+        "dataset_sha256": "009d1a68d402f2b96f98a05197541246a56cd83d9bf118e6af204fc0321eb599",
+        "methods": {
+          "banzhaf": {
+            "computation": {
+              "elapsed_seconds": 3.8247062000009464,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -0.010416666666666673,
+              0.07291666666666667,
+              -0.03125000000000001,
+              0.020833333333333343,
+              -0.031250000000000014,
+              -0.031250000000000014
+            ]
+          },
+          "knn-shapley": {
+            "computation": {
+              "elapsed_seconds": 0.005444599999464117,
+              "model_fits": 0,
+              "utility_evaluations": 0
+            },
+            "scores": [
+              0.11388888888888887,
+              0.1013888888888889,
+              0.06666666666666667,
+              0.12222222222222222,
+              0.07777777777777778,
+              0.04583333333333334
+            ]
+          },
+          "loo": {
+            "computation": {
+              "elapsed_seconds": 0.5016795999999886,
+              "model_fits": 7,
+              "utility_evaluations": 7
+            },
+            "scores": [
+              0.0,
+              0.08333333333333331,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "mc-shapley-128": {
+            "computation": {
+              "elapsed_seconds": 4.352160599999479,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.0006510416666666652,
+              0.08072916666666667,
+              -0.02994791666666667,
+              0.02148437500000001,
+              -0.03971354166666667,
+              -0.033203125
+            ]
+          },
+          "mc-shapley-32": {
+            "computation": {
+              "elapsed_seconds": 3.533286899999439,
+              "model_fits": 41,
+              "utility_evaluations": 55
+            },
+            "scores": [
+              -0.010416666666666673,
+              0.06770833333333333,
+              -0.036458333333333336,
+              0.026041666666666678,
+              -0.028645833333333336,
+              -0.018229166666666664
+            ]
+          },
+          "mc-shapley-8": {
+            "computation": {
+              "elapsed_seconds": 2.078252799999973,
+              "model_fits": 25,
+              "utility_evaluations": 36
+            },
+            "scores": [
+              -6.938893903907228e-18,
+              0.0625,
+              -0.03125,
+              0.020833333333333343,
+              -0.052083333333333336,
+              0.0
+            ]
+          },
+          "shapley": {
+            "computation": {
+              "elapsed_seconds": 3.5156624000010197,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.005555555555555558,
+              0.075,
+              -0.03472222222222222,
+              0.026388888888888906,
+              -0.03611111111111112,
+              -0.03611111111111112
+            ]
+          }
+        },
+        "model": "decision-tree",
+        "split_sha256": "4fd0cd9d22f72b3608957ebb3acd1996f292a9786f36ff31030a599e287e2260",
+        "utility": "accuracy",
+        "warning": "LOO/Banzhaf/KNN estimate different games; MAE across different games is descriptive, not approximation error. Only MC approximates exact model Shapley."
+      },
+      "seconds": 17.84526840000035,
+      "seed": 11,
+      "split_sha256": "4fd0cd9d22f72b3608957ebb3acd1996f292a9786f36ff31030a599e287e2260",
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "model": "decision-tree",
+        "utility": "negative_log_loss"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "009d1a68d402f2b96f98a05197541246a56cd83d9bf118e6af204fc0321eb599",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-11-95f52d3d8b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 422080,
+      "result": {
+        "comparisons_to_shapley": {
+          "banzhaf": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9258200997725515,
+            "mean_absolute_error": 2.1847361509078658,
+            "spearman": 0.954863710632231,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "loo": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.5976143046671968,
+            "mean_absolute_error": 3.242412063856326,
+            "spearman": 0.6642111641550715,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-128": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9660917830792959,
+            "mean_absolute_error": 0.6256352160659536,
+            "spearman": 0.9856107606091624,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-32": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.6900655593423541,
+            "mean_absolute_error": 0.7350165029799131,
+            "spearman": 0.8116794499134278,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-8": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.5520524474738834,
+            "mean_absolute_error": 0.989594148780491,
+            "spearman": 0.753702346348183,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          }
+        },
+        "dataset_sha256": "009d1a68d402f2b96f98a05197541246a56cd83d9bf118e6af204fc0321eb599",
+        "methods": {
+          "banzhaf": {
+            "computation": {
+              "elapsed_seconds": 4.997045800000706,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -0.8777864525583012,
+              2.000444913684257,
+              -1.59734429411894,
+              0.20155030978265853,
+              -1.59734429411894,
+              -1.59734429411894
+            ]
+          },
+          "loo": {
+            "computation": {
+              "elapsed_seconds": 0.7588319999995292,
+              "model_fits": 7,
+              "utility_evaluations": 7
+            },
+            "scores": [
+              0.0,
+              2.878231366242556,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "mc-shapley-128": {
+            "computation": {
+              "elapsed_seconds": 5.065680800000337,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -2.8265552422301266,
+              0.7162565089355524,
+              -3.1063945243553435,
+              -1.7184917518360008,
+              -4.997709857920837,
+              -4.643346149488642
+            ]
+          },
+          "mc-shapley-32": {
+            "computation": {
+              "elapsed_seconds": 4.110738200000924,
+              "model_fits": 41,
+              "utility_evaluations": 55
+            },
+            "scores": [
+              -1.9138015161142636,
+              0.7845403897381339,
+              -5.403286476954968,
+              -1.6905903569391063,
+              -3.579429691035785,
+              -4.773673365589409
+            ]
+          },
+          "mc-shapley-8": {
+            "computation": {
+              "elapsed_seconds": 2.582969900000535,
+              "model_fits": 25,
+              "utility_evaluations": 36
+            },
+            "scores": [
+              -2.0720301271119252,
+              2.1586735246819178,
+              -5.2233970165648085,
+              -3.4245024126632098,
+              -3.8709247310135226,
+              -4.14406025422385
+            ]
+          },
+          "shapley": {
+            "computation": {
+              "elapsed_seconds": 6.522408400000131,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -2.5708247450663952,
+              -0.17229860653093304,
+              -3.961969905416964,
+              -1.8512669035057565,
+              -4.009940428187675,
+              -4.009940428187675
+            ]
+          }
+        },
+        "model": "decision-tree",
+        "split_sha256": "4fd0cd9d22f72b3608957ebb3acd1996f292a9786f36ff31030a599e287e2260",
+        "utility": "negative_log_loss",
+        "warning": "LOO/Banzhaf/KNN estimate different games; MAE across different games is descriptive, not approximation error. Only MC approximates exact model Shapley."
+      },
+      "seconds": 24.067318600000362,
+      "seed": 11,
+      "split_sha256": "4fd0cd9d22f72b3608957ebb3acd1996f292a9786f36ff31030a599e287e2260",
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {},
+      "dataset": "synthetic-game",
+      "dataset_sha256": null,
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-game-23-44136fa355",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 30212,
+      "result": {
+        "banzhaf_max_error": 0.0,
+        "efficiency_residual": 2.220446049250313e-16,
+        "mc": {
+          "bottom_k_agreement": 0.5,
+          "kendall": 0.6,
+          "mean_absolute_error": 0.07462667596549126,
+          "spearman": 0.7,
+          "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+          "top_k_agreement": 0.5,
+          "undefined_reason": null
+        },
+        "shapley_max_error": 4.440892098500626e-16
+      },
+      "seconds": 0.019894700000804733,
+      "seed": 23,
+      "split_sha256": null,
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "model": "logistic-regression",
+        "utility": "accuracy"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "c83b97709b5f97f881a2c4fcc340905117d2199bccccbabb503203ec222a2718",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-23-eb8a946522",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 524056,
+      "result": {
+        "comparisons_to_shapley": {
+          "banzhaf": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.8666666666666666,
+            "mean_absolute_error": 0.011458333333333334,
+            "spearman": 0.942857142857143,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "knn-shapley": {
+            "bottom_k_agreement": 0.5,
+            "kendall": -0.41403933560541256,
+            "mean_absolute_error": 0.05185185185185185,
+            "spearman": -0.5507824838698261,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "loo": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9309493362512627,
+            "mean_absolute_error": 0.06527777777777778,
+            "spearman": 0.9710083124552245,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-128": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9999999999999999,
+            "mean_absolute_error": 0.0063078703703703725,
+            "spearman": 1.0,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-32": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9999999999999999,
+            "mean_absolute_error": 0.013310185185185187,
+            "spearman": 1.0,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-8": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.7333333333333333,
+            "mean_absolute_error": 0.014814814814814814,
+            "spearman": 0.8285714285714287,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          }
+        },
+        "dataset_sha256": "c83b97709b5f97f881a2c4fcc340905117d2199bccccbabb503203ec222a2718",
+        "methods": {
+          "banzhaf": {
+            "computation": {
+              "elapsed_seconds": 3.7118680000003224,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.005208333333333336,
+              0.0729166666666667,
+              0.06770833333333333,
+              0.062499999999999986,
+              0.08854166666666669,
+              0.015625000000000003
+            ]
+          },
+          "knn-shapley": {
+            "computation": {
+              "elapsed_seconds": 0.005171699998754775,
+              "model_fits": 0,
+              "utility_evaluations": 0
+            },
+            "scores": [
+              0.10972222222222221,
+              0.08888888888888889,
+              0.09583333333333333,
+              0.09027777777777778,
+              0.08194444444444444,
+              0.08888888888888889
+            ]
+          },
+          "loo": {
+            "computation": {
+              "elapsed_seconds": 0.48899510000046575,
+              "model_fits": 7,
+              "utility_evaluations": 7
+            },
+            "scores": [
+              -0.08333333333333337,
+              0.08333333333333337,
+              0.16666666666666663,
+              0.0,
+              0.16666666666666663,
+              -0.08333333333333337
+            ]
+          },
+          "mc-shapley-128": {
+            "computation": {
+              "elapsed_seconds": 3.758620200000223,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -0.01627604166666667,
+              0.056640625000000014,
+              0.07812499999999999,
+              0.045572916666666664,
+              0.09635416666666667,
+              -0.010416666666666664
+            ]
+          },
+          "mc-shapley-32": {
+            "computation": {
+              "elapsed_seconds": 3.2308011000004626,
+              "model_fits": 42,
+              "utility_evaluations": 56
+            },
+            "scores": [
+              -0.03645833333333333,
+              0.06770833333333334,
+              0.09114583333333331,
+              0.031249999999999993,
+              0.09114583333333334,
+              0.005208333333333336
+            ]
+          },
+          "mc-shapley-8": {
+            "computation": {
+              "elapsed_seconds": 1.9584725000004255,
+              "model_fits": 26,
+              "utility_evaluations": 34
+            },
+            "scores": [
+              -0.03125,
+              0.09375000000000001,
+              0.062499999999999986,
+              0.03125,
+              0.08333333333333334,
+              0.010416666666666657
+            ]
+          },
+          "shapley": {
+            "computation": {
+              "elapsed_seconds": 3.6278074999991077,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -0.011111111111111113,
+              0.0652777777777778,
+              0.07083333333333332,
+              0.04583333333333334,
+              0.08472222222222223,
+              -0.005555555555555557
+            ]
+          }
+        },
+        "model": "logistic-regression",
+        "split_sha256": "677cc670b9c43a4f6d90f4eff4ec11afa2493d1d34dc4327342db9c7562b5a21",
+        "utility": "accuracy",
+        "warning": "LOO/Banzhaf/KNN estimate different games; MAE across different games is descriptive, not approximation error. Only MC approximates exact model Shapley."
+      },
+      "seconds": 16.81642709999869,
+      "seed": 23,
+      "split_sha256": "677cc670b9c43a4f6d90f4eff4ec11afa2493d1d34dc4327342db9c7562b5a21",
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "model": "logistic-regression",
+        "utility": "negative_log_loss"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "c83b97709b5f97f881a2c4fcc340905117d2199bccccbabb503203ec222a2718",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-23-5774435851",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 631087,
+      "result": {
+        "comparisons_to_shapley": {
+          "banzhaf": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9999999999999999,
+            "mean_absolute_error": 3.2021059894694823,
+            "spearman": 1.0,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "loo": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.3333333333333333,
+            "mean_absolute_error": 0.14590162515899188,
+            "spearman": 0.4285714285714286,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-128": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.2,
+            "mean_absolute_error": 0.7141105370594745,
+            "spearman": 0.3142857142857143,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-32": {
+            "bottom_k_agreement": 0.0,
+            "kendall": 0.06666666666666665,
+            "mean_absolute_error": 1.35981836778012,
+            "spearman": 0.2,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-8": {
+            "bottom_k_agreement": 0.0,
+            "kendall": -0.06666666666666665,
+            "mean_absolute_error": 1.5164398053114645,
+            "spearman": -0.2,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          }
+        },
+        "dataset_sha256": "c83b97709b5f97f881a2c4fcc340905117d2199bccccbabb503203ec222a2718",
+        "methods": {
+          "banzhaf": {
+            "computation": {
+              "elapsed_seconds": 5.079195100001016,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              2.917501063520902,
+              3.370765555338855,
+              2.955622973143761,
+              3.3946422183567315,
+              3.405739092933605,
+              3.2393119031172017
+            ]
+          },
+          "loo": {
+            "computation": {
+              "elapsed_seconds": 0.6754058999995323,
+              "model_fits": 7,
+              "utility_evaluations": 7
+            },
+            "scores": [
+              -0.047750314934771665,
+              -0.05366986582501376,
+              0.020244433425275044,
+              -0.013008265174397238,
+              0.2726630546184411,
+              -0.031351649668822645
+            ]
+          },
+          "mc-shapley-128": {
+            "computation": {
+              "elapsed_seconds": 5.262900600000648,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.03202929368078088,
+              -0.07478692867667874,
+              -0.6440564952455986,
+              -0.13498146535756037,
+              2.0709330490233797,
+              -1.1781905838301605
+            ]
+          },
+          "mc-shapley-32": {
+            "computation": {
+              "elapsed_seconds": 4.349792900000466,
+              "model_fits": 42,
+              "utility_evaluations": 56
+            },
+            "scores": [
+              0.9813530446712919,
+              1.0847730247629923,
+              0.8475437599864883,
+              -0.7584381510242749,
+              1.0606446101989053,
+              -3.1449294190012402
+            ]
+          },
+          "mc-shapley-8": {
+            "computation": {
+              "elapsed_seconds": 2.667788599999767,
+              "model_fits": 26,
+              "utility_evaluations": 34
+            },
+            "scores": [
+              4.150712601741296,
+              -2.0321695893884737,
+              -0.020951529816223613,
+              -0.03385647718073066,
+              0.13938664952523488,
+              -2.132174785286941
+            ]
+          },
+          "shapley": {
+            "computation": {
+              "elapsed_seconds": 5.010195599999861,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -0.22828964869227752,
+              0.12549730007062282,
+              -0.1912686953170426,
+              0.1476410973176605,
+              0.1889203802180145,
+              0.028446435997184202
+            ]
+          }
+        },
+        "model": "logistic-regression",
+        "split_sha256": "677cc670b9c43a4f6d90f4eff4ec11afa2493d1d34dc4327342db9c7562b5a21",
+        "utility": "negative_log_loss",
+        "warning": "LOO/Banzhaf/KNN estimate different games; MAE across different games is descriptive, not approximation error. Only MC approximates exact model Shapley."
+      },
+      "seconds": 23.074645900000178,
+      "seed": 23,
+      "split_sha256": "677cc670b9c43a4f6d90f4eff4ec11afa2493d1d34dc4327342db9c7562b5a21",
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "model": "decision-tree",
+        "utility": "accuracy"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "c83b97709b5f97f881a2c4fcc340905117d2199bccccbabb503203ec222a2718",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-23-6936c73a1b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 412543,
+      "result": {
+        "comparisons_to_shapley": {
+          "banzhaf": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.8666666666666666,
+            "mean_absolute_error": 0.011284722222222217,
+            "spearman": 0.942857142857143,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "knn-shapley": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.27602622373694163,
+            "mean_absolute_error": 0.06481481481481483,
+            "spearman": 0.3478626213914691,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "loo": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.5773502691896257,
+            "mean_absolute_error": 0.041666666666666664,
+            "spearman": 0.6546536707079772,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-128": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.8666666666666666,
+            "mean_absolute_error": 0.004557291666666666,
+            "spearman": 0.942857142857143,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-32": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.4666666666666666,
+            "mean_absolute_error": 0.012094907407407407,
+            "spearman": 0.5428571428571429,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-8": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.6900655593423543,
+            "mean_absolute_error": 0.021759259259259256,
+            "spearman": 0.8116794499134279,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          }
+        },
+        "dataset_sha256": "c83b97709b5f97f881a2c4fcc340905117d2199bccccbabb503203ec222a2718",
+        "methods": {
+          "banzhaf": {
+            "computation": {
+              "elapsed_seconds": 3.586270699999659,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.018229166666666664,
+              0.0234375,
+              0.04427083333333333,
+              0.0859375,
+              0.02343749999999996,
+              0.039062499999999986
+            ]
+          },
+          "knn-shapley": {
+            "computation": {
+              "elapsed_seconds": 0.004575400000248919,
+              "model_fits": 0,
+              "utility_evaluations": 0
+            },
+            "scores": [
+              0.10972222222222221,
+              0.08888888888888889,
+              0.09583333333333333,
+              0.09027777777777778,
+              0.08194444444444444,
+              0.08888888888888889
+            ]
+          },
+          "loo": {
+            "computation": {
+              "elapsed_seconds": 0.48483720000149333,
+              "model_fits": 7,
+              "utility_evaluations": 7
+            },
+            "scores": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.08333333333333337,
+              0.0
+            ]
+          },
+          "mc-shapley-128": {
+            "computation": {
+              "elapsed_seconds": 3.7298147000001336,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.022135416666666664,
+              0.020833333333333332,
+              0.027994791666666664,
+              0.060546875,
+              0.012369791666666638,
+              0.02278645833333333
+            ]
+          },
+          "mc-shapley-32": {
+            "computation": {
+              "elapsed_seconds": 3.1296104000011837,
+              "model_fits": 42,
+              "utility_evaluations": 56
+            },
+            "scores": [
+              0.015625,
+              0.0390625,
+              0.015624999999999993,
+              0.07552083333333333,
+              0.007812499999999976,
+              0.013020833333333332
+            ]
+          },
+          "mc-shapley-8": {
+            "computation": {
+              "elapsed_seconds": 1.9557903000004444,
+              "model_fits": 26,
+              "utility_evaluations": 34
+            },
+            "scores": [
+              0.0,
+              0.03125,
+              0.02083333333333333,
+              0.11458333333333333,
+              -0.020833333333333356,
+              0.02083333333333333
+            ]
+          },
+          "shapley": {
+            "computation": {
+              "elapsed_seconds": 3.5039481000003434,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.016666666666666666,
+              0.019444444444444448,
+              0.03333333333333333,
+              0.06111111111111111,
+              0.005555555555555529,
+              0.030555555555555555
+            ]
+          }
+        },
+        "model": "decision-tree",
+        "split_sha256": "677cc670b9c43a4f6d90f4eff4ec11afa2493d1d34dc4327342db9c7562b5a21",
+        "utility": "accuracy",
+        "warning": "LOO/Banzhaf/KNN estimate different games; MAE across different games is descriptive, not approximation error. Only MC approximates exact model Shapley."
+      },
+      "seconds": 16.42816440000024,
+      "seed": 23,
+      "split_sha256": "677cc670b9c43a4f6d90f4eff4ec11afa2493d1d34dc4327342db9c7562b5a21",
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "model": "decision-tree",
+        "utility": "negative_log_loss"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "c83b97709b5f97f881a2c4fcc340905117d2199bccccbabb503203ec222a2718",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-23-95f52d3d8b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 414678,
+      "result": {
+        "comparisons_to_shapley": {
+          "banzhaf": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.8666666666666666,
+            "mean_absolute_error": 2.634459801883265,
+            "spearman": 0.942857142857143,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "loo": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.5773502691896257,
+            "mean_absolute_error": 1.4260600267533416,
+            "spearman": 0.6546536707079772,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-128": {
+            "bottom_k_agreement": 0.0,
+            "kendall": 0.2,
+            "mean_absolute_error": 0.44607233488460557,
+            "spearman": 0.2571428571428572,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-32": {
+            "bottom_k_agreement": 0.0,
+            "kendall": 0.06666666666666665,
+            "mean_absolute_error": 0.7242478400717293,
+            "spearman": 0.3714285714285715,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-8": {
+            "bottom_k_agreement": 0.0,
+            "kendall": 0.06666666666666665,
+            "mean_absolute_error": 0.9705047585331122,
+            "spearman": 0.08571428571428573,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          }
+        },
+        "dataset_sha256": "c83b97709b5f97f881a2c4fcc340905117d2199bccccbabb503203ec222a2718",
+        "methods": {
+          "banzhaf": {
+            "computation": {
+              "elapsed_seconds": 4.95863509999981,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.11160557958757811,
+              0.2914950399777379,
+              1.011052881538377,
+              2.4501685646596556,
+              0.29149503997773735,
+              0.8311634211482173
+            ]
+          },
+          "loo": {
+            "computation": {
+              "elapsed_seconds": 0.6658743999996659,
+              "model_fits": 7,
+              "utility_evaluations": 7
+            },
+            "scores": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -2.8782313662425576,
+              0.0
+            ]
+          },
+          "mc-shapley-128": {
+            "computation": {
+              "elapsed_seconds": 4.935251300001255,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -2.2140131010652127,
+              -2.517989232051743,
+              -1.7526336922372923,
+              -0.4988226818542982,
+              -1.3857888927963051,
+              -2.4505306844054333
+            ]
+          },
+          "mc-shapley-32": {
+            "computation": {
+              "elapsed_seconds": 4.584213099999033,
+              "model_fits": 42,
+              "utility_evaluations": 56
+            },
+            "scores": [
+              -2.0503692777194265,
+              -2.2768817695196697,
+              -0.4963466823854831,
+              -0.49964801501056993,
+              -1.8021959365266855,
+              -3.69433660324845
+            ]
+          },
+          "mc-shapley-8": {
+            "computation": {
+              "elapsed_seconds": 2.6255110000001878,
+              "model_fits": 26,
+              "utility_evaluations": 34
+            },
+            "scores": [
+              0.0,
+              -3.0647234918828907,
+              -1.3524722855512856,
+              -0.1864921256403338,
+              -2.791587968672564,
+              -3.4245024126632106
+            ]
+          },
+          "shapley": {
+            "computation": {
+              "elapsed_seconds": 4.86872239999866,
+              "model_fits": 49,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -2.187060562900722,
+              -2.0911195173593033,
+              -1.6114142896522108,
+              -0.6520038342380241,
+              -2.5708247450663966,
+              -1.7073553351936293
+            ]
+          }
+        },
+        "model": "decision-tree",
+        "split_sha256": "677cc670b9c43a4f6d90f4eff4ec11afa2493d1d34dc4327342db9c7562b5a21",
+        "utility": "negative_log_loss",
+        "warning": "LOO/Banzhaf/KNN estimate different games; MAE across different games is descriptive, not approximation error. Only MC approximates exact model Shapley."
+      },
+      "seconds": 22.66736910000145,
+      "seed": 23,
+      "split_sha256": "677cc670b9c43a4f6d90f4eff4ec11afa2493d1d34dc4327342db9c7562b5a21",
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {},
+      "dataset": "synthetic-game",
+      "dataset_sha256": null,
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-game-37-44136fa355",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 30188,
+      "result": {
+        "banzhaf_max_error": 0.0,
+        "efficiency_residual": 0.0,
+        "mc": {
+          "bottom_k_agreement": 0.5,
+          "kendall": 0.6,
+          "mean_absolute_error": 0.048166255351344,
+          "spearman": 0.7,
+          "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+          "top_k_agreement": 1.0,
+          "undefined_reason": null
+        },
+        "shapley_max_error": 3.0531133177191805e-16
+      },
+      "seconds": 0.019494399999530287,
+      "seed": 37,
+      "split_sha256": null,
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "model": "logistic-regression",
+        "utility": "accuracy"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "e7907df04b5f099bdadd2492c09096de6257c7baee88bf5702915595fe76fd6d",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-37-eb8a946522",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 515404,
+      "result": {
+        "comparisons_to_shapley": {
+          "banzhaf": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9999999999999999,
+            "mean_absolute_error": 0.014525462962962957,
+            "spearman": 1.0,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "knn-shapley": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.8280786712108251,
+            "mean_absolute_error": 0.10185185185185186,
+            "spearman": 0.9276336570439175,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "loo": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.7453559924999299,
+            "mean_absolute_error": 0.038888888888888896,
+            "spearman": 0.8196885999705371,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-128": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.7333333333333333,
+            "mean_absolute_error": 0.01545138888888889,
+            "spearman": 0.8857142857142858,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-32": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.7333333333333333,
+            "mean_absolute_error": 0.014583333333333332,
+            "spearman": 0.8857142857142858,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-8": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.6,
+            "mean_absolute_error": 0.0423611111111111,
+            "spearman": 0.7142857142857143,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          }
+        },
+        "dataset_sha256": "e7907df04b5f099bdadd2492c09096de6257c7baee88bf5702915595fe76fd6d",
+        "methods": {
+          "banzhaf": {
+            "computation": {
+              "elapsed_seconds": 3.4058869000000414,
+              "model_fits": 45,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.0,
+              0.04166666666666665,
+              0.09895833333333331,
+              -0.0052083333333333304,
+              -0.1354166666666666,
+              -0.2239583333333333
+            ]
+          },
+          "knn-shapley": {
+            "computation": {
+              "elapsed_seconds": 0.004826099999263533,
+              "model_fits": 0,
+              "utility_evaluations": 0
+            },
+            "scores": [
+              0.10694444444444444,
+              0.11805555555555557,
+              0.11388888888888889,
+              0.10694444444444444,
+              0.002777777777777782,
+              -0.004166666666666666
+            ]
+          },
+          "loo": {
+            "computation": {
+              "elapsed_seconds": 0.496749699999782,
+              "model_fits": 7,
+              "utility_evaluations": 7
+            },
+            "scores": [
+              0.0,
+              0.08333333333333331,
+              0.0,
+              0.0,
+              -0.08333333333333337,
+              -0.25000000000000006
+            ]
+          },
+          "mc-shapley-128": {
+            "computation": {
+              "elapsed_seconds": 3.5300263999997696,
+              "model_fits": 45,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.009765624999999998,
+              0.07877604166666666,
+              0.07552083333333333,
+              0.03450520833333333,
+              -0.16080729166666666,
+              -0.20442708333333334
+            ]
+          },
+          "mc-shapley-32": {
+            "computation": {
+              "elapsed_seconds": 2.9249335000004066,
+              "model_fits": 39,
+              "utility_evaluations": 57
+            },
+            "scores": [
+              0.020833333333333336,
+              0.07552083333333331,
+              0.0703125,
+              0.02864583333333333,
+              -0.1640625,
+              -0.19791666666666669
+            ]
+          },
+          "mc-shapley-8": {
+            "computation": {
+              "elapsed_seconds": 1.4767955000006623,
+              "model_fits": 19,
+              "utility_evaluations": 29
+            },
+            "scores": [
+              -0.01041666666666665,
+              0.08333333333333331,
+              6.938893903907228e-18,
+              0.07291666666666666,
+              -0.14583333333333331,
+              -0.16666666666666669
+            ]
+          },
+          "shapley": {
+            "computation": {
+              "elapsed_seconds": 3.341346200000771,
+              "model_fits": 45,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.02222222222222222,
+              0.06527777777777775,
+              0.08888888888888892,
+              0.02083333333333333,
+              -0.14027777777777778,
+              -0.2236111111111111
+            ]
+          }
+        },
+        "model": "logistic-regression",
+        "split_sha256": "e2e188ce955ee32a3e8a9db3d20ba0dc5c499a4e62cc0116a2fe20edc28a5fe1",
+        "utility": "accuracy",
+        "warning": "LOO/Banzhaf/KNN estimate different games; MAE across different games is descriptive, not approximation error. Only MC approximates exact model Shapley."
+      },
+      "seconds": 15.213395800001308,
+      "seed": 37,
+      "split_sha256": "e2e188ce955ee32a3e8a9db3d20ba0dc5c499a4e62cc0116a2fe20edc28a5fe1",
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "model": "logistic-regression",
+        "utility": "negative_log_loss"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "e7907df04b5f099bdadd2492c09096de6257c7baee88bf5702915595fe76fd6d",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-37-5774435851",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 515230,
+      "result": {
+        "comparisons_to_shapley": {
+          "banzhaf": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.06666666666666665,
+            "mean_absolute_error": 2.9054235109641406,
+            "spearman": -0.08571428571428573,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.0,
+            "undefined_reason": null
+          },
+          "loo": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.4666666666666666,
+            "mean_absolute_error": 0.42234924245005834,
+            "spearman": 0.5428571428571429,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-128": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.2,
+            "mean_absolute_error": 0.4599216884659971,
+            "spearman": 0.4285714285714286,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-32": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.6,
+            "mean_absolute_error": 1.0820737908972349,
+            "spearman": 0.6571428571428573,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-8": {
+            "bottom_k_agreement": 0.0,
+            "kendall": 0.06666666666666665,
+            "mean_absolute_error": 2.255371908060358,
+            "spearman": -0.028571428571428574,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          }
+        },
+        "dataset_sha256": "e7907df04b5f099bdadd2492c09096de6257c7baee88bf5702915595fe76fd6d",
+        "methods": {
+          "banzhaf": {
+            "computation": {
+              "elapsed_seconds": 4.644407099998716,
+              "model_fits": 45,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              1.2130881866017151,
+              2.439516259283925,
+              2.926632434461582,
+              2.190055721219842,
+              3.478265249802408,
+              4.525876070179512
+            ]
+          },
+          "loo": {
+            "computation": {
+              "elapsed_seconds": 0.7356940000008763,
+              "model_fits": 7,
+              "utility_evaluations": 7
+            },
+            "scores": [
+              0.002403565360772353,
+              -0.008275179328780746,
+              0.37384285933639694,
+              -0.10819446152553858,
+              -0.32100409917938033,
+              -0.3992290985055882
+            ]
+          },
+          "mc-shapley-128": {
+            "computation": {
+              "elapsed_seconds": 4.710634299999583,
+              "model_fits": 45,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -0.4995815520746757,
+              0.13922746451696164,
+              0.007688651106040708,
+              0.24360409672192093,
+              -1.5205150889649037,
+              0.9704692844587949
+            ]
+          },
+          "mc-shapley-32": {
+            "computation": {
+              "elapsed_seconds": 4.30419719999918,
+              "model_fits": 39,
+              "utility_evaluations": 57
+            },
+            "scores": [
+              -1.2195245083939161,
+              -0.7405382621716349,
+              1.4081193743061422,
+              -1.1410260318135756,
+              -1.2990392214925637,
+              2.3329015053296875
+            ]
+          },
+          "mc-shapley-8": {
+            "computation": {
+              "elapsed_seconds": 1.9082560000006197,
+              "model_fits": 19,
+              "utility_evaluations": 29
+            },
+            "scores": [
+              0.25760315946969364,
+              -2.703057398109155,
+              0.37269049500714335,
+              -3.159959801270058,
+              -0.8304341348432297,
+              5.404050535509745
+            ]
+          },
+          "shapley": {
+            "computation": {
+              "elapsed_seconds": 4.644582699998864,
+              "model_fits": 45,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -0.5965815855463804,
+              0.3498360882520294,
+              0.7447220446233345,
+              0.18123088693363928,
+              -1.0883920408192738,
+              -0.24992253767921002
+            ]
+          }
+        },
+        "model": "logistic-regression",
+        "split_sha256": "e2e188ce955ee32a3e8a9db3d20ba0dc5c499a4e62cc0116a2fe20edc28a5fe1",
+        "utility": "negative_log_loss",
+        "warning": "LOO/Banzhaf/KNN estimate different games; MAE across different games is descriptive, not approximation error. Only MC approximates exact model Shapley."
+      },
+      "seconds": 20.97625969999899,
+      "seed": 37,
+      "split_sha256": "e2e188ce955ee32a3e8a9db3d20ba0dc5c499a4e62cc0116a2fe20edc28a5fe1",
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "model": "decision-tree",
+        "utility": "accuracy"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "e7907df04b5f099bdadd2492c09096de6257c7baee88bf5702915595fe76fd6d",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-37-6936c73a1b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 480324,
+      "result": {
+        "comparisons_to_shapley": {
+          "banzhaf": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 1.0,
+            "mean_absolute_error": 0.022569444444444448,
+            "spearman": 1.0,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "knn-shapley": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.7142857142857143,
+            "mean_absolute_error": 0.11574074074074074,
+            "spearman": 0.8823529411764706,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "loo": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.5640760748177662,
+            "mean_absolute_error": 0.043981481481481476,
+            "spearman": 0.6262242910851495,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-128": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9660917830792959,
+            "mean_absolute_error": 0.008781828703703712,
+            "spearman": 0.9856107606091624,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-32": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.6900655593423541,
+            "mean_absolute_error": 0.022337962962962966,
+            "spearman": 0.8116794499134278,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-8": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.6900655593423541,
+            "mean_absolute_error": 0.03842592592592593,
+            "spearman": 0.753702346348183,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          }
+        },
+        "dataset_sha256": "e7907df04b5f099bdadd2492c09096de6257c7baee88bf5702915595fe76fd6d",
+        "methods": {
+          "banzhaf": {
+            "computation": {
+              "elapsed_seconds": 3.3115071000011085,
+              "model_fits": 45,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -0.049479166666666664,
+              0.013020833333333332,
+              0.05989583333333332,
+              -0.049479166666666664,
+              -0.19010416666666669,
+              -0.16927083333333326
+            ]
+          },
+          "knn-shapley": {
+            "computation": {
+              "elapsed_seconds": 0.0045446000003721565,
+              "model_fits": 0,
+              "utility_evaluations": 0
+            },
+            "scores": [
+              0.10694444444444444,
+              0.11805555555555557,
+              0.11388888888888889,
+              0.10694444444444444,
+              0.002777777777777782,
+              -0.004166666666666666
+            ]
+          },
+          "loo": {
+            "computation": {
+              "elapsed_seconds": 0.4665875999999116,
+              "model_fits": 7,
+              "utility_evaluations": 7
+            },
+            "scores": [
+              0.0,
+              -0.08333333333333331,
+              0.0,
+              0.0,
+              -0.16666666666666669,
+              -0.08333333333333331
+            ]
+          },
+          "mc-shapley-128": {
+            "computation": {
+              "elapsed_seconds": 3.380653300000631,
+              "model_fits": 45,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              0.009114583333333329,
+              0.021484375,
+              0.05989583333333332,
+              -0.0006510416666666726,
+              -0.19661458333333334,
+              -0.14322916666666666
+            ]
+          },
+          "mc-shapley-32": {
+            "computation": {
+              "elapsed_seconds": 2.8736545000010665,
+              "model_fits": 39,
+              "utility_evaluations": 57
+            },
+            "scores": [
+              0.02083333333333333,
+              0.005208333333333334,
+              0.0703125,
+              0.028645833333333325,
+              -0.22916666666666666,
+              -0.14583333333333331
+            ]
+          },
+          "mc-shapley-8": {
+            "computation": {
+              "elapsed_seconds": 1.356592100000853,
+              "model_fits": 19,
+              "utility_evaluations": 29
+            },
+            "scores": [
+              -0.010416666666666664,
+              0.010416666666666664,
+              0.05208333333333333,
+              0.07291666666666666,
+              -0.2604166666666667,
+              -0.11458333333333331
+            ]
+          },
+          "shapley": {
+            "computation": {
+              "elapsed_seconds": 3.2360382999995636,
+              "model_fits": 45,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -0.004166666666666676,
+              0.02222222222222225,
+              0.06805555555555555,
+              -0.004166666666666676,
+              -0.17916666666666664,
+              -0.15277777777777773
+            ]
+          }
+        },
+        "model": "decision-tree",
+        "split_sha256": "e2e188ce955ee32a3e8a9db3d20ba0dc5c499a4e62cc0116a2fe20edc28a5fe1",
+        "utility": "accuracy",
+        "warning": "LOO/Banzhaf/KNN estimate different games; MAE across different games is descriptive, not approximation error. Only MC approximates exact model Shapley."
+      },
+      "seconds": 14.662028600001577,
+      "seed": 37,
+      "split_sha256": "e2e188ce955ee32a3e8a9db3d20ba0dc5c499a4e62cc0116a2fe20edc28a5fe1",
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "model": "decision-tree",
+        "utility": "negative_log_loss"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "e7907df04b5f099bdadd2492c09096de6257c7baee88bf5702915595fe76fd6d",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-37-95f52d3d8b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 415460,
+      "result": {
+        "comparisons_to_shapley": {
+          "banzhaf": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 1.0,
+            "mean_absolute_error": 1.4651783093472253,
+            "spearman": 1.0,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "loo": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.5640760748177662,
+            "mean_absolute_error": 2.5773525732503635,
+            "spearman": 0.6262242910851495,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-128": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.9660917830792959,
+            "mean_absolute_error": 0.4642858628170603,
+            "spearman": 0.9856107606091624,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 1.0,
+            "undefined_reason": null
+          },
+          "mc-shapley-32": {
+            "bottom_k_agreement": 1.0,
+            "kendall": 0.8280786712108251,
+            "mean_absolute_error": 1.0844347501135478,
+            "spearman": 0.898645105261295,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          },
+          "mc-shapley-8": {
+            "bottom_k_agreement": 0.5,
+            "kendall": 0.6900655593423541,
+            "mean_absolute_error": 2.946593840103619,
+            "spearman": 0.8116794499134278,
+            "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+            "top_k_agreement": 0.5,
+            "undefined_reason": null
+          }
+        },
+        "dataset_sha256": "e7907df04b5f099bdadd2492c09096de6257c7baee88bf5702915595fe76fd6d",
+        "methods": {
+          "banzhaf": {
+            "computation": {
+              "elapsed_seconds": 4.458463699998902,
+              "model_fits": 45,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -2.2269574054845,
+              -0.06828388080258152,
+              1.5507212627088571,
+              -2.2269574054845,
+              -7.083972836018816,
+              -6.364414994458172
+            ]
+          },
+          "loo": {
+            "computation": {
+              "elapsed_seconds": 0.6449440000014874,
+              "model_fits": 7,
+              "utility_evaluations": 7
+            },
+            "scores": [
+              0.0,
+              -2.878231366242556,
+              0.0,
+              0.0,
+              -5.756462732485115,
+              -2.878231366242556
+            ]
+          },
+          "mc-shapley-128": {
+            "computation": {
+              "elapsed_seconds": 4.581258199999866,
+              "model_fits": 45,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -2.5342348690961165,
+              -2.236499283613982,
+              -0.521308864403068,
+              -3.0010294902721615,
+              -9.898872320396421,
+              -7.018990287841319
+            ]
+          },
+          "mc-shapley-32": {
+            "computation": {
+              "elapsed_seconds": 3.962417299999288,
+              "model_fits": 39,
+              "utility_evaluations": 57
+            },
+            "scores": [
+              -2.3884873491072476,
+              -2.9281557302777266,
+              0.874485119933214,
+              -3.6726757538559514,
+              -10.505173916056938,
+              -6.590927486258417
+            ]
+          },
+          "mc-shapley-8": {
+            "computation": {
+              "elapsed_seconds": 1.8859531999987666,
+              "model_fits": 19,
+              "utility_evaluations": 29
+            },
+            "scores": [
+              -0.3597789207803195,
+              -3.7842813334435292,
+              1.7988946039015978,
+              -5.7696680629854615,
+              -13.138533273731841,
+              -3.957568128583515
+            ]
+          },
+          "shapley": {
+            "computation": {
+              "elapsed_seconds": 4.452159800001027,
+              "model_fits": 45,
+              "utility_evaluations": 64
+            },
+            "scores": [
+              -2.9066184044613594,
+              -1.9951784718178838,
+              -0.412151220384478,
+              -2.9066184044613594,
+              -8.950904273570728,
+              -8.039464340927255
+            ]
+          }
+        },
+        "model": "decision-tree",
+        "split_sha256": "e2e188ce955ee32a3e8a9db3d20ba0dc5c499a4e62cc0116a2fe20edc28a5fe1",
+        "utility": "negative_log_loss",
+        "warning": "LOO/Banzhaf/KNN estimate different games; MAE across different games is descriptive, not approximation error. Only MC approximates exact model Shapley."
+      },
+      "seconds": 20.011301399999866,
+      "seed": 37,
+      "split_sha256": "e2e188ce955ee32a3e8a9db3d20ba0dc5c499a4e62cc0116a2fe20edc28a5fe1",
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": []
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+# Executed research benchmark
+
+Protocol: `620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018`
+
+| Experiment | Status | Seconds |
+|---|---|---|
+| drift-synthetic-11-839ac66834 | evaluated | 0.0527 |
+| drift-synthetic-11-85112a0342 | evaluated | 0.1166 |
+| drift-synthetic-11-b1d4924528 | evaluated | 0.0389 |
+| drift-synthetic-11-6eba2afba1 | evaluated | 0.1124 |
+| drift-synthetic-11-c9472e2ef8 | evaluated | 0.0382 |
+| drift-synthetic-11-6115971ed7 | evaluated | 0.1063 |
+| drift-synthetic-11-d567412532 | evaluated | 0.0403 |
+| drift-synthetic-11-a763bf0f7c | evaluated | 0.1095 |
+| drift-synthetic-11-d95447cdb4 | evaluated | 0.0432 |
+| drift-synthetic-11-03b1ed62cb | evaluated | 0.1223 |
+| drift-synthetic-11-3c5e79f78f | evaluated | 0.0466 |
+| drift-synthetic-11-fdc87d8e5d | evaluated | 0.1248 |
+| drift-synthetic-11-907919228e | evaluated | 0.0460 |
+| drift-synthetic-11-32febd6675 | evaluated | 0.1179 |
+| drift-synthetic-11-ba8b253a3d | evaluated | 0.0486 |
+| drift-synthetic-11-6004f8eae0 | evaluated | 0.1222 |
+| drift-synthetic-11-f0dfce6f4a | evaluated | 0.0431 |
+| drift-synthetic-11-44db56250a | evaluated | 0.1282 |
+| drift-synthetic-11-40564ab252 | evaluated | 0.0497 |
+| drift-synthetic-11-96117c8fa2 | evaluated | 0.1256 |
+| drift-synthetic-23-839ac66834 | evaluated | 0.0392 |
+| drift-synthetic-23-85112a0342 | evaluated | 0.1059 |
+| drift-synthetic-23-b1d4924528 | evaluated | 0.0406 |
+| drift-synthetic-23-6eba2afba1 | evaluated | 0.1181 |
+| drift-synthetic-23-c9472e2ef8 | evaluated | 0.0397 |
+| drift-synthetic-23-6115971ed7 | evaluated | 0.1134 |
+| drift-synthetic-23-d567412532 | evaluated | 0.0448 |
+| drift-synthetic-23-a763bf0f7c | evaluated | 0.1088 |
+| drift-synthetic-23-d95447cdb4 | evaluated | 0.0410 |
+| drift-synthetic-23-03b1ed62cb | evaluated | 0.1125 |
+| drift-synthetic-23-3c5e79f78f | evaluated | 0.0388 |
+| drift-synthetic-23-fdc87d8e5d | evaluated | 0.1004 |
+| drift-synthetic-23-907919228e | evaluated | 0.0382 |
+| drift-synthetic-23-32febd6675 | evaluated | 0.1010 |
+| drift-synthetic-23-ba8b253a3d | evaluated | 0.0390 |
+| drift-synthetic-23-6004f8eae0 | evaluated | 0.1006 |
+| drift-synthetic-23-f0dfce6f4a | evaluated | 0.0468 |
+| drift-synthetic-23-44db56250a | evaluated | 0.1028 |
+| drift-synthetic-23-40564ab252 | evaluated | 0.0408 |
+| drift-synthetic-23-96117c8fa2 | evaluated | 0.1004 |
+| drift-synthetic-37-839ac66834 | evaluated | 0.0402 |
+| drift-synthetic-37-85112a0342 | evaluated | 0.1041 |
+| drift-synthetic-37-b1d4924528 | evaluated | 0.0408 |
+| drift-synthetic-37-6eba2afba1 | evaluated | 0.1077 |
+| drift-synthetic-37-c9472e2ef8 | evaluated | 0.0386 |
+| drift-synthetic-37-6115971ed7 | evaluated | 0.0998 |
+| drift-synthetic-37-d567412532 | evaluated | 0.0413 |
+| drift-synthetic-37-a763bf0f7c | evaluated | 0.0991 |
+| drift-synthetic-37-d95447cdb4 | evaluated | 0.0399 |
+| drift-synthetic-37-03b1ed62cb | evaluated | 0.1013 |
+| drift-synthetic-37-3c5e79f78f | evaluated | 0.0451 |
+| drift-synthetic-37-fdc87d8e5d | evaluated | 0.1003 |
+| drift-synthetic-37-907919228e | evaluated | 0.0381 |
+| drift-synthetic-37-32febd6675 | evaluated | 0.1055 |
+| drift-synthetic-37-ba8b253a3d | evaluated | 0.0423 |
+| drift-synthetic-37-6004f8eae0 | evaluated | 0.1008 |
+| drift-synthetic-37-f0dfce6f4a | evaluated | 0.0403 |
+| drift-synthetic-37-44db56250a | evaluated | 0.1019 |
+| drift-synthetic-37-40564ab252 | evaluated | 0.0406 |
+| drift-synthetic-37-96117c8fa2 | evaluated | 0.1018 |

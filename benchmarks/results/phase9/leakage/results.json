@@ -1,0 +1,1894 @@
+{
+  "environment": {
+    "dependencies": {
+      "datagenome": "0.5.0",
+      "numpy": "2.2.6",
+      "scikit-learn": "1.6.1",
+      "scipy": "1.17.1"
+    },
+    "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "python": "3.11.0",
+    "system": "Windows"
+  },
+  "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+  "schema_version": "1.0",
+  "seconds": 11.949657600000137,
+  "status": "completed",
+  "suite": "leakage",
+  "trials": [
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "clean"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "8d83f42c4cf224cf577d02161636aec160e071935e780c16ae8a85e6508671dd",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-11-b96044f12b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 5990486,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "8d83f42c4cf224cf577d02161636aec160e071935e780c16ae8a85e6508671dd",
+        "expected_method_detected": null,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": false,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "clean",
+        "split_sha256": "a4d122bdc664aa411b2ca5e9074913e387365fb11af67ee64c4ba3ca708243df",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.735162663423533
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.506144724840377
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.5453420492550928
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.5463524880916185
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.8491279000008944,
+      "seed": 11,
+      "split_sha256": "a4d122bdc664aa411b2ca5e9074913e387365fb11af67ee64c4ba3ca708243df",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "target_copy"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "37031c4744fb4d1e3fefd6eb9745e002a93894bd60f22c5c58359cd8b7159591",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-11-984c9194a0",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 284161,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "37031c4744fb4d1e3fefd6eb9745e002a93894bd60f22c5c58359cd8b7159591",
+        "expected_method_detected": true,
+        "heuristic_alerts": 1,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "target_copy",
+        "split_sha256": "70f8792f0fd93ea269a4b53692057af52b898a92e6e5359f0af913f51c745f1d",
+        "strong_agreement_alerts": 1,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.735162663423533
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.506144724840377
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.5453420492550928
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.5463524880916185
+          },
+          {
+            "classification": "suspicious_heuristic",
+            "feature": "injected",
+            "records": 144,
+            "score": 1.0
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.6726512999994156,
+      "seed": 11,
+      "split_sha256": "70f8792f0fd93ea269a4b53692057af52b898a92e6e5359f0af913f51c745f1d",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "target_encoding"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "3f6360a40a50fcdfdbd6cb86006b6ac54c79d1a6152869e562bd902ef349b294",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-11-db476c565b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 267706,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "3f6360a40a50fcdfdbd6cb86006b6ac54c79d1a6152869e562bd902ef349b294",
+        "expected_method_detected": true,
+        "heuristic_alerts": 1,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "target_encoding",
+        "split_sha256": "7cba4b65ab826607a1876b013664a9d53f4926a210016edad95fbd8b8598c2a1",
+        "strong_agreement_alerts": 1,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.735162663423533
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.506144724840377
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.5453420492550928
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.5463524880916185
+          },
+          {
+            "classification": "suspicious_heuristic",
+            "feature": "injected",
+            "records": 144,
+            "score": 1.0
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.6275432999991608,
+      "seed": 11,
+      "split_sha256": "7cba4b65ab826607a1876b013664a9d53f4926a210016edad95fbd8b8598c2a1",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "cross_split"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "0a5eb22db600a25b8d35b581bd43e469fb763b97925fc0540c30496d15911875",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-11-cadafb66d4",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 219859,
+      "result": {
+        "confirmed_alerts": 2,
+        "dataset_sha256": "0a5eb22db600a25b8d35b581bd43e469fb763b97925fc0540c30496d15911875",
+        "expected_method_detected": true,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "cross_split",
+        "split_sha256": "59f7e2447c7fc7e4cde0cf6ad6d2ae8ae1cdcf963f340b15bbaa20a75e932eb8",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.735162663423533
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.506144724840377
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.5453420492550928
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.5463524880916185
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.5840140000000247,
+      "seed": 11,
+      "split_sha256": "59f7e2447c7fc7e4cde0cf6ad6d2ae8ae1cdcf963f340b15bbaa20a75e932eb8",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "group_overlap"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "9050041b737036c5cc10fec41ff1940bfea47f1593b38b0b09383a688982f52e",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-11-8ba013ce1c",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 238806,
+      "result": {
+        "confirmed_alerts": 3,
+        "dataset_sha256": "9050041b737036c5cc10fec41ff1940bfea47f1593b38b0b09383a688982f52e",
+        "expected_method_detected": true,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "group_overlap",
+        "split_sha256": "910d1a423e6f676b0fa65bebcb6a61f0f5bd1030c9288922da568605adcbb70a",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.7559781354850925
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.45319652284262085
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.5099271104866991
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.5988770863695244
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.6231616999994003,
+      "seed": 11,
+      "split_sha256": "910d1a423e6f676b0fa65bebcb6a61f0f5bd1030c9288922da568605adcbb70a",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "time_overlap"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "f12eff792e261273d0b03d2e881df9ed7eee8fb7f4fc0416d58afc529c8acdc9",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-11-be932dea4d",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 266239,
+      "result": {
+        "confirmed_alerts": 3,
+        "dataset_sha256": "f12eff792e261273d0b03d2e881df9ed7eee8fb7f4fc0416d58afc529c8acdc9",
+        "expected_method_detected": true,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "time_overlap",
+        "split_sha256": "dee8d2d2c27b465bc157793dec981f71e769457bfca0eb51e84f4d9371d2734c",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 105,
+            "score": 0.7282639996455786
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 105,
+            "score": 0.4715798334219387
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 105,
+            "score": 0.5380504607478291
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 105,
+            "score": 0.4894171982987772
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.5354210000004969,
+      "seed": 11,
+      "split_sha256": "dee8d2d2c27b465bc157793dec981f71e769457bfca0eb51e84f4d9371d2734c",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "strong_predictor"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "4e1b695331bef6a9a4343a2a779a3726cf91eb96bcb35be3461736865167edf4",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-11-4a6a773d05",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 217818,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "4e1b695331bef6a9a4343a2a779a3726cf91eb96bcb35be3461736865167edf4",
+        "expected_method_detected": null,
+        "heuristic_alerts": 1,
+        "injected_violation_or_agreement": false,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "strong_predictor",
+        "split_sha256": "a101d8dae8e2ad96081d6ff0c5284ea5b533993c508f22dc74c0eada80813faf",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "suspicious_heuristic",
+            "feature": "x",
+            "records": 144,
+            "score": 1.0
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.19690920000175538,
+      "seed": 11,
+      "split_sha256": "a101d8dae8e2ad96081d6ff0c5284ea5b533993c508f22dc74c0eada80813faf",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "cardinality"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "a86bae8aeaa71eb3bd90b5cafa7037fa2211a3eefeaa33f11713b2dde435931b",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-11-199aca3ea4",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 208797,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "a86bae8aeaa71eb3bd90b5cafa7037fa2211a3eefeaa33f11713b2dde435931b",
+        "expected_method_detected": null,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": false,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "cardinality",
+        "split_sha256": "84fc5f40c17632ccf9fcdd416c9ba87f51c3024900825f0dc47b20176ecf86a1",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "identifier",
+            "records": 144,
+            "score": 0.5
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.10308650000115449,
+      "seed": 11,
+      "split_sha256": "84fc5f40c17632ccf9fcdd416c9ba87f51c3024900825f0dc47b20176ecf86a1",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "clean"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "a2f4cba14e80cc47b7e33420a4700319977a5a79ae06c29756b73942abcadcf0",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-23-b96044f12b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 216603,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "a2f4cba14e80cc47b7e33420a4700319977a5a79ae06c29756b73942abcadcf0",
+        "expected_method_detected": null,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": false,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "clean",
+        "split_sha256": "62ef1d484f5e68baf2964218a28aad279e21b2304239d7814fb858defaaeb468",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.743614067092328
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.484857606161954
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.5388527414614371
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.5345778858822338
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.5444827000010264,
+      "seed": 23,
+      "split_sha256": "62ef1d484f5e68baf2964218a28aad279e21b2304239d7814fb858defaaeb468",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "target_copy"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "369c2dc3694f6926abb92716f350b609050bdbec28d0dd2c8350a11fcfb0c70e",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-23-984c9194a0",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 234640,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "369c2dc3694f6926abb92716f350b609050bdbec28d0dd2c8350a11fcfb0c70e",
+        "expected_method_detected": true,
+        "heuristic_alerts": 1,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "target_copy",
+        "split_sha256": "bf50ce355bf41c850ec07b08004f75a80f96903cb956a3c4e7d2666c546f8b68",
+        "strong_agreement_alerts": 1,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.743614067092328
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.484857606161954
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.5388527414614371
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.5345778858822338
+          },
+          {
+            "classification": "suspicious_heuristic",
+            "feature": "injected",
+            "records": 144,
+            "score": 1.0
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.6662962999998854,
+      "seed": 23,
+      "split_sha256": "bf50ce355bf41c850ec07b08004f75a80f96903cb956a3c4e7d2666c546f8b68",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "target_encoding"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "b69221e6cefca4e7b879bdcce2a621789924e2373fc4a057c71c8c1f512824db",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-23-db476c565b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 240692,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "b69221e6cefca4e7b879bdcce2a621789924e2373fc4a057c71c8c1f512824db",
+        "expected_method_detected": true,
+        "heuristic_alerts": 1,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "target_encoding",
+        "split_sha256": "8900920f9883efdb7f3d7e170d723fc46b5fd4f92c51bfe69421f5f6c73daf42",
+        "strong_agreement_alerts": 1,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.743614067092328
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.484857606161954
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.5388527414614371
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.5345778858822338
+          },
+          {
+            "classification": "suspicious_heuristic",
+            "feature": "injected",
+            "records": 144,
+            "score": 1.0
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.6121750999991491,
+      "seed": 23,
+      "split_sha256": "8900920f9883efdb7f3d7e170d723fc46b5fd4f92c51bfe69421f5f6c73daf42",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "cross_split"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "0325b01156c02088c913c5f3cb642c1eebd7dcdd19e78af7fd3239163e7f61ef",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-23-cadafb66d4",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 218583,
+      "result": {
+        "confirmed_alerts": 2,
+        "dataset_sha256": "0325b01156c02088c913c5f3cb642c1eebd7dcdd19e78af7fd3239163e7f61ef",
+        "expected_method_detected": true,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "cross_split",
+        "split_sha256": "cf0205d9d19b4e27a5fd145e5004ea4d503dc5ae4d248cd4634487f0edca7160",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.743614067092328
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.484857606161954
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.5388527414614371
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.5345778858822338
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.5952013999994961,
+      "seed": 23,
+      "split_sha256": "cf0205d9d19b4e27a5fd145e5004ea4d503dc5ae4d248cd4634487f0edca7160",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "group_overlap"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "3602e3939e6fdd274993901217dd3e820520fc6cad5930e6808e17a32dbb89e4",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-23-8ba013ce1c",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 237585,
+      "result": {
+        "confirmed_alerts": 3,
+        "dataset_sha256": "3602e3939e6fdd274993901217dd3e820520fc6cad5930e6808e17a32dbb89e4",
+        "expected_method_detected": true,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "group_overlap",
+        "split_sha256": "543e1f2d90e08ad12ab36cd88eb0e9d7d71a6a8a367818a729ac89f78d6ac111",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.7524258421317245
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.5880108453637866
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.5361685699920994
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.47304280686633626
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.6202111000002333,
+      "seed": 23,
+      "split_sha256": "543e1f2d90e08ad12ab36cd88eb0e9d7d71a6a8a367818a729ac89f78d6ac111",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "time_overlap"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "14adc8f1bdbd64c8fc18983ba5d4d4eaa65b69e96adcc7058f3ac1590991bcc2",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-23-be932dea4d",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 241390,
+      "result": {
+        "confirmed_alerts": 3,
+        "dataset_sha256": "14adc8f1bdbd64c8fc18983ba5d4d4eaa65b69e96adcc7058f3ac1590991bcc2",
+        "expected_method_detected": true,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "time_overlap",
+        "split_sha256": "a8648376bd2919514f3075b7f27c7b925b3df5dfa20baa774219b14ab8bb341f",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 109,
+            "score": 0.6898294970161978
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 109,
+            "score": 0.47508383063370274
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 109,
+            "score": 0.4803466894003978
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 109,
+            "score": 0.544539641943734
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.5592268000000331,
+      "seed": 23,
+      "split_sha256": "a8648376bd2919514f3075b7f27c7b925b3df5dfa20baa774219b14ab8bb341f",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "strong_predictor"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "4e1b695331bef6a9a4343a2a779a3726cf91eb96bcb35be3461736865167edf4",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-23-4a6a773d05",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 217115,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "4e1b695331bef6a9a4343a2a779a3726cf91eb96bcb35be3461736865167edf4",
+        "expected_method_detected": null,
+        "heuristic_alerts": 1,
+        "injected_violation_or_agreement": false,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "strong_predictor",
+        "split_sha256": "2e65494de5642dde1375dda4b8b2290c17686b0d922a5c5d8d40036a25e22542",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "suspicious_heuristic",
+            "feature": "x",
+            "records": 144,
+            "score": 1.0
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.18080570000165608,
+      "seed": 23,
+      "split_sha256": "2e65494de5642dde1375dda4b8b2290c17686b0d922a5c5d8d40036a25e22542",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "cardinality"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "8d10ea8fbebf9abc3dd8386e434d6f62ecc54e1849c8ac92b64141ec829993ab",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-23-199aca3ea4",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 208060,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "8d10ea8fbebf9abc3dd8386e434d6f62ecc54e1849c8ac92b64141ec829993ab",
+        "expected_method_detected": null,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": false,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "cardinality",
+        "split_sha256": "9fabc54217e7029a9939d74e3521ee6cbe651ef0dbe531d8da4023ff97d9af6a",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "identifier",
+            "records": 144,
+            "score": 0.5
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.10287339999922551,
+      "seed": 23,
+      "split_sha256": "9fabc54217e7029a9939d74e3521ee6cbe651ef0dbe531d8da4023ff97d9af6a",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "clean"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "8df2a9fdfa1d4d69b9da7594af6ce239d67dbca56f54f902da4e840948e074e5",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-37-b96044f12b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 210433,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "8df2a9fdfa1d4d69b9da7594af6ce239d67dbca56f54f902da4e840948e074e5",
+        "expected_method_detected": null,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": false,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "clean",
+        "split_sha256": "7d3b3a9611bac64de50541e35edf60614830af79e84fb51555872799df03a076",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.6878909496300801
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.5221293199554069
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.4616783216783217
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.38945677510894905
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.5335825000001932,
+      "seed": 37,
+      "split_sha256": "7d3b3a9611bac64de50541e35edf60614830af79e84fb51555872799df03a076",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "target_copy"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "60b434fe2302d343a2174c8bd0babf01cb5be481d9426dff6940b02a8c9d9720",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-37-984c9194a0",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 208705,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "60b434fe2302d343a2174c8bd0babf01cb5be481d9426dff6940b02a8c9d9720",
+        "expected_method_detected": true,
+        "heuristic_alerts": 1,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "target_copy",
+        "split_sha256": "100a88cc6f24511c7a0a747eed7d257e63b9ba9a75039e33388a8ec80ff5a662",
+        "strong_agreement_alerts": 1,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.6878909496300801
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.5221293199554069
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.4616783216783217
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.38945677510894905
+          },
+          {
+            "classification": "suspicious_heuristic",
+            "feature": "injected",
+            "records": 144,
+            "score": 1.0
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.7002314000001206,
+      "seed": 37,
+      "split_sha256": "100a88cc6f24511c7a0a747eed7d257e63b9ba9a75039e33388a8ec80ff5a662",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "target_encoding"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "8e52cef494de338a68f1ee7f9e6793dbc5c9874a7295d35115d0ee28f76b65e0",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-37-db476c565b",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 233556,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "8e52cef494de338a68f1ee7f9e6793dbc5c9874a7295d35115d0ee28f76b65e0",
+        "expected_method_detected": true,
+        "heuristic_alerts": 1,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "target_encoding",
+        "split_sha256": "28aabc48a1d9f757d0766f17ab6743fd22a1cbe010d4bcfe292461abc8779791",
+        "strong_agreement_alerts": 1,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.6878909496300801
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.5221293199554069
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.4616783216783217
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.38945677510894905
+          },
+          {
+            "classification": "suspicious_heuristic",
+            "feature": "injected",
+            "records": 144,
+            "score": 1.0
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.609857400000692,
+      "seed": 37,
+      "split_sha256": "28aabc48a1d9f757d0766f17ab6743fd22a1cbe010d4bcfe292461abc8779791",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "cross_split"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "48b5a3cdda0b9ca2fe3fa828c6b336f59bc3dcfce7bf8d040863537c9eafc16a",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-37-cadafb66d4",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 214891,
+      "result": {
+        "confirmed_alerts": 2,
+        "dataset_sha256": "48b5a3cdda0b9ca2fe3fa828c6b336f59bc3dcfce7bf8d040863537c9eafc16a",
+        "expected_method_detected": true,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "cross_split",
+        "split_sha256": "c7133810a988f4d01898d15a78ba1083cded1caef0f3cdedc772dcc1bdedc379",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.6878909496300801
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.5221293199554069
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.4616783216783217
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.38945677510894905
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.5534059000001434,
+      "seed": 37,
+      "split_sha256": "c7133810a988f4d01898d15a78ba1083cded1caef0f3cdedc772dcc1bdedc379",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "group_overlap"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "22a269abc81c411942d16831226ed3a1d617b34403bef19d7f338b9e4a7eb03c",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-37-8ba013ce1c",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 223327,
+      "result": {
+        "confirmed_alerts": 3,
+        "dataset_sha256": "22a269abc81c411942d16831226ed3a1d617b34403bef19d7f338b9e4a7eb03c",
+        "expected_method_detected": true,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "group_overlap",
+        "split_sha256": "ef3dd4799acc1cb8b589b65146c83f7e3aa63ee1ca67c802508105dde763f760",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.6956365903069971
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.5367286115007012
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.4910520882032102
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.44415809568334114
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.5856977000003099,
+      "seed": 37,
+      "split_sha256": "ef3dd4799acc1cb8b589b65146c83f7e3aa63ee1ca67c802508105dde763f760",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "time_overlap"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "e8fb5eb96c4a5887a164bd9713c56546bab78dfaa0afacf776be12a3223e74c2",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-37-be932dea4d",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 237085,
+      "result": {
+        "confirmed_alerts": 3,
+        "dataset_sha256": "e8fb5eb96c4a5887a164bd9713c56546bab78dfaa0afacf776be12a3223e74c2",
+        "expected_method_detected": true,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "time_overlap",
+        "split_sha256": "903f95345d072b251fd868d21850f1c21a7cc81d3940cd8103cc73cad5754e3e",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 104,
+            "score": 0.6622807017543859
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 104,
+            "score": 0.6182748538011695
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 104,
+            "score": 0.5114035087719299
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 104,
+            "score": 0.43494152046783624
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.5580136000007769,
+      "seed": 37,
+      "split_sha256": "903f95345d072b251fd868d21850f1c21a7cc81d3940cd8103cc73cad5754e3e",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "strong_predictor"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "4e1b695331bef6a9a4343a2a779a3726cf91eb96bcb35be3461736865167edf4",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-37-4a6a773d05",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 215632,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "4e1b695331bef6a9a4343a2a779a3726cf91eb96bcb35be3461736865167edf4",
+        "expected_method_detected": null,
+        "heuristic_alerts": 1,
+        "injected_violation_or_agreement": false,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "strong_predictor",
+        "split_sha256": "ffa58541c61a83eabd31b6e10c7015de6aae146276fc5ba31baa1cbda6345cf5",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "suspicious_heuristic",
+            "feature": "x",
+            "records": 144,
+            "score": 1.0
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.17530040000019653,
+      "seed": 37,
+      "split_sha256": "ffa58541c61a83eabd31b6e10c7015de6aae146276fc5ba31baa1cbda6345cf5",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "cardinality"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "139bfdef841dfaf3f7d3e9fd3d1e14cd80c19daed040750e56c73b32a0b0a1fd",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-37-199aca3ea4",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 206012,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "139bfdef841dfaf3f7d3e9fd3d1e14cd80c19daed040750e56c73b32a0b0a1fd",
+        "expected_method_detected": null,
+        "heuristic_alerts": 0,
+        "injected_violation_or_agreement": false,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "cardinality",
+        "split_sha256": "27a7153d6b2891917b9dd96ff587bed7dec9600a83cc781e9f4fbcd1e253cab0",
+        "strong_agreement_alerts": 0,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "identifier",
+            "records": 144,
+            "score": 0.5
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 0.1035756000001129,
+      "seed": 37,
+      "split_sha256": "27a7153d6b2891917b9dd96ff587bed7dec9600a83cc781e9f4fbcd1e253cab0",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    }
+  ]
+}

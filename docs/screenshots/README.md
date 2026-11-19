@@ -17,6 +17,7 @@ tests check all six requested viewport widths.
 | Improvement workflow | [Recommendations](recommendations.png), [experiments](experiments.png), [versions](versions.png) |
 | Reports and privacy | [Reports](reports.png), [settings](settings-privacy.png) |
 | Application themes/layout | [Light workspace](workspace-light.png), [mobile workspace](workspace-mobile.png) |
+| Phase9 executed research | [Generated evidence and adverse outcomes](research-phase9.png) |
 
 To regenerate from the repository root after building and starting the services:
 

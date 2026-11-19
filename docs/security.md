@@ -8,7 +8,7 @@ Do not expose the service publicly merely because these checks pass.
 ## Identity and requests
 
 Register/login use Argon2id through argon2-cffi (MIT; bindings include Apache-2.0
-components). Passwords have 12–256 characters and are never persisted in cleartext.
+components). Passwords have 12â€“256 characters and are never persisted in cleartext.
 Usernames are case-insensitive local identifiers, not email addresses. Registration
 can be disabled with `DATAGENOME_REGISTRATION=0`. Email verification and recovery
 are unavailable. Rehash-on-login and account password changes are deferred.
@@ -120,3 +120,23 @@ markup, revocation, cross-tab identity changes, cancellation, exports and deleti
 using synthetic data. This is not independent penetration testing or internet-facing
 certification. The existing unencrypted-storage, OS trust, logical-deletion, backup,
 TLS/recovery and one-process limitations still apply. See [the web guide](web-application.md).
+
+## Phase9 research artifacts and holdout receipts
+
+Optional benchmarks consume only allowlisted offline public datasets or explicit
+synthetic fixtures. No raw records, private reports, corruption masks, local
+holdout ledgers or per-record intervention selections are copied to public
+artifacts. No arbitrary network download or pickle loader is added.
+
+Independent-removal and frozen-slice evaluation reserve under an exclusive local
+ledger lock. Label-independent feature fingerprints detect overlapping records
+despite changed training labels or subset reindexing. Invalid/legacy receipts
+refuse scoring; claims survive failed scoring. The ledger is not tamper proof or
+global: changing features/schema, deleting receipts or using separate ledgers can
+evade detection. Do not reset it to advertise previously scored records as new
+independent evidence. Hashes are not guaranteed anonymous and remain local.
+
+Research commands retain bounded inputs/coalitions and cooperative deadlines;
+they do not forcibly preempt native model calls. Expensive suites remain opt-in.
+Existing account/guest isolation, authorization, CSRF and review controls remain
+unchanged. Phase9 does not establish internet-facing production readiness.

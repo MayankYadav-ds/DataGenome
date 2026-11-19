@@ -1,6 +1,21 @@
 # Changelog
 
-## 0.5.0 — local web application preview
+## 0.6.0 — bounded research validation
+
+- Add frozen CPU-only research protocols, offline public-dataset identity checks,
+  controlled corruptions, reference/control comparisons and JSON/CSV/Markdown artifacts.
+- Prevent detectable overlapping holdout reuse across changed training labels,
+  partition changes and subset indexing; legacy/invalid receipts fail closed.
+- Support forward-only chronological training-fold univariate scoring without
+  claiming label-horizon purging or combined group/time isolation.
+- Publish generated research evidence, negative intervention results, primary
+  dataset attribution, mathematical audit and an open non-peer-reviewed report.
+- Preserve the local web application, SDK/API defaults, ownership and guest isolation.
+- Scientific validation remains partial outside the explicitly measured scope;
+  production security and deployment hardening are not claimed.
+
+
+## 0.5.0 â€” local web application preview
 
 - Added a Next.js/React/strict TypeScript product site and analytical application with original vector branding, light/dark themes and accessible native controls.
 - Connected account/guest sessions, projects, CSV registration, real diagnostics, evidence review, supported prediction investigation, manual intervention previews, queued experiments, persisted versions and report exports.
@@ -33,7 +48,7 @@
 - Added local CSV ingestion, profiling, structured findings, and a profiling CLI.
 - Added a local HTTP API and reproducible synthetic classification demonstration.
 
-## 0.4.0 — authenticated local backend
+## 0.4.0 â€” authenticated local backend
 
 - Argon2id accounts, revocable cookie sessions, CSRF checks, isolated guests and
   server-side project ownership; legacy CLI projects stay unowned over HTTP.

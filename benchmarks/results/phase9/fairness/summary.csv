@@ -1,0 +1,4 @@
+experiment,suite,dataset,seed,status,seconds
+fairness-synthetic-11-44136fa355,fairness,synthetic,11,evaluated,0.5506205999990925
+fairness-synthetic-23-44136fa355,fairness,synthetic,23,evaluated,0.2386043000005884
+fairness-synthetic-37-44136fa355,fairness,synthetic,37,evaluated,0.27452359999915643

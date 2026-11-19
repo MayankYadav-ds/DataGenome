@@ -1,0 +1,280 @@
+{
+  "environment": {
+    "dependencies": {
+      "datagenome": "0.5.0",
+      "numpy": "2.2.6",
+      "scikit-learn": "1.6.1",
+      "scipy": "1.17.1"
+    },
+    "git_commit": "7ed7dfbc379954e3c9b611b9c89bd5b22245fa66",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "python": "3.11.0",
+    "system": "Windows"
+  },
+  "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+  "schema_version": "1.0",
+  "seconds": 1.4109379000001354,
+  "status": "completed",
+  "suite": "smoke",
+  "trials": [
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {},
+      "dataset": "synthetic-game",
+      "dataset_sha256": null,
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "valuation-synthetic-game-11-44136fa355",
+      "git_commit": "7ed7dfbc379954e3c9b611b9c89bd5b22245fa66",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 33584,
+      "result": {
+        "banzhaf_max_error": 0.0,
+        "efficiency_residual": 0.0,
+        "mc": {
+          "bottom_k_agreement": 0.5,
+          "kendall": 0.6,
+          "mean_absolute_error": 0.05584509334924063,
+          "spearman": 0.7,
+          "ties": "Correlations use average ranks; top/bottom ties break by fixed record position.",
+          "top_k_agreement": 0.5,
+          "undefined_reason": null
+        },
+        "shapley_max_error": 9.71445146547012e-17
+      },
+      "seconds": 0.019499299998642527,
+      "seed": 11,
+      "split_sha256": null,
+      "status": "evaluated",
+      "suite": "valuation",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {
+        "scenario": "target_copy"
+      },
+      "dataset": "synthetic",
+      "dataset_sha256": "37031c4744fb4d1e3fefd6eb9745e002a93894bd60f22c5c58359cd8b7159591",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "leakage-synthetic-11-984c9194a0",
+      "git_commit": "7ed7dfbc379954e3c9b611b9c89bd5b22245fa66",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 6007326,
+      "result": {
+        "confirmed_alerts": 0,
+        "dataset_sha256": "37031c4744fb4d1e3fefd6eb9745e002a93894bd60f22c5c58359cd8b7159591",
+        "expected_method_detected": true,
+        "heuristic_alerts": 1,
+        "injected_violation_or_agreement": true,
+        "interpretation": "Exact agreement is statistical evidence; legitimate predictors may trigger heuristics. Counts are not pooled precision estimates.",
+        "scenario": "target_copy",
+        "split_sha256": "70f8792f0fd93ea269a4b53692057af52b898a92e6e5359f0af913f51c745f1d",
+        "strong_agreement_alerts": 1,
+        "univariate_scores": [
+          {
+            "classification": "no_signal",
+            "feature": "x0",
+            "records": 144,
+            "score": 0.735162663423533
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x1",
+            "records": 144,
+            "score": 0.506144724840377
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x2",
+            "records": 144,
+            "score": 0.5453420492550928
+          },
+          {
+            "classification": "no_signal",
+            "feature": "x3",
+            "records": 144,
+            "score": 0.5463524880916185
+          },
+          {
+            "classification": "suspicious_heuristic",
+            "feature": "injected",
+            "records": 144,
+            "score": 1.0
+          }
+        ],
+        "unsupported": 0
+      },
+      "seconds": 1.0441348999993352,
+      "seed": 11,
+      "split_sha256": "70f8792f0fd93ea269a4b53692057af52b898a92e6e5359f0af913f51c745f1d",
+      "status": "evaluated",
+      "suite": "leakage",
+      "system": "Windows",
+      "warnings": []
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {},
+      "dataset": "synthetic",
+      "dataset_sha256": "d3cac0ce269082b58a22184ea1e2cc8beadb1f97e7c845944d7b10726990064a",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "fairness-synthetic-11-44136fa355",
+      "git_commit": "7ed7dfbc379954e3c9b611b9c89bd5b22245fa66",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 620596,
+      "result": {
+        "dataset_sha256": "d3cac0ce269082b58a22184ea1e2cc8beadb1f97e7c845944d7b10726990064a",
+        "disparities": [
+          {
+            "accuracy_gap": 0.1217948717948718,
+            "demographic_parity_difference": 0.17788461538461536,
+            "demographic_parity_ratio": 0.6837606837606838,
+            "equal_opportunity_difference": 0.36617405582922824,
+            "equalized_odds_difference": 0.36617405582922824,
+            "false_negative_rate_gap": 0.36617405582922824,
+            "false_positive_rate_gap": 0.1288244766505636,
+            "status": "evaluated",
+            "worst_group_accuracy": 0.7115384615384616
+          }
+        ],
+        "proxy_findings": [
+          {
+            "feature": "planted_proxy",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 1.0,
+            "potential_proxy": true,
+            "support": 300,
+            "threshold": 0.3
+          },
+          {
+            "feature": "x0",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 0.014949439183602137,
+            "potential_proxy": false,
+            "support": 300,
+            "threshold": 0.3
+          },
+          {
+            "feature": "x2",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 0.006887512777130344,
+            "potential_proxy": false,
+            "support": 300,
+            "threshold": 0.3
+          },
+          {
+            "feature": "x1",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 0.0007699673089124561,
+            "potential_proxy": false,
+            "support": 300,
+            "threshold": 0.3
+          }
+        ],
+        "reference_fixtures": [
+          {
+            "fpr": 0.5,
+            "reference_fpr": 0.5,
+            "reference_selection": 0.5,
+            "reference_tpr": 0.5,
+            "selection": 0.5,
+            "tpr": 0.5
+          },
+          {
+            "fpr": null,
+            "reference_fpr": null,
+            "reference_selection": 0.0,
+            "reference_tpr": 0.0,
+            "selection": 0.0,
+            "tpr": 0.0
+          }
+        ],
+        "split_sha256": "9b279bb976b32cb28f1af823675d7d913cd2538cd5109222288763dee690781e",
+        "suppressed_groups": [
+          0
+        ],
+        "warning": "Synthetic audit attributes only; no demographic meaning. Proxy association is descriptive, predictive proxy verification and dependence-aware subgroup intervals are NOT RUN."
+      },
+      "seconds": 0.30658910000056494,
+      "seed": 11,
+      "split_sha256": "9b279bb976b32cb28f1af823675d7d913cd2538cd5109222288763dee690781e",
+      "status": "evaluated",
+      "suite": "fairness",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    }
+  ]
+}

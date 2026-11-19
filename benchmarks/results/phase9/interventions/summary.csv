@@ -1,0 +1,4 @@
+experiment,suite,dataset,seed,status,seconds
+interventions-digits01-11-9c09699633,interventions,digits01,11,evaluated,3.316182699998535
+interventions-digits01-23-85c444bd08,interventions,digits01,23,evaluated,2.7873737000008987
+interventions-digits01-37-7ea0d26c9b,interventions,digits01,37,evaluated,2.6281767999989825

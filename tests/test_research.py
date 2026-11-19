@@ -1,5 +1,7 @@
+import hashlib
 import json
 from dataclasses import replace
+from pathlib import Path
 
 import pytest
 
@@ -141,3 +143,50 @@ def test_forward_univariate_isolated_from_outer_records():
         scores(altered, replace(manifest, dataset_sha256=canonical(altered))) == before
     )
     assert before[0][2]["fold_strategy"] == "forward_only_expanding"
+
+
+def test_published_artifact_identities_and_numerical_acceptance():
+    root = Path(__file__).resolve().parents[1]
+    folder = root / "benchmarks/results/phase9"
+    index = json.loads((folder / "index.json").read_text())
+    protocol = json.loads((root / "benchmarks/protocols/phase9-v1.json").read_text())
+    total = 0
+    for suite, meta in index.items():
+        payload = (folder / suite / "results.json").read_bytes()
+        assert hashlib.sha256(payload).hexdigest() == meta["sha256"]
+        result = json.loads(payload)
+        assert result["protocol_sha256"] == protocol["protocol_sha256"]
+        assert len(result["trials"]) == meta["trials"]
+        assert len({t["experiment_id"] for t in result["trials"]}) == meta["trials"]
+        total += meta["trials"]
+        if suite == "influence":
+            for trial in result["trials"]:
+                if trial["suite"] == "influence" and trial["status"] == "evaluated":
+                    assert (
+                        trial["result"]["gradient_max_error"]
+                        < protocol["plan"]["influence"]["gradient_atol"]
+                    )
+                    assert (
+                        trial["result"]["hessian_max_error"]
+                        < protocol["plan"]["influence"]["hessian_atol"]
+                    )
+                    assert (
+                        trial["result"]["solver_residual"]
+                        <= protocol["plan"]["influence"]["solve_rtol"]
+                    )
+    summary = json.loads((root / "frontend/public/research-results.json").read_text())
+    assert sum(s["trials"] for s in summary["suites"]) == total
+    assert summary["protocol_sha256"] == protocol["protocol_sha256"]
+
+
+def test_smoke_result_serialization_and_truth_isolation(tmp_path):
+    from datagenome.benchmark import run
+
+    result = run("smoke", tmp_path / "output", tmp_path / "protocol.json", (11,))
+    assert len(result["trials"]) == 3
+    assert result["status"] == "completed"
+    published = json.loads((tmp_path / "output/results.json").read_text())
+    assert published == result
+    assert "rows" not in published["trials"][0]["result"]
+    assert (tmp_path / "output/summary.csv").exists()
+    assert (tmp_path / "output/report.md").exists()

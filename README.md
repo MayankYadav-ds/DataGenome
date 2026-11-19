@@ -6,7 +6,22 @@ DataGenome profiles local CSV datasets and reports observations that can help ex
 failures. The profiler measures data properties and identifies issues for review. Finding counts
 are computed from the input. The class imbalance assessment uses a heuristic threshold.
 
-## Web application — local preview 0.5
+## Research toolkit — 0.6.0
+
+Phase9 adds frozen CPU benchmark protocols, safer overlap-aware holdout receipts,
+forward-only chronological feature scoring, and traceable research evidence in
+the web application. Read the [technical report](research/technical-report.md),
+[executed results](research/results.md), [trial tables](benchmarks/results/phase9/summary.md),
+and [reproduction guide](research/reproducibility.md). Findings include neutral and
+negative intervention outcomes; no guaranteed accuracy improvement is claimed.
+
+```powershell
+python -m datagenome benchmark --suite smoke --output .datagenome/research/smoke
+```
+
+Broader scientific validation remains partial; see [explicit limitations](research/threats-to-validity.md).
+
+## Web application — local preview 0.6
 
 A connected investigation workspace now lives in `frontend/`: isolated guests or
 local accounts → CSV registration → diagnostics → evidence review → explicit

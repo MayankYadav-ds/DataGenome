@@ -295,7 +295,7 @@ export default function Workspace({
             Documentation ↗
           </Link>
           <span className="local-status">
-            <span className="live-dot" /> LOCAL / CPU-FIRST · v0.5.0
+            <span className="live-dot" /> LOCAL / CPU-FIRST · v0.6.0
           </span>
         </div>
       </aside>

@@ -1,6 +1,6 @@
 # Frontend integration contract — local API v1
 
-The 0.5 local web application uses verified responses. The generated [OpenAPI](openapi.json)
+The 0.6 local web application uses verified responses. The generated [OpenAPI](openapi.json)
 is the executable request contract; regenerate it from `create_app().openapi()` when
 backend routes change. Response models for project/version/job are typed; diagnostic
 engine payloads remain versioned heterogeneous objects. Generate client types with

@@ -1,4 +1,10 @@
-# Capability inventory after Phase 8 (0.5)
+# Capability inventory after Phase 9 (0.6)
+
+Phase9 adds a frozen CPU research toolkit, aggregate trial artifacts and a generated
+Research page. See the [source audit](../research/scientific-audit.md),
+[observed results](../research/results.md), and [remaining scientific scope](../research/threats-to-validity.md).
+The holdout ledger now rejects detectable overlapping records across split,
+training-label and subset-index changes, and fails closed on legacy receipts.
 
 The local web application adds actual account/guest, project, upload, diagnostic,
 prediction investigation, recommendation, version, experiment, report and privacy
@@ -21,7 +27,8 @@ See the [web route-to-API matrix and explicit interface limits](web-application.
 | Partial | Pareto search uses balanced accuracy/macro F1; log loss, cost and removal counts are measured but not configurable search objectives; subgroup/worst-group/disparity uncertainty unavailable |
 | Partial | Reports retrieve project/version/experiment sections through related endpoints rather than a single fully joined dashboard document; Markdown/CSV remain summary exports |
 | Partial | Occupancy frozen replication scores baseline/random removal; HAR post-run cross-seed overlap invalidated independence; dependent-data selection policies were ineligible |
-| Unsupported and deferred | Chronological univariate scoring, horizon/availability purging, predictive proxy verification and automatic label inference |
+| Implemented in Phase 9 | Forward-only training-partition chronological univariate scoring; outer-record invariance regression |
+| Unsupported and deferred | Joint group/time univariate folds, horizon/availability purging, predictive proxy verification and automatic label inference |
 | Unsupported | Guest/account merging, sharing, internet-facing production certification, encryption at rest, email recovery, multi-process workers |
 
 The frontend workflow gate concerns the tested **local application**. Unsupported

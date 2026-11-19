@@ -1,0 +1,370 @@
+{
+  "environment": {
+    "dependencies": {
+      "datagenome": "0.5.0",
+      "numpy": "2.2.6",
+      "scikit-learn": "1.6.1",
+      "scipy": "1.17.1"
+    },
+    "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "python": "3.11.0",
+    "system": "Windows"
+  },
+  "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+  "schema_version": "1.0",
+  "seconds": 1.1106201999991754,
+  "status": "completed",
+  "suite": "fairness",
+  "trials": [
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {},
+      "dataset": "synthetic",
+      "dataset_sha256": "d3cac0ce269082b58a22184ea1e2cc8beadb1f97e7c845944d7b10726990064a",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "fairness-synthetic-11-44136fa355",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 5903543,
+      "result": {
+        "dataset_sha256": "d3cac0ce269082b58a22184ea1e2cc8beadb1f97e7c845944d7b10726990064a",
+        "disparities": [
+          {
+            "accuracy_gap": 0.1217948717948718,
+            "demographic_parity_difference": 0.17788461538461536,
+            "demographic_parity_ratio": 0.6837606837606838,
+            "equal_opportunity_difference": 0.36617405582922824,
+            "equalized_odds_difference": 0.36617405582922824,
+            "false_negative_rate_gap": 0.36617405582922824,
+            "false_positive_rate_gap": 0.1288244766505636,
+            "status": "evaluated",
+            "worst_group_accuracy": 0.7115384615384616
+          }
+        ],
+        "proxy_findings": [
+          {
+            "feature": "planted_proxy",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 1.0,
+            "potential_proxy": true,
+            "support": 300,
+            "threshold": 0.3
+          },
+          {
+            "feature": "x0",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 0.014949439183602137,
+            "potential_proxy": false,
+            "support": 300,
+            "threshold": 0.3
+          },
+          {
+            "feature": "x2",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 0.006887512777130344,
+            "potential_proxy": false,
+            "support": 300,
+            "threshold": 0.3
+          },
+          {
+            "feature": "x1",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 0.0007699673089124561,
+            "potential_proxy": false,
+            "support": 300,
+            "threshold": 0.3
+          }
+        ],
+        "reference_fixtures": [
+          {
+            "fpr": 0.5,
+            "reference_fpr": 0.5,
+            "reference_selection": 0.5,
+            "reference_tpr": 0.5,
+            "selection": 0.5,
+            "tpr": 0.5
+          },
+          {
+            "fpr": null,
+            "reference_fpr": null,
+            "reference_selection": 0.0,
+            "reference_tpr": 0.0,
+            "selection": 0.0,
+            "tpr": 0.0
+          }
+        ],
+        "split_sha256": "9b279bb976b32cb28f1af823675d7d913cd2538cd5109222288763dee690781e",
+        "suppressed_groups": [
+          0
+        ],
+        "warning": "Synthetic audit attributes only; no demographic meaning. Proxy association is descriptive, predictive proxy verification and dependence-aware subgroup intervals are NOT RUN."
+      },
+      "seconds": 0.5506205999990925,
+      "seed": 11,
+      "split_sha256": "9b279bb976b32cb28f1af823675d7d913cd2538cd5109222288763dee690781e",
+      "status": "evaluated",
+      "suite": "fairness",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {},
+      "dataset": "synthetic",
+      "dataset_sha256": "25ba186311b972604bb4e02bd751405827c22d05b43134dd83b83ec5351f965a",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "fairness-synthetic-23-44136fa355",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 346753,
+      "result": {
+        "dataset_sha256": "25ba186311b972604bb4e02bd751405827c22d05b43134dd83b83ec5351f965a",
+        "disparities": [
+          {
+            "accuracy_gap": 0.00883179446005622,
+            "demographic_parity_difference": 0.25371336812525097,
+            "demographic_parity_ratio": 0.5583508036338224,
+            "equal_opportunity_difference": 0.17967332123411972,
+            "equalized_odds_difference": 0.17967332123411972,
+            "false_negative_rate_gap": 0.17967332123411975,
+            "false_positive_rate_gap": 0.10130718954248366,
+            "status": "evaluated",
+            "worst_group_accuracy": 0.7358490566037735
+          }
+        ],
+        "proxy_findings": [
+          {
+            "feature": "planted_proxy",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 1.0,
+            "potential_proxy": true,
+            "support": 300,
+            "threshold": 0.3
+          },
+          {
+            "feature": "x2",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 0.017099436620566354,
+            "potential_proxy": false,
+            "support": 300,
+            "threshold": 0.3
+          },
+          {
+            "feature": "x1",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 0.010063168285034825,
+            "potential_proxy": false,
+            "support": 300,
+            "threshold": 0.3
+          },
+          {
+            "feature": "x0",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 0.005080439863660473,
+            "potential_proxy": false,
+            "support": 300,
+            "threshold": 0.3
+          }
+        ],
+        "reference_fixtures": [
+          {
+            "fpr": 0.5,
+            "reference_fpr": 0.5,
+            "reference_selection": 0.5,
+            "reference_tpr": 0.5,
+            "selection": 0.5,
+            "tpr": 0.5
+          },
+          {
+            "fpr": null,
+            "reference_fpr": null,
+            "reference_selection": 0.0,
+            "reference_tpr": 0.0,
+            "selection": 0.0,
+            "tpr": 0.0
+          }
+        ],
+        "split_sha256": "d946ea50af2cfe418ea361b47f856bd0be1f44afedcfa01649907f543657bce9",
+        "suppressed_groups": [
+          0
+        ],
+        "warning": "Synthetic audit attributes only; no demographic meaning. Proxy association is descriptive, predictive proxy verification and dependence-aware subgroup intervals are NOT RUN."
+      },
+      "seconds": 0.2386043000005884,
+      "seed": 23,
+      "split_sha256": "d946ea50af2cfe418ea361b47f856bd0be1f44afedcfa01649907f543657bce9",
+      "status": "evaluated",
+      "suite": "fairness",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    },
+    {
+      "budget": {
+        "exact_players": 6,
+        "max_features": 32,
+        "max_rows": 10000,
+        "max_suite_seconds": 1800,
+        "max_trial_seconds": 180,
+        "max_trials": 600
+      },
+      "configuration": {},
+      "dataset": "synthetic",
+      "dataset_sha256": "1edbf1c993bd0d4bce56217993d310477b92a6f64e39b6ca4dfb16009c599409",
+      "dependencies": {
+        "datagenome": "0.5.0",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.6.1",
+        "scipy": "1.17.1"
+      },
+      "experiment_id": "fairness-synthetic-37-44136fa355",
+      "git_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+      "machine": "AMD64",
+      "model_configuration": {
+        "imputation": "median",
+        "max_depth": 8,
+        "model": "logistic-regression",
+        "trees": 32
+      },
+      "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+      "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+      "protocol_version": "phase9-v1",
+      "provenance": "Explicit synthetic generator; not observed demographic or temporal metadata",
+      "python": "3.11.0",
+      "python_peak_bytes": 324742,
+      "result": {
+        "dataset_sha256": "1edbf1c993bd0d4bce56217993d310477b92a6f64e39b6ca4dfb16009c599409",
+        "disparities": [
+          {
+            "accuracy_gap": 0.040000000000000036,
+            "demographic_parity_difference": 0.020000000000000018,
+            "demographic_parity_ratio": 0.9629629629629629,
+            "equal_opportunity_difference": 0.0476923076923077,
+            "equalized_odds_difference": 0.0476923076923077,
+            "false_negative_rate_gap": 0.04769230769230767,
+            "false_positive_rate_gap": 0.030000000000000027,
+            "status": "evaluated",
+            "worst_group_accuracy": 0.74
+          }
+        ],
+        "proxy_findings": [
+          {
+            "feature": "planted_proxy",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 1.0,
+            "potential_proxy": true,
+            "support": 300,
+            "threshold": 0.3
+          },
+          {
+            "feature": "x1",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 0.02051999190862586,
+            "potential_proxy": false,
+            "support": 300,
+            "threshold": 0.3
+          },
+          {
+            "feature": "x2",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 0.010130310522941886,
+            "potential_proxy": false,
+            "support": 300,
+            "threshold": 0.3
+          },
+          {
+            "feature": "x0",
+            "method": "training_quantile_binned_mutual_information",
+            "normalized_sensitive_entropy_reduction": 0.007855472250108403,
+            "potential_proxy": false,
+            "support": 300,
+            "threshold": 0.3
+          }
+        ],
+        "reference_fixtures": [
+          {
+            "fpr": 0.5,
+            "reference_fpr": 0.5,
+            "reference_selection": 0.5,
+            "reference_tpr": 0.5,
+            "selection": 0.5,
+            "tpr": 0.5
+          },
+          {
+            "fpr": null,
+            "reference_fpr": null,
+            "reference_selection": 0.0,
+            "reference_tpr": 0.0,
+            "selection": 0.0,
+            "tpr": 0.0
+          }
+        ],
+        "split_sha256": "9f44baf89f53ed0c9b065e484697fdba0bebd5285217dc39d987224f3381aead",
+        "suppressed_groups": [
+          0
+        ],
+        "warning": "Synthetic audit attributes only; no demographic meaning. Proxy association is descriptive, predictive proxy verification and dependence-aware subgroup intervals are NOT RUN."
+      },
+      "seconds": 0.27452359999915643,
+      "seed": 37,
+      "split_sha256": "9f44baf89f53ed0c9b065e484697fdba0bebd5285217dc39d987224f3381aead",
+      "status": "evaluated",
+      "suite": "fairness",
+      "system": "Windows",
+      "warnings": [
+        "DeprecationWarning"
+      ]
+    }
+  ]
+}

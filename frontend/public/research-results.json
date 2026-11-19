@@ -1,0 +1,119 @@
+{
+  "protocol_sha256": "620a55c420ebf04101832b5110a9f61393d3bdb17afbe9784c3705fd1d2a6018",
+  "source_commit": "34a5563d67621fef853155810749be4e29c1cd85",
+  "scope": "Prespecified CPU-only research. Public Iris/Wine/WDBC label experiments are exploratory; final Digits blocks are record-disjoint within this execution. Other scientific studies are explicitly synthetic.",
+  "suites": [
+    {
+      "suite": "smoke",
+      "trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "seconds": 1.411
+    },
+    {
+      "suite": "leakage",
+      "trials": 24,
+      "evaluated": 24,
+      "failed": 0,
+      "seconds": 11.95
+    },
+    {
+      "suite": "labels",
+      "trials": 81,
+      "evaluated": 81,
+      "failed": 0,
+      "seconds": 67.289
+    },
+    {
+      "suite": "valuation",
+      "trials": 15,
+      "evaluated": 15,
+      "failed": 0,
+      "seconds": 232.596
+    },
+    {
+      "suite": "influence",
+      "trials": 138,
+      "evaluated": 138,
+      "failed": 0,
+      "seconds": 56.726
+    },
+    {
+      "suite": "fairness",
+      "trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "seconds": 1.111
+    },
+    {
+      "suite": "drift",
+      "trials": 60,
+      "evaluated": 60,
+      "failed": 0,
+      "seconds": 4.614
+    },
+    {
+      "suite": "interventions",
+      "trials": 3,
+      "evaluated": 3,
+      "failed": 0,
+      "seconds": 8.776
+    },
+    {
+      "suite": "performance",
+      "trials": 30,
+      "evaluated": 30,
+      "failed": 0,
+      "seconds": 179.278
+    }
+  ],
+  "observations": [
+    {
+      "topic": "Leakage",
+      "artifact": "leakage",
+      "finding": "Expected structural/agreement methods detected 15/15 injected scenarios. 3/9 legitimate/control scenarios produced heuristic alerts; 0 produced confirmed split violations. These heterogeneous scenario counts are not pooled feature-level precision."
+    },
+    {
+      "topic": "Label audit",
+      "artifact": "labels",
+      "finding": "DataGenome AP across nonzero-corruption conditions ranged 0.1623\u20130.9093. Clean-control false-positive rates ranged 0.0000\u20130.0333. Random, OOF disagreement, low observed-label probability and neighborhood controls are retained per condition. No natural-label correctness claim."
+    },
+    {
+      "topic": "Valuation",
+      "artifact": "valuation",
+      "finding": "Permutation-reference maximum Shapley error: 4.44e-16. MC absolute-error ranges by separate utility/budget: accuracy / mc-shapley-128: 0.0044705\u20130.015451; accuracy / mc-shapley-32: 0.0084491\u20130.022338; accuracy / mc-shapley-8: 0.013194\u20130.042361; negative_log_loss / mc-shapley-128: 0.44607\u20131.2009; negative_log_loss / mc-shapley-32: 0.72425\u20131.8987; negative_log_loss / mc-shapley-8: 0.9705\u20133.7003. Six-player synthetic games only; other methods estimate different quantities. Cross-domain ranking stability remains unestablished."
+    },
+    {
+      "topic": "Influence approximation",
+      "artifact": "influence",
+      "finding": "135 evaluated configurations; deletion-loss rank correlation ranged 0.9525\u20131.0000. Maximum finite-difference gradient/Hessian errors: 9.44e-11/3.02e-10. This validates a bounded binary regularized objective, not arbitrary models or causation."
+    },
+    {
+      "topic": "Fairness",
+      "artifact": "fairness",
+      "finding": "Independent selection/TPR/FPR count fixtures agree: True. Synthetic audit and planted-proxy screens only; predictive proxy verification and dependence-aware subgroup intervention uncertainty remain NOT RUN."
+    },
+    {
+      "topic": "Drift",
+      "artifact": "drift",
+      "finding": "0/6 independently sampled null trials had a Holm-adjusted formal rejection; 2/6 had descriptive effect alerts. Conditional outcome changes are not identified from covariate drift alone. Only six null trials: insufficient power to calibrate a population false-positive rate."
+    },
+    {
+      "topic": "Independent intervention outcomes",
+      "artifact": "interventions",
+      "finding": "Prespecified record-disjoint Digits blocks: 3. Scored arms: 21; insufficient candidate arms: 3. Relative to baseline, 0 improved, 14 were unchanged and 4 degraded in accuracy. Deltas ranged -0.0169\u20130.0000. Includes explicit oracle controls; no outcome-based arm selection."
+    },
+    {
+      "topic": "Computational limits",
+      "artifact": "performance",
+      "finding": "Measured 30 profiling/diagnostic configurations, 100\u201310,000 rows with 3/16 features. Per-trial runtime ranged 0.270\u201327.622 s; peak traced Python allocations reached 43.16 MiB. Native allocations and process peak working set are NOT measured. Exponential games are restricted to six players."
+    }
+  ],
+  "limitations": [
+    "Not peer reviewed; no superiority, deployment or universal fairness claim.",
+    "Seeds on one dataset are not independent domains. Small samples and unavailable writer IDs limit inference.",
+    "Earlier HAR evaluation remains compromised/descriptive; it is never relabeled independent.",
+    "OpenDataVal execution, Confident Learning, label-horizon purging and predictive proxy verification are NOT RUN.",
+    "No natural label-error ground truth, new public categorical/temporal/group benchmark, or unconditional intervention benefit is established."
+  ]
+}

@@ -1,4 +1,13 @@
-# Research references
+# DataGenome research
+
+Start with the [Phase9 technical report](technical-report.md), [source audit](scientific-audit.md),
+[mathematical methodology](methodology.md), [observed evidence](results.md),
+[reproduction commands](reproducibility.md) and [threats to validity](threats-to-validity.md).
+The [primary-source and dataset attribution guide](references.md) documents current
+provenance and optional interoperability limits. Validation remains partial beyond
+the measured scope; no peer review or production readiness is claimed.
+
+## Earlier research foundations
 
 Phase 0 uses descriptive checks on individual CSV files. These publications guide later
 experiments. Evaluate each technique against a controlled baseline before drawing
