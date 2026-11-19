@@ -6,6 +6,34 @@ DataGenome profiles local CSV datasets and reports observations that can help ex
 failures. The profiler measures data properties and identifies issues for review. Finding counts
 are computed from the input. The class imbalance assessment uses a heuristic threshold.
 
+## Web application — local preview 0.5
+
+A connected investigation workspace now lives in `frontend/`: isolated guests or
+local accounts → CSV registration → diagnostics → evidence review → explicit
+corrections/exclusions → derived versions → validation experiments → report export.
+All analytical findings come from the Python backend. No paid services are used.
+
+![DataGenome local workspace on synthetic data](docs/screenshots/project-dashboard.png)
+
+Install Python 3.11+ and Node 24 LTS. In Windows PowerShell:
+
+```powershell
+python -m pip install ".[api,dev]"
+npm --prefix frontend ci
+python -m uvicorn datagenome.api:app --host 127.0.0.1 --port 8765
+# In a second terminal:
+npm --prefix frontend run dev
+```
+
+Open `http://127.0.0.1:3000/demo` for an isolated, backend-computed synthetic workflow.
+For the optimized frontend: `npm --prefix frontend run build`, then
+`npm --prefix frontend start`. The supplied commands disable Next.js telemetry.
+Keep both services on loopback; internet-facing deployment is not certified.
+
+See the [installation, user workflow and frontend architecture guide](docs/web-application.md),
+[API contract](docs/frontend-integration.md), [security model](docs/security.md),
+and [verified screenshots](docs/screenshots/README.md).
+
 ## Install
 
 Python 3.11 or newer. From the repository root on Windows PowerShell:
@@ -23,10 +51,10 @@ with the project's Apache-2.0 license.
 
 ```powershell
 python examples/generate_demo.py demo.csv
-.\.venv\Scripts\datagenome --help
-.\.venv\Scripts\datagenome --version
-.\.venv\Scripts\datagenome profile demo.csv
-.\.venv\Scripts\datagenome profile demo.csv --target label --output report.json
+.\.venv\Scripts\python -m datagenome --help
+.\.venv\Scripts\python -m datagenome --version
+.\.venv\Scripts\python -m datagenome profile demo.csv
+.\.venv\Scripts\python -m datagenome profile demo.csv --target label --output report.json
 ```
 
 Seed 42 produces 20 base records plus one copy of the first record. Expect two blank
@@ -35,10 +63,11 @@ measurements, a constant batch feature, and 20 majority labels versus one minori
 ## API
 
 ```powershell
-.\.venv\Scripts\python -m uvicorn datagenome.api:app --host 127.0.0.1
-curl.exe http://127.0.0.1:8000/health
-curl.exe http://127.0.0.1:8000/version
-curl.exe -H "Content-Type: text/csv" --data-binary "@demo.csv" "http://127.0.0.1:8000/api/v1/datasets/profile?filename=demo.csv&target=label"
+.\.venv\Scripts\python -m uvicorn datagenome.api:app --host 127.0.0.1 --port 8765
+curl.exe http://127.0.0.1:8765/health
+curl.exe http://127.0.0.1:8765/version
+$dgLogin = Invoke-RestMethod -Method Post -Uri "http://127.0.0.1:8765/api/v1/auth/guest" -SessionVariable dgSession
+Invoke-RestMethod -Method Post -Uri "http://127.0.0.1:8765/api/v1/datasets/profile?filename=demo.csv&target=label" -ContentType "text/csv" -InFile demo.csv -WebSession $dgSession -Headers @{ "X-CSRF-Token" = $dgLogin.csrf_token }
 ```
 
 The profile endpoint accepts a raw CSV body and a required `filename` query parameter.
@@ -110,4 +139,4 @@ See the [frontend integration contract](docs/frontend-integration.md),
 [authentication and privacy model](docs/security.md), and
 [Phase 7.1 verification and limitations](docs/phase-7.1.md).
 This experimental release does not establish internet-facing production security.
-No Phase 8 frontend is included.
+The 0.5 web application is documented in [the web guide](docs/web-application.md).

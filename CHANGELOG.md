@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.0 — local web application preview
+
+- Added a Next.js/React/strict TypeScript product site and analytical application with original vector branding, light/dark themes and accessible native controls.
+- Connected account/guest sessions, projects, CSV registration, real diagnostics, evidence review, supported prediction investigation, manual intervention previews, queued experiments, persisted versions and report exports.
+- Added a loopback-only same-origin API bridge with byte budgets and existing backend CSRF checks; no permissive CORS change. Identity-scoped caches, cross-tab invalidation and late-response guards protect private client state.
+- Added owner-checked project inventory and reviewed dataset configuration endpoints, plus optional valuation method selection. Existing SDK, CLI and API defaults remain available.
+- Replaced the small built-in demo with a documented 80-row synthetic fixture; results are still computed, not seeded. Added a reproducible public preview generator.
+- Added frontend unit/browser/security/accessibility checks, actual synthetic screenshots, production-build measurements and Windows web CI. Official Actions are pinned to verified Node 24 revisions.
+- No database migration beyond existing schema 2. No paid services, public deployment or internet-facing production-readiness claim. Frontend model/objective settings remain scoped to supported defaults; research limitations are unchanged.
+
 ## 0.3.0
 
 - Added immutable logical versions, reviewed transformations, orchestration, explicit plan comparisons, bounded jobs and report views.

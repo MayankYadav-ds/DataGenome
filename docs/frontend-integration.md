@@ -1,6 +1,6 @@
 # Frontend integration contract — local API v1
 
-Do not start Phase 8 from invented responses. The generated [OpenAPI](openapi.json)
+The 0.5 local web application uses verified responses. The generated [OpenAPI](openapi.json)
 is the executable request contract; regenerate it from `create_app().openapi()` when
 backend routes change. Response models for project/version/job are typed; diagnostic
 engine payloads remain versioned heterogeneous objects. Generate client types with
@@ -77,3 +77,17 @@ rate/queue429. Preserve X-Request-ID for support, not raw requests. No stack tra
 or local path should be shown. Report previews are explicitly privacy-sensitive.
 Exports use response bytes and a safe generated download name; do not put dataset
 names in HTML without escaping. No frontend was implemented in this milestone.
+
+## Web integration additions in 0.5
+
+GET `/projects/{id}/inventory?offset=0` returns up to 100 owned versions, analysis
+metadata/health summaries, experiment metadata and jobs per kind. It does not include
+raw dataset rows. GET `/datasets/{id}/configuration?project_id=...` supplies owned
+columns, target, split settings and partition counts. `reviewed=true` additionally
+reveals current-version partition positions and stable IDs for explicit review.
+Wrong-owner access is rejected before related-object retrieval.
+
+POST `/analyses` accepts optional `valuation_method` in `loo`, `shapley`,
+`mc-shapley`, `knn-shapley`, or `banzhaf`; default remains `knn-shapley`. Existing
+method/sample/compute guards apply. See the [web application guide](web-application.md)
+for the verified client architecture, routes and deliberately unsupported interfaces.

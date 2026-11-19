@@ -20,3 +20,13 @@ demo.csv
 .datagenome/
 *.sqlite3
 *.sqlite3-*
+
+node_modules/
+.next/
+out/
+playwright-report/
+test-results/
+*.tsbuildinfo
+.env.local
+
+frontend/next-env.d.ts

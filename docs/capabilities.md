@@ -1,4 +1,9 @@
-# Capability inventory after Phase 7.1 (0.4)
+# Capability inventory after Phase 8 (0.5)
+
+The local web application adds actual account/guest, project, upload, diagnostic,
+prediction investigation, recommendation, version, experiment, report and privacy
+workflows. It uses the existing scientific implementations and keeps their limits.
+See the [web route-to-API matrix and explicit interface limits](web-application.md).
 
 | State | Capability |
 |---|---|

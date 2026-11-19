@@ -1,0 +1,32 @@
+{
+  "source": "Built-in synthetic demo; computed by the actual backend. Not customer results.",
+  "rows": 80,
+  "columns": 5,
+  "health": {
+    "score": 96.06944444444444,
+    "coverage": 0.7142857142857143,
+    "unassessed": ["distribution_stability", "representation"],
+    "critical_violation_count": 0
+  },
+  "recommendation_counts": {
+    "leakage_review": 2,
+    "constant_column": 1,
+    "duplicate_rows": 1,
+    "missing_values": 1,
+    "label_review": 1
+  },
+  "engines": {
+    "profile": {
+      "status": "completed"
+    },
+    "intelligence": {
+      "status": "completed"
+    },
+    "leakage": {
+      "status": "completed"
+    },
+    "labels": {
+      "status": "completed"
+    }
+  }
+}

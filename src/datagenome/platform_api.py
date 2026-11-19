@@ -98,6 +98,9 @@ class AnalysisRequest(Contract):
     attributes: list[str] = Field(default_factory=list, max_length=3)
     record_id: int | None = Field(default=None, ge=1)
     privacy: Literal["summary", "redacted", "detailed"] = "summary"
+    valuation_method: Literal[
+        "loo", "shapley", "mc-shapley", "knn-shapley", "banzhaf"
+    ] = "knn-shapley"
 
 
 class Correction(Contract):
@@ -410,6 +413,7 @@ def attach_platform(app: FastAPI, database: Path) -> None:
                 tuple(spec.attributes),
                 spec.record_id,
                 privacy=spec.privacy,
+                valuation_method=spec.valuation_method,
             ),
         )
 
@@ -590,15 +594,46 @@ def attach_platform(app: FastAPI, database: Path) -> None:
     def demo(spec: ProjectRequest, request: Request) -> dict[str, Any]:
         # spec.name labels an explicitly requested new project.
         project = create_project(spec, request)
-        text = "x,z,label\n" + "".join(f"{i},{i % 5},{i % 2}\n" for i in range(60))
-        payload = text.encode()
-        data = parse_csv(payload, max_rows=500, max_columns=32)
+        import csv
+        import io
+        from dataclasses import replace
+
+        from .identity import canonical
+        from .ingestion import Dataset
+
+        rows = [
+            [
+                str(4 * (i % 4 == 0) + ((i * 17) % 13) / 13),
+                str(i),
+                "1",
+                str(int(i % 4 == 0)),
+            ]
+            for i in range(80)
+        ]
+        data = Dataset(
+            ("x", "z", "constant", "label"), tuple(tuple(row) for row in rows)
+        )
+        manifest = split(data, SplitConfig("stratified"), "label")
+        train = manifest.partitions["train"]
+        rows[train[0] - 1][0] = ""
+        rows[train[1] - 1][-1] = str(1 - int(rows[train[1] - 1][-1]))
+        rows[train[3] - 1] = rows[train[2] - 1].copy()
+        rows[train[5] - 1] = rows[train[4] - 1].copy()
+        rows[train[5] - 1][-1] = str(1 - int(rows[train[5] - 1][-1]))
+        # Numeric target copy is intentionally planted evidence, never an analytics result.
+        for row in rows:
+            row.insert(3, row[-1])
+        data = Dataset(
+            ("x", "z", "constant", "review_code", "label"),
+            tuple(tuple(row) for row in rows),
+        )
+        manifest = replace(manifest, dataset_sha256=canonical(data))
+        stream = io.StringIO(newline="")
+        writer = csv.writer(stream)
+        writer.writerow(data.columns)
+        writer.writerows(data.rows)
         version = register(
-            store,
-            project["id"],
-            payload,
-            "label",
-            split(data, SplitConfig("stratified"), "label"),
+            store, project["id"], stream.getvalue().encode(), "label", manifest
         )
         return {"project": project, "version": version_metadata(version)}
 
@@ -666,6 +701,64 @@ def attach_platform(app: FastAPI, database: Path) -> None:
             spec.version_id,
             maximum_candidates=spec.maximum_candidates,
         )
+
+    @router.get("/projects/{project_id}/inventory")
+    def inventory(
+        project_id: str, offset: int = Query(default=0, ge=0)
+    ) -> dict[str, Any]:
+        store.require_project(project_id)
+        return {
+            "datasets": [
+                version_metadata(v)
+                for v in store.list(project_id, "version", 100, offset)
+            ],
+            "analyses": [
+                {
+                    "id": a["id"],
+                    "created_at": a["created_at"],
+                    "version_id": a["version_id"],
+                    "health": report_view(a["report"])["health"],
+                }
+                for a in store.list(project_id, "analysis", 100, offset)
+            ],
+            "experiments": [
+                {key: e.get(key) for key in ("id", "created_at", "version_id", "state")}
+                for e in store.list(project_id, "experiment", 100, offset)
+            ],
+            "jobs": inventory_jobs(project_id, offset),
+            "offset": offset,
+            "limit": 100,
+        }
+
+    def inventory_jobs(project_id: str, offset: int) -> list[dict[str, Any]]:
+        with store.connection() as db:
+            ids = [
+                row["id"]
+                for row in db.execute(
+                    "SELECT id FROM jobs WHERE project=? ORDER BY created DESC,id LIMIT 100 OFFSET ?",
+                    (project_id, offset),
+                )
+            ]
+        return [service.get(project_id, identifier) for identifier in ids]
+
+    @router.get("/datasets/{version_id}/configuration")
+    def configuration(
+        version_id: str, project_id: str, reviewed: bool = False
+    ) -> dict[str, Any]:
+        from .versions import manifest_of
+
+        value = store.get(project_id, version_id, "version")
+        manifest = manifest_of(value)
+        return {
+            "columns": value["columns"],
+            "target": value["target"],
+            "split": asdict(manifest.config),
+            "partition_counts": {k: len(v) for k, v in manifest.partitions.items()},
+            "partitions": manifest.partitions if reviewed else None,
+            "record_ids": value["record_ids"] if reviewed else None,
+            "transformation": value.get("transformation"),
+            "parent_id": value.get("parent_id"),
+        }
 
     app.include_router(router)
 

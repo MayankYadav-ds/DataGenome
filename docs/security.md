@@ -97,3 +97,26 @@ independent penetration testing and hardened internet hosting remain deployment 
 Dependency advisory results cover the tested environment at scan time, not every
 future version permitted by package ranges. Install maintained compatible releases
 and rerun advisories before deployment. No paid infrastructure is required.
+
+## Browser application in 0.5
+
+The Next.js bridge permits same-origin loopback requests only, bounds streamed bodies,
+and forwards CSRF/session credentials to the existing backend checks. It is not an
+arbitrary proxy, and its server-only backend URL cannot select a remote service.
+No permissive CORS, bearer secrets in client environment variables, or public
+hosting configuration was added. The supplied startup wrapper disables framework
+telemetry before loading Next.js. Fonts and original branding assets are local.
+
+A layout-persistent query provider scopes private data by the verified identity or
+owned resource. Logout/expiry/identity changes clear private caches and remount the
+app shell. Tabs exchange a non-sensitive identity-change notification and revalidate
+with the server; focus checks provide additional reconciliation. The transport drops
+responses/export bodies that finish after an identity change. Only theme preferences
+enter localStorage. User strings render as text, never trusted HTML. Fixed report
+filenames and CSV-text dataset downloads reduce accidental unsafe spreadsheet use.
+
+Browser tests cover real ownership rejection, CSRF/origin rejection, inert untrusted
+markup, revocation, cross-tab identity changes, cancellation, exports and deletion
+using synthetic data. This is not independent penetration testing or internet-facing
+certification. The existing unencrypted-storage, OS trust, logical-deletion, backup,
+TLS/recovery and one-process limitations still apply. See [the web guide](web-application.md).

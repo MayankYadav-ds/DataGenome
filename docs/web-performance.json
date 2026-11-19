@@ -1,0 +1,111 @@
+{
+  "measured_at_utc": "2026-11-19T06:13:20.278Z",
+  "method": "Single local production-build Chromium run, fresh browser context, 1440x1000. Navigation includes local HTTP and hydration. Script bytes include any immediate prefetch. Five same-origin capability requests include the Next-to-FastAPI bridge. Memory is a CDP snapshot, not peak process memory. No Lighthouse or Core Web Vitals score, isolated chart timing, or production scalability claim.",
+  "navigation": {
+    "responseStart_ms": 12.599999999627471,
+    "responseEnd_ms": 13.799999998882413,
+    "domContentLoaded_ms": 33,
+    "loadEvent_ms": 175.7999999988824
+  },
+  "initial_script_resources": [
+    {
+      "name": "/_next/static/chunks/webpack-e417a408e83f4ba7.js",
+      "transfer_bytes": 2063,
+      "encoded_body_bytes": 1763,
+      "decoded_body_bytes": 3428
+    },
+    {
+      "name": "/_next/static/chunks/4bd1b696-c7408084347438ae.js",
+      "transfer_bytes": 64357,
+      "encoded_body_bytes": 64057,
+      "decoded_body_bytes": 203721
+    },
+    {
+      "name": "/_next/static/chunks/main-app-ed03fe7d2f7aee89.js",
+      "transfer_bytes": 813,
+      "encoded_body_bytes": 513,
+      "decoded_body_bytes": 513
+    },
+    {
+      "name": "/_next/static/chunks/148-43c7432773e9b64b.js",
+      "transfer_bytes": 5864,
+      "encoded_body_bytes": 5564,
+      "decoded_body_bytes": 15915
+    },
+    {
+      "name": "/_next/static/chunks/794-268803444e87b940.js",
+      "transfer_bytes": 67530,
+      "encoded_body_bytes": 67230,
+      "decoded_body_bytes": 241744
+    },
+    {
+      "name": "/_next/static/chunks/307-1f92a6c21e5bd7ce.js",
+      "transfer_bytes": 3436,
+      "encoded_body_bytes": 3136,
+      "decoded_body_bytes": 10480
+    },
+    {
+      "name": "/_next/static/chunks/app/layout-84361b3a355e2910.js",
+      "transfer_bytes": 820,
+      "encoded_body_bytes": 520,
+      "decoded_body_bytes": 520
+    },
+    {
+      "name": "/_next/static/chunks/app/error-7992c2b0c2990212.js",
+      "transfer_bytes": 903,
+      "encoded_body_bytes": 603,
+      "decoded_body_bytes": 603
+    },
+    {
+      "name": "/_next/static/chunks/500-fc3b64d9ff4a32a7.js",
+      "transfer_bytes": 3546,
+      "encoded_body_bytes": 3246,
+      "decoded_body_bytes": 7642
+    },
+    {
+      "name": "/_next/static/chunks/285-f77425fb1a81db59.js",
+      "transfer_bytes": 31225,
+      "encoded_body_bytes": 30925,
+      "decoded_body_bytes": 105029
+    },
+    {
+      "name": "/_next/static/chunks/app/%5B%5B...segments%5D%5D/page-982b3f524d09d58e.js",
+      "transfer_bytes": 11358,
+      "encoded_body_bytes": 11058,
+      "decoded_body_bytes": 31565
+    }
+  ],
+  "initial_script_transfer_bytes": 191915,
+  "all_production_javascript": {
+    "files": 28,
+    "raw_bytes": 1149023,
+    "gzip_bytes": 356053
+  },
+  "renderer": {
+    "javascript_heap_used_bytes": 4937800,
+    "layout_seconds": 0.060741,
+    "recalculate_style_seconds": 0.002565
+  },
+  "api_requests": [
+    {
+      "status": 200,
+      "milliseconds": 31.061800000000176
+    },
+    {
+      "status": 200,
+      "milliseconds": 25.760899999999992
+    },
+    {
+      "status": 200,
+      "milliseconds": 11.084900000000061
+    },
+    {
+      "status": 200,
+      "milliseconds": 20.335199999999986
+    },
+    {
+      "status": 200,
+      "milliseconds": 14.759600000000091
+    }
+  ]
+}
