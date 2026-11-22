@@ -1,4 +1,4 @@
-# Capability inventory after Phase 9 (0.6)
+# Capability inventory (0.7.0)
 
 Phase10 (0.7.0) adds [self-hosting and operational capabilities](phase-10.md):
 validated deployment configuration, local HTTPS Compose, process ownership,
