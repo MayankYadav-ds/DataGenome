@@ -37,6 +37,7 @@ function Root({ segments }: { segments: string[] }) {
   const [loading, setLoading] = useState(true);
   const [sessionError, setSessionError] = useState("");
   const currentIdentity = useRef<string | null>(null);
+  const identityTransition = useRef(false);
   useEffect(() => {
     currentIdentity.current = session?.user_id ?? null;
   }, [session?.user_id]);
@@ -47,7 +48,11 @@ function Root({ segments }: { segments: string[] }) {
     let active = true;
     request("/auth/session")
       .then((data) => {
-        if (active) setSession(sessionSchema.parse(data));
+        if (active) {
+          const current = sessionSchema.parse(data);
+          currentIdentity.current = current.user_id;
+          setSession(current);
+        }
       })
       .catch((error) => {
         if (!(error instanceof ApiError && error.status === 401))
@@ -59,6 +64,7 @@ function Root({ segments }: { segments: string[] }) {
     const expired = () => {
       clearIdentity();
       client.clear();
+      currentIdentity.current = null;
       setSession(null);
       if (window.location.pathname.startsWith("/app"))
         router.replace("/login?expired=true");
@@ -83,6 +89,7 @@ function Root({ segments }: { segments: string[] }) {
         ? null
         : new BroadcastChannel("datagenome-identity");
     const reconcile = async (remote: boolean) => {
+      if (!remote && identityTransition.current) return;
       if (remote) {
         clearIdentity();
         client.clear();
@@ -94,6 +101,7 @@ function Root({ segments }: { segments: string[] }) {
         if (active && (remote || current.user_id !== currentIdentity.current)) {
           clearIdentity();
           client.clear();
+          currentIdentity.current = current.user_id;
           setSession(current);
           if (window.location.pathname.startsWith("/app"))
             router.replace("/app");
@@ -139,17 +147,23 @@ function Root({ segments }: { segments: string[] }) {
     mode: string,
     credentials?: { username: string; password: string },
   ) {
-    clearIdentity();
-    client.clear();
-    const result = await request<{ csrf_token: string }>("/auth/" + mode, {
-      method: "POST",
-      body: json(credentials ?? {}),
-    });
-    setCsrf(result.csrf_token);
-    const user = sessionSchema.parse(await request("/auth/session"));
-    setSession(user);
-    window.dispatchEvent(new Event("datagenome-identity-local"));
-    return user;
+    identityTransition.current = true;
+    try {
+      clearIdentity();
+      client.clear();
+      const result = await request<{ csrf_token: string }>("/auth/" + mode, {
+        method: "POST",
+        body: json(credentials ?? {}),
+      });
+      setCsrf(result.csrf_token);
+      const user = sessionSchema.parse(await request("/auth/session"));
+      currentIdentity.current = user.user_id;
+      setSession(user);
+      window.dispatchEvent(new Event("datagenome-identity-local"));
+      return user;
+    } finally {
+      identityTransition.current = false;
+    }
   }
   async function demo() {
     if (!session) await identify("guest");
@@ -257,7 +271,7 @@ function Root({ segments }: { segments: string[] }) {
           <Link href="/privacy">Privacy</Link>
           <Link href="/terms">Terms</Link>
           <a href={repo + "/security"}>Security</a>
-          <span>v0.6.0 · local preview</span>
+          <span>v0.7.0 · self-hosted preview</span>
         </div>
       </footer>
     </>

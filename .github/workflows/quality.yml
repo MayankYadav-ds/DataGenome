@@ -11,7 +11,10 @@ concurrency:
 jobs:
   checks:
     if: github.event.repository.private == false
-    runs-on: windows-latest
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1, Node 24
@@ -22,15 +25,29 @@ jobs:
       - run: python -m ruff check .
       - run: python -m ruff format --check .
       - run: python -m mypy
-      - run: python -m pytest
       - run: python -m build
+      - name: Install built wheel
+        shell: pwsh
+        run: python -m pip install --force-reinstall --no-deps (Get-ChildItem dist/*.whl).FullName
+      - run: python -m pytest
       - run: python -m pip check
   web:
     if: github.event.repository.private == false
-    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            browser: chromium
+          - os: ubuntu-latest
+            browser: firefox
+          - os: ubuntu-latest
+            browser: webkit
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     env:
       NEXT_TELEMETRY_DISABLED: "1"
+      DATAGENOME_E2E_BROWSER: ${{ matrix.browser }}
     defaults:
       run:
         working-directory: frontend
@@ -52,5 +69,51 @@ jobs:
       - run: npm run format:check
       - run: npm test
       - run: npm run build
-      - run: npx playwright install chromium
-      - run: npm run test:e2e
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      # Independent synthetic workspaces keep the browser cohorts below the
+      # unchanged 240-request/minute source-IP budget; every assertion still runs.
+      - run: npm run test:e2e -- --grep-invert "focus reconciliation"
+      - run: npm run test:e2e -- identity-transition.spec.ts
+        env:
+          DATAGENOME_E2E_STORE: ../.datagenome/identity-transition.sqlite3
+  containers:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: "24"
+      - run: docker compose -p datagenome-phase10 up -d --build --wait --wait-timeout 180
+      - run: npm --prefix frontend ci
+      - run: npx --prefix frontend playwright install --with-deps chromium
+      - run: npm --prefix frontend run test:e2e -- --grep-invert "focus reconciliation"
+        env:
+          DATAGENOME_E2E_URL: https://localhost:8443
+          DATAGENOME_E2E_LOCAL_TLS: "1"
+      # The proxy intentionally shares one source-IP rate budget. Pace the next
+      # cohort through a real reset window rather than disabling that protection.
+      - run: sleep 60
+      - run: npm --prefix frontend run test:e2e -- identity-transition.spec.ts
+        env:
+          DATAGENOME_E2E_URL: https://localhost:8443
+          DATAGENOME_E2E_LOCAL_TLS: "1"
+      - if: always()
+        run: docker compose -p datagenome-phase10 down
+  advisories:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: "24"
+      - run: python -m pip install pip-audit
+      - run: python -m pip_audit -r requirements/backend.versions.txt --no-deps --disable-pip
+      - run: npm --prefix frontend ci
+      - run: npm --prefix frontend audit --omit=dev

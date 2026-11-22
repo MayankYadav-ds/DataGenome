@@ -104,6 +104,11 @@ export async function request<T = unknown>(
       const body = await response.json();
       if (body.error?.code) error = body.error;
     } catch {}
+    if (generation !== identityGeneration)
+      throw new DOMException(
+        "Identity changed while reading the error response.",
+        "AbortError",
+      );
     if (response.status === 401) {
       clearIdentity();
       window.dispatchEvent(new Event("session-expired"));

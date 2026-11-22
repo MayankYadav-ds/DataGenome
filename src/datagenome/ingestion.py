@@ -20,6 +20,10 @@ class Dataset:
 
 
 def validate_filename(name: str) -> None:
+    if len(name) > 255 or any(c in name for c in "/\\\x00\r\n"):
+        raise DatasetError(
+            "invalid_filename", "Use a bounded CSV basename without path separators."
+        )
     if not name.lower().endswith(".csv"):
         raise DatasetError("unsupported_file", "Expected a .csv filename.", 415)
 

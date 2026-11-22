@@ -1,0 +1,52 @@
+{
+  "scope": "Synthetic local Compose verification only; local CA verification disabled in this probe, never a public TLS trust claim.",
+  "base": "https://localhost:8443",
+  "loads": [
+    {
+      "clients": 1,
+      "requests": 30,
+      "median_seconds": 0.018541900000855094,
+      "p95_nearest_rank_seconds": 0.0368259000024409,
+      "errors": 0,
+      "requests_per_second": 11.02334973287681,
+      "p95_limit": "Only 30 observations; exploratory latency estimate, not an SLA."
+    },
+    {
+      "clients": 2,
+      "requests": 30,
+      "median_seconds": 0.018544099999417085,
+      "p95_nearest_rank_seconds": 0.02229079999960959,
+      "errors": 0,
+      "requests_per_second": 14.551407041025852,
+      "p95_limit": "Only 30 observations; exploratory latency estimate, not an SLA."
+    },
+    {
+      "clients": 5,
+      "requests": 30,
+      "median_seconds": 0.025270499998441665,
+      "p95_nearest_rank_seconds": 2.076871299999766,
+      "errors": 0,
+      "requests_per_second": 14.426674575079064,
+      "p95_limit": "Only 30 observations; exploratory latency estimate, not an SLA."
+    }
+  ],
+  "demo_registration_seconds": 0.03788720000011381,
+  "upload_seconds": 0.3707237999988138,
+  "running_observed_before_crash": true,
+  "observed_backend_recovery_seconds": 2.7486178999970434,
+  "backend_available_after_restart": true,
+  "job_state_after_restart": "interrupted",
+  "persistent_dataset_identity_unchanged": true,
+  "small_diagnostic_end_to_end_seconds": 0.2656594000000041,
+  "post_restart_job_state": "completed",
+  "queue_to_terminal_upper_bound_seconds": 0.23911560000124155,
+  "export_seconds": 0.018035699999018107,
+  "export_status": 200,
+  "memory_scope": "Current container activation cgroup peak and current backend process VmHWM, sampled after restart verification. Not the killed process peak and not a full-run peak. Shared-page accounting differs between process RSS and cgroup memory.",
+  "memory": {
+    "process_peak_working_set": "201820 kB",
+    "process_current_rss": "140912 kB",
+    "container_memory_peak_bytes": 160952320
+  },
+  "status": "pass"
+}

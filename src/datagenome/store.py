@@ -33,6 +33,7 @@ class Store:
         self.path = path
         path.parent.mkdir(parents=True, exist_ok=True)
         with self.connection() as db:
+            db.execute("PRAGMA journal_mode=WAL")
             version = db.execute("PRAGMA user_version").fetchone()[0]
             if version not in (0, 1, SCHEMA):
                 raise DatasetError(
@@ -57,6 +58,9 @@ class Store:
     def connection(self) -> Iterator[sqlite3.Connection]:
         db = sqlite3.connect(self.path, timeout=10)
         db.row_factory = sqlite3.Row
+        db.execute("PRAGMA foreign_keys=ON")
+        db.execute("PRAGMA busy_timeout=10000")
+        db.execute("PRAGMA synchronous=FULL")
         try:
             with db:
                 yield db

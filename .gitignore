@@ -28,5 +28,11 @@ playwright-report/
 test-results/
 *.tsbuildinfo
 .env.local
+*.runtime.lock
+*.restore-pending.json
+.dg-backup-*/
+.dg-restore-*/
+*.restore-rollback/
+private-backups/
 
 frontend/next-env.d.ts

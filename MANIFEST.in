@@ -1,4 +1,8 @@
 include CHANGELOG.md CONTRIBUTING.md SECURITY.md
+include Dockerfile.backend Dockerfile.frontend compose.yaml compose.production.yaml .dockerignore .env.example
+recursive-include deploy Dockerfile* Caddyfile *.md
+recursive-include requirements *.lock *.txt
+recursive-include scripts *.py
 recursive-include examples *.py
 recursive-include research *.md
 recursive-include docs *.md

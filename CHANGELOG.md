@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.7.0 — self-hosting preview
+
+- Validate production origins, hosts, cookies and bounded worker settings.
+- Harden identity rotation/login throttling, browser CSP, filenames and derived exports.
+- Prevent overlapping workspace owners and recover interrupted persisted jobs.
+- Add verified offline SQLite/ledger backup, staged restore and failure recovery tools.
+- Build non-root persistent Linux amd64 Compose services with local HTTPS.
+- Add Windows/Linux operator regressions, browser checks, supply-chain evidence and
+  deployment measurements. Remaining advisories and browser/platform gaps are explicit
+  in [Phase10](docs/phase-10.md); internet production readiness is not claimed.
+- Preserve Phase9 science, including unfavorable intervention outcomes.
+
 ## 0.6.0 — bounded research validation
 
 - Add frozen CPU-only research protocols, offline public-dataset identity checks,

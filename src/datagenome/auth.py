@@ -1,4 +1,6 @@
 import hashlib
+import json
+import logging
 import secrets
 import sqlite3
 import time
@@ -34,6 +36,11 @@ class Auth:
         self.store = store
         self.secure_cookie = secure_cookie
         self.registration = registration
+        from .configuration import Settings
+
+        settings = Settings.load()
+        self.guest_seconds = settings.guest_seconds
+        self.session_seconds = settings.session_seconds
         self.hasher = PasswordHasher(time_cost=3, memory_cost=65536, parallelism=1)
         self.hash_slots = BoundedSemaphore(2)
         self.dummy_hash = self.hasher.hash(secrets.token_urlsafe(32))
@@ -95,10 +102,18 @@ class Auth:
             return None
         return dict(row)
 
-    def issue(self, user_id: str, guest: bool) -> JSONResponse:
+    def issue(
+        self, user_id: str, guest: bool, prior_token: str | None = None
+    ) -> JSONResponse:
         token, csrf = secrets.token_urlsafe(32), secrets.token_urlsafe(32)
-        expires = time.time() + (3600 if guest else 8 * 3600)
+        duration = self.guest_seconds if guest else self.session_seconds
+        expires = time.time() + duration
         with self.store.connection() as db:
+            db.execute("DELETE FROM sessions WHERE expires<=?", (time.time(),))
+            if prior_token:
+                db.execute(
+                    "DELETE FROM sessions WHERE token_hash=?", (digest(prior_token),)
+                )
             db.execute(
                 "INSERT INTO sessions VALUES (?,?,?,?)",
                 (digest(token), user_id, digest(csrf), expires),
@@ -117,13 +132,14 @@ class Auth:
             httponly=True,
             secure=self.secure_cookie,
             samesite="strict",
-            max_age=3600 if guest else 8 * 3600,
+            max_age=duration,
             path="/",
         )
         return response
 
     def cleanup(self) -> int:
         with self.store.connection() as db:
+            db.execute("DELETE FROM sessions WHERE expires<=?", (time.time(),))
             expired = [
                 row["id"]
                 for row in db.execute(
@@ -186,6 +202,7 @@ def install_auth(
 
     @app.middleware("http")
     async def security(request: Request, call_next: Any) -> Any:
+        started = time.perf_counter()
         correlation = secrets.token_hex(12)
         owner_token = None
         try:
@@ -255,6 +272,19 @@ def install_auth(
         )
         response.headers["Cache-Control"] = "no-store"
         response.headers["Referrer-Policy"] = "no-referrer"
+        logging.getLogger(__name__).log(
+            logging.WARNING if response.status_code >= 400 else logging.INFO,
+            json.dumps(
+                {
+                    "event": "security_rejection"
+                    if response.status_code >= 400
+                    else "request_complete",
+                    "request_id": correlation,
+                    "status": response.status_code,
+                    "duration_ms": round(1000 * (time.perf_counter() - started), 3),
+                }
+            ),
+        )
         return response
 
     @router.post("/guest")
@@ -265,7 +295,7 @@ def install_auth(
         with store.connection() as db:
             db.execute(
                 "INSERT INTO users VALUES (?,?,?,1,?)",
-                (identifier, None, None, time.time() + 3600),
+                (identifier, None, None, time.time() + auth.guest_seconds),
             )
         return auth.issue(identifier, True)
 
@@ -289,12 +319,13 @@ def install_auth(
             raise DatasetError(
                 "account_unavailable", "Account registration could not complete.", 409
             ) from None
-        return auth.issue(identifier, False)
+        return auth.issue(identifier, False, request.cookies.get("datagenome_session"))
 
     @router.post("/login")
     def login(spec: Credentials, request: Request) -> JSONResponse:
         ip = request.client.host if request.client else "local"
         auth.rate("login:" + digest(ip), 10, 300)
+        auth.rate("account-login:" + digest(spec.username.casefold()), 10, 300)
         with store.connection() as db:
             row = db.execute(
                 "SELECT id,password_hash FROM users WHERE username=? AND guest=0",
@@ -310,7 +341,7 @@ def install_auth(
             raise DatasetError(
                 "invalid_credentials", "Invalid username or password.", 401
             )
-        return auth.issue(row["id"], False)
+        return auth.issue(row["id"], False, request.cookies.get("datagenome_session"))
 
     @router.get("/session")
     def session(request: Request) -> dict[str, Any]:

@@ -1,0 +1,12 @@
+{
+  "measured_at_utc": "2026-11-22T05:12:22.150Z",
+  "method": "One fresh Chromium context against the synthetic local HTTPS Compose stack. Local CA verification disabled for this probe only. Navigation includes TLS, SSR, assets and hydration. CDP heap is a snapshot, not peak process memory. No Core Web Vitals or enterprise-scale claim.",
+  "navigation": {
+    "response_start_ms": 28.899999998509884,
+    "response_end_ms": 30.5,
+    "dom_content_loaded_ms": 58.79999999701977,
+    "load_event_ms": 212.39999999850988
+  },
+  "renderer_heap_used_bytes": 4865484,
+  "renderer_layout_seconds": 0.055123
+}

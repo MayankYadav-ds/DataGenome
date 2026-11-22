@@ -1,0 +1,82 @@
+name: datagenome
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    image: datagenome-backend:0.7.0
+    platform: linux/amd64
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 128
+    mem_limit: 2g
+    cpus: 2
+    stop_grace_period: 140s
+    tmpfs: ["/tmp:size=128m,mode=1777"]
+    volumes: [workspace:/data]
+    networks: [backend]
+    environment:
+      DATAGENOME_ENV: production
+      DATAGENOME_STORE: /data/platform.sqlite3
+      DATAGENOME_LEDGER: /data/ledger
+      DATAGENOME_PUBLIC_ORIGIN: https://localhost:8443
+      DATAGENOME_TRUSTED_HOSTS: backend,localhost,127.0.0.1
+      DATAGENOME_HTTPS: "1"
+      DATAGENOME_REGISTRATION: ${DATAGENOME_REGISTRATION:-1}
+      DATAGENOME_WORKERS: "1"
+      DATAGENOME_QUEUE_LIMIT: "8"
+      DATAGENOME_RETENTION_DAYS: "30"
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    image: datagenome-frontend:0.7.0
+    platform: linux/amd64
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 128
+    mem_limit: 768m
+    cpus: 1
+    tmpfs: ["/tmp:size=64m,mode=1777"]
+    networks: [backend, web]
+    environment:
+      DATAGENOME_ENV: production
+      DATAGENOME_PUBLIC_ORIGIN: https://localhost:8443
+      DATAGENOME_BACKEND: http://backend:8765
+    depends_on:
+      backend:
+        condition: service_healthy
+  proxy:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.proxy
+    image: datagenome-proxy:0.7.0
+    platform: linux/amd64
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: 0.5
+    tmpfs: ["/tmp:size=16m,mode=1777"]
+    volumes: [caddy_data:/data, caddy_config:/config]
+    networks: [web, edge]
+    ports: ["127.0.0.1:8443:8443"]
+    depends_on:
+      frontend:
+        condition: service_healthy
+volumes:
+  workspace:
+  caddy_data:
+  caddy_config:
+networks:
+  backend:
+    internal: true
+  web:
+    internal: true
+  edge: {}

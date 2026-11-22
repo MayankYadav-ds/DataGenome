@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
+import { deployment } from "./lib/deployment";
+deployment();
 const config: NextConfig = {
+  output: process.env.DATAGENOME_STANDALONE === "1" ? "standalone" : undefined,
   poweredByHeader: false,
   async headers() {
     return [

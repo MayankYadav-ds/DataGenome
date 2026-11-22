@@ -1,0 +1,10 @@
+# Private, single-instance envelope; application is still bound to loopback.
+services:
+  backend:
+    restart: unless-stopped
+    environment:
+      DATAGENOME_REGISTRATION: "0"
+  frontend:
+    restart: unless-stopped
+  proxy:
+    restart: unless-stopped

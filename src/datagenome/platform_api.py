@@ -192,7 +192,6 @@ def attach_platform(app: FastAPI, database: Path) -> None:
 
     app.add_middleware(PlatformBodyLimit)
     store = Store(database)
-    import os
     import sqlite3
 
     from .auth import install_auth
@@ -200,8 +199,8 @@ def attach_platform(app: FastAPI, database: Path) -> None:
     auth = install_auth(
         app,
         store,
-        secure_cookie=os.environ.get("DATAGENOME_HTTPS") == "1",
-        registration=os.environ.get("DATAGENOME_REGISTRATION", "1") == "1",
+        secure_cookie=app.state.settings.secure_cookie,
+        registration=app.state.settings.registration,
     )
     app.state.auth = auth
     service = JobService(store, recover=False)
@@ -211,6 +210,9 @@ def attach_platform(app: FastAPI, database: Path) -> None:
 
     maintenance_stop = Event()
     maintenance_thread: Thread | None = None
+    from .lease import Lease
+
+    lease = Lease(database)
 
     def maintenance() -> None:
         from .lifecycle import retention
@@ -218,9 +220,9 @@ def attach_platform(app: FastAPI, database: Path) -> None:
         while not maintenance_stop.wait(60):
             try:
                 auth.cleanup()
-                days = os.environ.get("DATAGENOME_RETENTION_DAYS")
+                days = app.state.settings.retention_days
                 if days is not None:
-                    retention(store, int(days))
+                    retention(store, days)
             except (DatasetError, ValueError, sqlite3.Error):
                 # Configuration errors never expose sensitive artifacts in logs.
                 continue
@@ -228,13 +230,20 @@ def attach_platform(app: FastAPI, database: Path) -> None:
     def startup() -> None:
         # Recovery is only appropriate for the one owning application process.
         nonlocal service, maintenance_thread
-        auth.cleanup()
-        service = JobService(store, recover=True)
-        service.start()
-        maintenance_thread = Thread(
-            target=maintenance, name="datagenome-retention", daemon=True
-        )
-        maintenance_thread.start()
+        lease.acquire()
+        try:
+            auth.cleanup()
+            service = JobService(store, recover=True)
+            service.start()
+            maintenance_thread = Thread(
+                target=maintenance, name="datagenome-retention", daemon=True
+            )
+            maintenance_thread.start()
+        except Exception:
+            service.close()
+            if service.thread is None or not service.thread.is_alive():
+                lease.close()
+            raise
 
     app.router.add_event_handler("startup", startup)
 
@@ -243,6 +252,27 @@ def attach_platform(app: FastAPI, database: Path) -> None:
         if maintenance_thread is not None:
             maintenance_thread.join(timeout=2)
         service.close()
+        if service.thread is None or not service.thread.is_alive():
+            lease.close()
+
+    @app.get("/ready", include_in_schema=False)
+    def ready() -> Any:
+        from fastapi.responses import JSONResponse
+
+        try:
+            with store.connection() as db:
+                db.execute("SELECT 1").fetchone()
+            available = (
+                service.thread is not None
+                and service.thread.is_alive()
+                and not service.stop_event.is_set()
+            )
+        except sqlite3.Error:
+            available = False
+        return JSONResponse(
+            {"status": "ready" if available else "unavailable"},
+            status_code=200 if available else 503,
+        )
 
     app.router.add_event_handler("shutdown", shutdown)
 
@@ -259,7 +289,12 @@ def attach_platform(app: FastAPI, database: Path) -> None:
                 "reconstruct",
                 "select_earlier_version",
             ],
-            "jobs": {"workers": 1, "queue_limit": 8, "cooperative_cancellation": True},
+            "jobs": {
+                "workers": 1,
+                "queue_limit": service.queue_limit,
+                "per_identity_active_limit": 2,
+                "cooperative_cancellation": True,
+            },
             "security": "revocable local sessions, CSRF tokens and server-side project ownership",
             "authentication": {
                 "guest": True,
@@ -280,7 +315,7 @@ def attach_platform(app: FastAPI, database: Path) -> None:
                 "feature_selection",
             ],
             "unsupported": [
-                "chronological_univariate",
+                "joint_group_time_univariate",
                 "label_horizon_purging",
                 "predictive_proxy_verification",
                 "subgroup_intervention_uncertainty",
@@ -378,7 +413,13 @@ def attach_platform(app: FastAPI, database: Path) -> None:
         writer = csv.writer(stream)
         writer.writerow(data.columns)
         writer.writerows(data.rows)
-        return PlainTextResponse(stream.getvalue(), media_type="text/csv")
+        return PlainTextResponse(
+            stream.getvalue(),
+            media_type="text/csv",
+            headers={
+                "Content-Disposition": 'attachment; filename="datagenome-dataset.csv.txt"'
+            },
+        )
 
     @router.get("/datasets/{version_id}/compare/{other_id}")
     def comparison(version_id: str, other_id: str, project_id: str) -> dict[str, Any]:

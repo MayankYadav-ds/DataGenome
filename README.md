@@ -2,6 +2,15 @@
 
 Debug the data, not just the model.
 
+## Self-hosting preview — 0.7.0
+
+Phase10 adds tested Linux amd64 Compose deployment, validated production settings,
+session/browser hardening, offline backup/restore and interrupted-job recovery.
+Start with [self-hosting](docs/self-hosting.md) and the [verification matrix](docs/phase-10.md).
+The default deployment stays on localhost. Residual container advisories and
+operational limits remain; public internet security is **not verified**.
+Scientific validation remains **partial**, with the Phase9 research results preserved.
+
 DataGenome profiles local CSV datasets and reports observations that can help explain model
 failures. The profiler measures data properties and identifies issues for review. Finding counts
 are computed from the input. The class imbalance assessment uses a heuristic threshold.

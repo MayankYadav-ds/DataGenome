@@ -13,8 +13,27 @@ from .versions import manifest_of, table
 class JobService:
     """One worker per application process, with persisted requests and cooperative cancellation."""
 
+    def owner_capacity(self, db: Any) -> None:
+        from .ownership import http_owner
+
+        owner = http_owner.get()
+        if (
+            owner is not None
+            and db.execute(
+                "SELECT count(*) FROM jobs j JOIN project_owners o ON o.project=j.project WHERE o.user_id=? AND j.state IN ('queued','running')",
+                (owner,),
+            ).fetchone()[0]
+            >= 2
+        ):
+            raise DatasetError(
+                "owner_queue_full", "This identity already has two active jobs.", 429
+            )
+
     def __init__(self, store: Store, *, recover: bool = True) -> None:
         self.store = store
+        from .configuration import Settings
+
+        self.queue_limit = Settings.load().queue_limit
         self.stop_event = Event()
         self.thread: Thread | None = None
         if recover:
@@ -81,8 +100,9 @@ class JobService:
             ).fetchone()[0]
             if stored_count >= 1000:
                 raise DatasetError("job_quota", "Project reached its 1,000-job quota.")
-            if count >= 8:
+            if count >= self.queue_limit:
                 raise DatasetError("queue_full", "The local queue is full.", 429)
+            self.owner_capacity(db)
             db.execute(
                 "INSERT INTO jobs(id,project,state,request,created,updated) VALUES (?,?,?,?,?,?)",
                 (
@@ -148,8 +168,9 @@ class JobService:
                 active = db.execute(
                     "SELECT count(*) FROM jobs WHERE state IN ('queued','running')"
                 ).fetchone()[0]
-                if active >= 8:
+                if active >= self.queue_limit:
                     raise DatasetError("queue_full", "The local queue is full.", 429)
+                self.owner_capacity(db)
                 if (
                     db.execute(
                         "SELECT count(*) FROM jobs WHERE project=?", (project,)
@@ -378,9 +399,27 @@ class JobService:
             return
 
         def work() -> None:
+            import logging
+            import sqlite3
+
+            logger = logging.getLogger(__name__)
             while not self.stop_event.is_set():
-                if not self.run_one():
-                    self.stop_event.wait(0.2)
+                try:
+                    if not self.run_one():
+                        self.stop_event.wait(0.2)
+                except sqlite3.Error:
+                    logger.error('{"event":"worker_storage_unavailable"}')
+                    # Recover claimed work after transient storage failure. Do not
+                    # invent a completed result or kill the worker silently.
+                    self.stop_event.wait(1)
+                    try:
+                        with self.store.connection() as db:
+                            db.execute(
+                                "UPDATE jobs SET state='interrupted',updated=? WHERE state='running'",
+                                (now(),),
+                            )
+                    except sqlite3.Error:
+                        pass
 
         self.thread = Thread(target=work, name="datagenome-worker", daemon=True)
         self.thread.start()

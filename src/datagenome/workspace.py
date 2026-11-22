@@ -171,7 +171,10 @@ def main() -> None:
                 "rows": len(result["rows"]),
             }
         elif args.command == "work-one":
-            result = {"ran_job": JobService(store, recover=args.recover).run_one()}
+            from .lease import Lease
+
+            with Lease(store.path):
+                result = {"ran_job": JobService(store, recover=args.recover).run_one()}
         else:
             version = reconstruct(store, args.project, args.version)
             if args.command in {

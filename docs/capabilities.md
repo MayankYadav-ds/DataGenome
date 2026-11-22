@@ -1,5 +1,11 @@
 # Capability inventory after Phase 9 (0.6)
 
+Phase10 (0.7.0) adds [self-hosting and operational capabilities](phase-10.md):
+validated deployment configuration, local HTTPS Compose, process ownership,
+offline backup/restore/recovery, readiness and security regressions. These are
+deployment capabilities; the scientific inventory and partial validation below
+retain their Phase9 meaning.
+
 Phase9 adds a frozen CPU research toolkit, aggregate trial artifacts and a generated
 Research page. See the [source audit](../research/scientific-audit.md),
 [observed results](../research/results.md), and [remaining scientific scope](../research/threats-to-validity.md).

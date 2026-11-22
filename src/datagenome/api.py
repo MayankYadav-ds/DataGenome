@@ -3,7 +3,6 @@ import json
 import logging
 import os
 from collections.abc import Awaitable, Callable
-from pathlib import Path
 from typing import Annotated, Any, Literal
 
 from fastapi import FastAPI, Query, Request
@@ -104,6 +103,16 @@ def create_app(
     max_rows: int | None = None,
     max_columns: int | None = None,
 ) -> FastAPI:
+    from .configuration import Settings
+
+    settings = Settings.load()
+    application_logger = logging.getLogger("datagenome")
+    if not application_logger.handlers:
+        handler = logging.StreamHandler()
+        handler.setFormatter(logging.Formatter("%(message)s"))
+        application_logger.addHandler(handler)
+        application_logger.propagate = False
+    application_logger.setLevel(settings.log_level)
     limit = (
         max_bytes
         if max_bytes is not None
@@ -122,6 +131,12 @@ def create_app(
     if limit < 1 or not 1 <= rows <= 20000 or not 1 <= columns <= 128:
         raise ValueError("Invalid DataGenome resource limits.")
     app = FastAPI(title="DataGenome", version=__version__)
+    app.state.settings = settings
+    from starlette.middleware.trustedhost import TrustedHostMiddleware
+
+    app.add_middleware(
+        TrustedHostMiddleware, allowed_hosts=list(settings.trusted_hosts)
+    )
     gate = asyncio.Lock()
 
     @app.exception_handler(DatasetError)
@@ -352,9 +367,7 @@ def create_app(
         )
     from .platform_api import attach_platform
 
-    attach_platform(
-        app, Path(os.environ.get("DATAGENOME_STORE", ".datagenome/platform.sqlite3"))
-    )
+    attach_platform(app, settings.store)
     return app
 
 

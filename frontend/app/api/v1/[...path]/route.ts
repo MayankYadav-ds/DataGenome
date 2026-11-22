@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { acceptedHost, deployment } from "../../../../lib/deployment";
 export const dynamic = "force-dynamic";
 async function bridge(
   request: NextRequest,
@@ -19,17 +20,14 @@ async function bridge(
   const origin = request.headers.get("origin");
   try {
     const incoming = new URL("http://" + host);
-    if (
-      !host ||
-      !["127.0.0.1", "localhost", "[::1]"].includes(incoming.hostname) ||
-      incoming.host !== host
-    )
-      throw new Error();
+    if (!acceptedHost(host) || incoming.host !== host) throw new Error();
     if (origin) {
       const parsed = new URL(origin);
       if (
         !["http:", "https:"].includes(parsed.protocol) ||
-        parsed.host !== host
+        parsed.host !== host ||
+        (deployment().production &&
+          parsed.origin !== deployment().origin?.origin)
       )
         throw new Error();
     }
@@ -55,11 +53,14 @@ async function bridge(
       },
       { status: 413 },
     );
-  const backend = new URL(
-    process.env.DATAGENOME_BACKEND ?? "http://127.0.0.1:8765",
-  );
+  const backend = deployment().backend;
   if (
-    !["127.0.0.1", "localhost", "[::1]"].includes(backend.hostname) ||
+    ![
+      "127.0.0.1",
+      "localhost",
+      "[::1]",
+      ...(deployment().production ? ["backend"] : []),
+    ].includes(backend.hostname) ||
     backend.protocol !== "http:"
   )
     return Response.json(
@@ -129,6 +130,7 @@ async function bridge(
     const out = new Headers();
     for (const key of [
       "content-type",
+      "content-disposition",
       "x-request-id",
       "x-content-type-options",
     ]) {

@@ -15,6 +15,12 @@ logger = logging.getLogger(__name__)
 def main() -> int:
     import sys
 
+    if len(sys.argv) > 1 and sys.argv[1] in {"doctor", "workspace"}:
+        from .operations import main as operations_main
+
+        return operations_main(
+            sys.argv[1:] if sys.argv[1] == "doctor" else sys.argv[2:]
+        )
     if len(sys.argv) > 1 and sys.argv[1] == "benchmark":
         from .benchmark import main as benchmark_main
 

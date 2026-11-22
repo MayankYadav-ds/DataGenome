@@ -97,6 +97,33 @@ describe("evidence presentation", () => {
   });
 });
 describe("session-safe transport", () => {
+  it("does not expire a new identity when an old unauthorized body finishes", async () => {
+    clearIdentity();
+    const signal = vi.fn();
+    window.addEventListener("session-expired", signal);
+    let finish: (data: unknown) => void = () => {};
+    const response = new Response("{}", { status: 401 });
+    const reading = vi.spyOn(response, "json").mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          finish = resolve;
+        }),
+    );
+    const fetcher = vi.spyOn(globalThis, "fetch").mockResolvedValue(response);
+    const pending = request("/auth/session");
+    await vi.waitFor(() => expect(reading).toHaveBeenCalled());
+    clearIdentity();
+    setCsrf("new-identity-csrf");
+    finish({ error: { code: "authentication_required" } });
+    await expect(pending).rejects.toMatchObject({ name: "AbortError" });
+    expect(signal).not.toHaveBeenCalled();
+    fetcher.mockResolvedValue(new Response("{}"));
+    await request("/projects", { method: "POST", body: "{}" });
+    expect(
+      new Headers(fetcher.mock.calls.at(-1)?.[1]?.headers).get("X-CSRF-Token"),
+    ).toBe("new-identity-csrf");
+    window.removeEventListener("session-expired", signal);
+  });
   it("rejects a private body that finishes after the identity changes", async () => {
     clearIdentity();
     let finish: (data: unknown) => void = () => {};

@@ -49,6 +49,7 @@ test("public routes, keyboard access, responsive themes and accessibility", asyn
     if (route !== "/") await shot(page, route.slice(1));
   }
   await page.goto("/login");
+  await page.bringToFront();
   await page.keyboard.press("Tab");
   await expect(
     page.getByRole("link", { name: "Skip to content" }),
